@@ -1,0 +1,80 @@
+<div class="side-menu sidebar-inverse">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="side-menu-container" >
+      <div class="navbar-header">
+        <a class="navbar-brand" href="javascript:void(0);">
+          <div class="icon fa fa-search"></div>
+          <div class="title" style="font-size:18px">Components</div>
+          <button type="button" class="navbar-expand-toggle pull-right">
+            <i class="fa fa-bars icon"></i>
+          </button>
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="panel panel-default dropdown">
+          <a data-toggle="collapse" href="#dropdown-component">
+            <span class="icon fa fa-slack"></span>
+            <span class="title" style="font-size:14px">
+              <strong>自定义工具集</strong>
+            </span>
+          </a>
+          <!-- Dropdown level 1 -->
+          <div id="dropdown-component" class="panel-collapse collapse" >
+            <div class="panel-body">
+              <ul class="nav navbar-nav" >
+                <li>
+                  <a style="font-size:12px" href="#" onclick="" >
+                    <span  class="icon fa fa-table"></span>Matrix Framework Page</a>
+                </li>
+                <li>
+                <li>
+                  <a style="font-size:12px" href="#" onclick="">
+                    <span class="icon fa fa-table"></span>Matrix Example Page</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="panel panel-default dropdown">
+          <a data-toggle="collapse" href="#dropdown-icon">
+            <span class="icon fa fa-archive"></span>
+            <span class="title" style="font-size:14px">
+              <strong>图标</strong>
+            </span>
+          </a>
+          <div id="dropdown-icon" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li>
+                  <a style="font-size:12px" href="#" onclick="location.href=$.getRootPath() + '/icons_Glyphicons.html'">
+                    <span class="icon fa fa-circle-o-notch"></span>Glyphicons</a>
+                </li>
+                <li>
+                  <a style="font-size:12px" href="#" onclick="location.href=$.getRootPath() + '/icons_Font_Awesomes.html'">
+                    <span class="icon fa fa-circle-o-notch"></span>Font Awesomes</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </nav>
+</div>
+
+
+
+<script>
+  $(function() {
+    $(".navbar-expand-toggle").click(function() {
+      $(".app-container").toggleClass("expanded");
+      return $(".navbar-expand-toggle").toggleClass("fa-rotate-90");
+    });
+    return $(".navbar-right-expand-toggle").click(function() {
+      $(".navbar-right").toggleClass("expanded");
+      return $(".navbar-right-expand-toggle").toggleClass("fa-rotate-90");
+    });
+  });
+</script>

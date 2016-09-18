@@ -1,0 +1,58 @@
+<div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" onclick="location.href=$.getRootPath() + '/index.html'"><i class="fa fa-home"></i>&nbsp;Matrix</a>
+    </div>
+    <div aria-expanded="false" id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right " style="margin-right:18px">
+        <li class="dropdown profile hidden-xs">
+          <a href="#" class="dropdown-toggle page-scroll" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-sitemap"></i> <span class="hidden-sm">&nbsp;系统地图</span> <span class="caret"></span></a>
+          <ul class="dropdown-menu animated fadeInDown" style="width: 668px;padding-bottom: 0px;text-align: center;background-color:white;-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);box-shadow: 0 6px 12px rgba(0,0,0,.175);">
+
+            <li>
+              <div class="row profile-info  text-center" style="margin:0px;font-family: 'Roboto Condensed', sans-serif;padding: 15px;">
+                <div class="col-md-3">
+                  <button class="btn btn-inverse btn-wide"><i class="fa fa-book"></i> 教程</button>
+                  <hr style="border-color: #353d47;border-width: 3px;max-width: 50px;">
+                  <a onclick="location.href = $.getRootPath() + '/quickStart_dashboard.html'" href="#" class="btn btn-sm " style="font-weight: 700;">开始学习</a>
+                  <a onclick="location.href = $.getRootPath() + '/tutorial/hive_analyze_lifecycle_tutorials.html'" href="#" class="btn btn-sm " style="font-weight: 700;">最佳实践</a>
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-inverse btn-wide"><i class="fa fa-flask"></i> 功能特性</button>
+                  <hr style="border-color: #353d47;border-width: 3px;max-width: 50px;">
+                  <a onclick="location.href = $.getRootPath() + '/notebook.html'" href="#" class="btn btn-sm " style="font-weight: 700;">hive notebook</a>
+                  <a onclick="location.href = $.getRootPath() + '/notebook_rdms.html'" href="#" class="btn btn-sm " style="font-weight: 700;">rdms notebook</a>
+                  <a onclick="location.href = $.getRootPath() + '/notebook_pig.html'" href="#" class="btn btn-sm " style="font-weight: 700;">pig notebook</a>
+                  <a onclick="location.href = $.getRootPath() + '/dashboard.html'" href="#" class="btn btn-sm " style="font-weight: 700;">仪表板</a>
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-inverse btn-wide"><i class="fa fa-circle-o-notch"></i> 管理</button>
+                  <hr style="border-color: #353d47;border-width: 3px;max-width: 50px;">
+                  <a onclick="location.href = $.getRootPath() + '/file.html'" href="#" class="btn btn-sm " style="font-weight: 700;">hdfs资源管理器</a>
+                  <a onclick="location.href = $.getRootPath() + '/data-mgmt.html'" href="#" class="btn btn-sm " style="font-weight: 700;">hive资源管理器</a>
+                  <a onclick="location.href = $.getRootPath() + '/rdms_mgmt.html'" href="#" class="btn btn-sm " style="font-weight: 700;">rdms资源管理器</a>
+                  <a onclick="location.href = $.getRootPath() + '/job_main.html'" href="#" class="btn btn-sm " style="font-weight: 700;">job资源管理器</a>
+                  <a onclick="location.href = $.getRootPath() + '/console_metadata.html'" href="#" class="btn btn-sm " style="font-weight: 700;">元数据资源管理器</a>
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-inverse btn-wide"><i class="fa fa-user"></i> 用户</button>
+                  <hr style="border-color: #353d47;border-width: 3px;max-width: 50px;">
+                  <a onclick="location.href = $.getRootPath() + '/user_profile.html'" href="#" class="btn btn-sm " style="font-weight: 700;">概要配置</a>
+                  <a onclick="location.href = $.getRootPath() + '/logout'" href="#" class="btn btn-sm " style="font-weight: 700;">系统注销</a>
+                  <a onclick="location.href = $.getServerRoot() + '/scripter_client_cn/'" href="#" class="btn btn-sm " style="font-weight: 700;">中文版</a>
+                  <a onclick="location.href = $.getServerRoot() + '/scripter_client/'" href="#" class="btn btn-sm " style="font-weight: 700;">English</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

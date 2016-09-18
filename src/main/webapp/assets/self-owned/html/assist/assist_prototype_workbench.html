@@ -1,0 +1,74 @@
+<div class="side-menu sidebar-inverse">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="side-menu-container" >
+      <div class="navbar-header">
+        <a class="navbar-brand" href="javascript:void(0);">
+          <div class="icon fa fa-search"></div>
+          <div class="title" style="font-size:18px">工作台组件</div>
+          <button type="button" class="navbar-expand-toggle pull-right">
+            <i class="fa fa-bars icon"></i>
+          </button>
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li>
+          <a style="font-size:12px" href="#">
+            <i class="fa fa-bar-chart fa-3x"></i>
+            <span class="title" style="font-size:24px">
+              <strong>出图</strong>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a style="font-size:12px" href="#">
+            &nbsp;<i class="fa fa-table fa-3x"></i>
+            <span class="title" style="font-size:24px">
+              <strong>&nbsp;前端分页表</strong>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a style="font-size:12px" href="#">
+            &nbsp;<i class="fa fa-database fa-3x"></i>
+            <span class="title" style="font-size:24px">
+              <strong>&nbsp;后端分页表</strong>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a style="font-size:12px" href="#" onclick="$.publish('ADD_DRAG_EMPTY_DIV_EVENT');">
+            <i class="fa fa-keyboard-o fa-3x"></i>
+            <span class="title" style="font-size:24px">
+              <strong>&nbsp;Empty DIV</strong>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a style="font-size:12px" href="#" onclick="ModalUtil.popup_modal('Markdown Editor', '/prototype_workbench_main_content_modal_markdown.html', null, null, null);">
+            &nbsp;<i class="fa fa-pencil-square-o fa-3x"></i>
+            <span class="title" style="font-size:24px">
+              <strong>&nbsp;Markdown</strong>
+            </span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </nav>
+</div>
+
+
+
+<script>
+  $(function() {
+    $(".navbar-expand-toggle").click(function() {
+      $(".app-container").toggleClass("expanded");
+      return $(".navbar-expand-toggle").toggleClass("fa-rotate-90");
+    });
+    return $(".navbar-right-expand-toggle").click(function() {
+      $(".navbar-right").toggleClass("expanded");
+      return $(".navbar-right-expand-toggle").toggleClass("fa-rotate-90");
+    });
+  });
+</script>

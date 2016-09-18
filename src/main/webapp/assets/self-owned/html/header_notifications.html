@@ -1,0 +1,125 @@
+<div class="container">
+  <nav class="navbar navbar-inverse navbar-fixed-top navbar-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" onclick="location.href=$.getRootPath() + '/index.html'"><i class="fa fa-home"></i>&nbsp;Matrix</a>
+    </div>
+    <div style="height: 1px;" aria-expanded="false" id="navbar" class="navbar-collapse collapse">
+
+      <ul class="nav navbar-nav navbar-right" style="margin-right:18px">
+        <li class="dropdown success">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cloud"></i></a>
+          <ul class="dropdown-menu success  animated fadeInDown">
+            <li class="title">
+              集群状态整体评估
+              <span class="badge pull-right">Normal</span>
+            </li>
+            <li>
+              <ul class="list-group notifications">
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge success">1/1</span> <i class="fa fa-check icon"></i> NameNode
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge success">35/35</span> <i class="fa fa-check icon"></i> DataNode
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge warning">2/8</span> <i class="fa fa-exclamation-circle icon"></i> Zookeeper
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge success">Normal</span> <i class="fa fa-check icon"></i> Hdfs接口
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge success">Normal</span> <i class="fa fa-check icon"></i> Oozie接口
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge success">Normal</span> <i class="fa fa-check icon"></i> Yarn接口
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge danger">Abnormal</span> <i class="fa fa-exclamation-circle icon"></i> Hive接口
+                  </li>
+                </a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown danger">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-puzzle-piece"></i> 8</a>
+          <ul class="dropdown-menu danger  animated fadeInDown">
+            <li class="title">
+              集群正在运行Job数量
+              <span class="badge pull-right">8</span>
+            </li>
+            <li>
+              <ul class="list-group notifications">
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge warning">28</span> <i class="fa fa-exclamation-circle icon"></i> Pending Job总数量
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge">36</span> <i class="fa fa-exclamation-circle icon"></i> 队列中Job总数量
+                  </li>
+                </a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown warning">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-heartbeat"></i> 1</a>
+          <ul class="dropdown-menu warning  animated fadeInDown">
+            <li class="title">
+              我的Job
+              <span class="badge pull-right">8</span>
+            </li>
+            <li>
+              <ul class="list-group notifications">
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge success">1</span> <i class="fa fa-check icon"></i> Running
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item">
+                    <span class="badge warning">7</span> <i class="fa fa-exclamation-circle icon"></i> Pending
+                  </li>
+                </a>
+                <a href="#">
+                  <li class="list-group-item message">
+                    <a href="#" onclick="location.href=$.getRootPath() + '/job-mgmt.html'">&nbsp;view more info</a>
+                  </li>
+                </a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="hidden-sm">&nbsp;hdfs</span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" onclick=""><i class="fa fa-info-circle"></i> &nbsp;Profile</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" onclick=""><i class="fa fa-sign-out"></i>&nbsp;Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
