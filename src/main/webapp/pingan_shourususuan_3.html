@@ -41,7 +41,7 @@
               </div>
               <!-- title: such lik kaimenhong -->
               <div class="col-xs-10 col-xs-offset-1 text-center">
-                <span style="font-size:38px;color:#FB9E13">营销收入测算</span>
+                <span style="font-size:38px;color:#FB9E13">区拓收入测算</span>
               </div>
 
               <!-- button group of main function -->
@@ -86,7 +86,14 @@
                     <span>备注: 其他收入包含以下收入以外的续保、综拓等收入，请依据个人实际情况进行比例调整</span>
                   </div>
                 </div>
+                <!-- <div class="form-group" style="font-size: 11px;">
+                  <label class="col-xs-3 control-label">
+                    <span style="font-weight: bold;font-size: 11px;"></span>
+                  </label>
+                  <div class="col-xs-6">
 
+                  </div>
+                </div> -->
                 <div class="card card-danger">
                   <div class="card-header" style="height:50px">
                     <div class="card-title" style="padding: 8px 20px;">
@@ -95,17 +102,25 @@
                     </div>
                   </div>
                   <div class="card-body no-padding">
-                    <br>　　　　　
+                    <br>
                     <form class="form-horizontal">
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">个人增员:</span>
+                          <span style="font-weight: bold;font-size: 11px; text-align: left; ">上季度绩优档次:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <select style="font-size: 11px;margin-top: 5px;height:30px" class="form-control" style="width:188px" data-bind="options:items,optionsText:'itemName',value:selectedTableData,optionsCaption: '请选择...'"></select>
+                        </div>
+                      </div>
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;">总业绩:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">分级:</span>
+                          <span style="font-weight: bold;font-size: 11px;">增员人数:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
@@ -113,13 +128,13 @@
                       </div>
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">产品保费:</span>
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">初佣:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">佣金率:</span>
+                          <span style="font-weight: bold;font-size: 11px;color:#E74C3C">训练津贴:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
@@ -127,13 +142,13 @@
                       </div>
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">初佣:</span>
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">达成津贴:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">训练津贴:</span>
+                          <span style="font-weight: bold;font-size: 11px;color:#E74C3C">训练津贴:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
@@ -141,16 +156,24 @@
                       </div>
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">业绩津贴:</span>
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">事业超额奖金:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">增员奖:</span>
+                          <span style="font-weight: bold;font-size: 11px;color:#E74C3C">增员奖金:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                      </div>
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">绩优津贴:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                       </div>
                     </form>
@@ -160,54 +183,12 @@
                 <div class="card card-danger">
                   <div class="card-header" style="height:50px">
                     <div class="card-title" style="padding: 8px 20px;">
-                      <div class="title"><i class="fa fa-group"></i> 组情况:
+                      <div class="title"><i class="fa fa-bank"></i> 展业区情况:
                       </div>
-                    </div>　　　　　
-                  </div>
-                  <div class="card-body no-padding">
-                    <br>　　　　　
-                    <form class="form-horizontal">
-                      <div class="form-group" style="font-size: 11px;">
-                        <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
-                        </label>
-                        <div class="col-xs-3">
-                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
-                        </div>
-                        <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">人均保费:</span>
-                        </label>
-                        <div class="col-xs-3">
-                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
-                        </div>
-                      </div>
-                      <div class="form-group" style="font-size: 11px;">
-                        <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">管理津贴:</span>
-                        </label>
-                        <div class="col-xs-3">
-                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
-                        </div>
-                        <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">育成利益:</span>
-                        </label>
-                        <div class="col-xs-3">
-                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <hr>
-                <div class="card card-danger">
-                  <div class="card-header" style="height:50px">
-                    <div class="card-title" style="padding: 8px 20px;">
-                      <div class="title"><i class="fa fa-bank"></i> 部情况:
-                      </div>　　　　　
                     </div>
                   </div>
                   <div class="card-body no-padding">
-                    <br>　　　　　
+                    <br>
                     <form class="form-horizontal">
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
@@ -217,7 +198,7 @@
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">人均保费:</span>
+                          <span style="font-weight: bold;font-size: 11px;">人均业绩:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
@@ -225,13 +206,41 @@
                       </div>
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">管理津贴:</span>
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">区管理津贴:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px;">增部利益:</span>
+                          <span style="font-weight: bold;font-size: 11px;">增区拟算:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <hr>
+                <div class="card card-danger">
+                  <div class="card-header" style="height:50px">
+                    <div class="card-title" style="padding: 8px 20px;">
+                      <div class="title"><i class="fa fa-bank"></i> 展业课情况:
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body no-padding">
+                    <br>
+                    <form class="form-horizontal">
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px;">人均业绩:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
@@ -239,10 +248,100 @@
                       </div>
                       <div class="form-group" style="font-size: 11px;">
                         <label class="col-xs-3 control-label">
-                          <span style="font-weight: bold;font-size: 11px; text-align: left;">总盈利益:</span>
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">课管理津贴:</span>
                         </label>
                         <div class="col-xs-3">
                           <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px;">增区拟算:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <hr>
+                <div class="card card-danger">
+                  <div class="card-header" style="height:50px">
+                    <div class="card-title" style="padding: 8px 20px;">
+                      <div class="title"><i class="fa fa-bank"></i> 展业处情况:
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body no-padding">
+                    <br>
+                    <form class="form-horizontal">
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px;">人均业绩:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                      </div>
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">处管理津贴:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px;">增区拟算:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <hr>
+                <div class="card card-danger">
+                  <div class="card-header" style="height:50px">
+                    <div class="card-title" style="padding: 8px 20px;">
+                      <div class="title"><i class="fa fa-bank"></i> 展业区部情况:
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body no-padding">
+                    <br>
+                    <form class="form-horizontal">
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px;">人均业绩:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                      </div>
+                      <div class="form-group" style="font-size: 11px;">
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">区部管理津贴:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:key" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
+                        </div>
+                        <label class="col-xs-3 control-label">
+                          <span style="font-weight: bold;font-size: 11px;">部增区拟算:</span>
+                        </label>
+                        <div class="col-xs-3">
+                          <p class="form-control-static" data-bind="text:value" style="font-size: 11px;margin-top: 5px;"><u>xxx</u></p>
                         </div>
                       </div>
                     </form>
@@ -265,15 +364,15 @@
 
 
 
-              </div>
-
             </div>
 
           </div>
-        </div>
 
+        </div>
       </div>
+
     </div>
+  </div>
   </div>
 
 
