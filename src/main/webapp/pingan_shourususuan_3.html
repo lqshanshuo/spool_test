@@ -21,18 +21,20 @@
                 margin: auto;
             }
             .input_1{
+                font-size:8px;
                 width:100%;
-                height:20px;
+                height:22px;
                 margin-top:10px
             }
 
             .label_div{
                 padding:0px;              
             }
-            
-            label span{
+
+            .label_span{
+                padding-top:10px;
                 font-weight: bold;
-                font-size: 11px; 
+                font-size: 9px; 
                 text-align: left;
             }
 
@@ -77,7 +79,7 @@
                                     <div class="card card-danger">
                                         <div class="card-body no-padding">
                                             <form class="form-horizontal">
-                                                <div class="form-group" style="font-size: 11px;">
+                                                <div class="form-group" style="">
 
                                                     <div class="col-xs-3 col-xs-offset-1 label_div">
                                                         <label class=" control-label">
@@ -126,7 +128,7 @@
                                         </div>
                                     </div>
                                     <!-- <div class="form-group" style="font-size: 11px;">
-                                      <label class="col-xs-3 control-label">
+                                      <label class="col-xs-3 control-label  label_span">
                                         <span></span>
                                       </label>
                                       <div class="col-xs-6">
@@ -154,13 +156,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span >总业绩:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"    data-bind="value:total_performance"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>增员人数:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div" >
@@ -168,57 +170,57 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div" >
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">初佣:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">初佣:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:initial_commission" disabled="true"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px;color:#E74C3C">训练津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold;color:#E74C3C">训练津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:tainning_allowance" disabled="true"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">达成津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">达成津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:complete_allowance" disabled="true"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px;color:#E74C3C">岗位津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold;color:#E74C3C">岗位津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:job_allowance" disabled="true"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">超额奖金:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">超额奖金:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:excess_bonus" disabled="true"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px;color:#E74C3C">增员奖金:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold;color:#E74C3C">增员奖金:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:increasing_num_bonus" disabled="true"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div" >
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">绩优津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">绩优津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:performance_allowance" disabled="true"/>
                                                     </div>
 
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">职位津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">职位津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:post_allowance" disabled="true"/>
@@ -239,13 +241,13 @@
                                             <br>
                                             <form class="form-horizontal">
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;">团队人力:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:human_resource"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>人均业绩:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
@@ -253,14 +255,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div" >
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>增区拟算:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:increasing_budget,attr:{placeholder:increasing_budget_history}" placeholder="历史值32066"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">管理津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">管理津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:manage_allowance" disabled="true"/>
@@ -282,13 +284,13 @@
                                             <br>
                                             <form class="form-horizontal">
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;">团队人力:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:human_resource"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>人均业绩:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
@@ -296,15 +298,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>增区拟算:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:increasing_budget,attr:{placeholder:increasing_budget_history}"/>
                                                     </div>
 
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">管理津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">管理津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:manage_allowance" disabled="true"/>
@@ -326,13 +328,13 @@
                                             <br>
                                             <form class="form-horizontal">
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;">团队人力:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:human_resource"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>人均业绩:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
@@ -340,15 +342,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>增区拟算:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:increasing_budget,attr:{placeholder:increasing_budget_history}"/>
                                                     </div>
 
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">管理津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">管理津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:manage_allowance" disabled="true"/>
@@ -370,13 +372,13 @@
                                             <br>
                                             <form class="form-horizontal">
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;">团队人力:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;">团队人力:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:human_resource"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>人均业绩:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
@@ -385,15 +387,15 @@
                                                 </div>
                                                 <div class="form-group label_div">
 
-                                                    <label class="col-xs-3 control-label">
+                                                    <label class="col-xs-3 control-label  label_span">
                                                         <span>增区拟算:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:increasing_budget,attr:{placeholder:increasing_budget_history}"/>
                                                     </div>
 
-                                                    <label class="col-xs-3 control-label">
-                                                        <span style="font-weight: bold;font-size: 11px; text-align: left;color:#E74C3C">管理津贴:</span>
+                                                    <label class="col-xs-3 control-label  label_span">
+                                                        <span style="font-weight: bold; text-align: left;color:#E74C3C">管理津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:manage_allowance" disabled="true"/>
