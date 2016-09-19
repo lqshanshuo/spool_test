@@ -473,6 +473,12 @@
                                                                 quTuoViewModel.zhangyechu.manage_allowance() + quTuoViewModel.zhangyequbu.manage_allowance();
                                                         var total_income = 100 * sum / (100 - quTuoViewModel.other_income_percent());
                                                         total_income = total_income / 10000;
+                                                        
+                                                        //总收益万元小数点两位
+                                                        total_income = total_income + "";
+                                                        if (total_income.indexOf(".") > 0) {
+                                                            total_income = total_income.substring(0, total_income.indexOf(".") + 3);
+                                                        }
                                                         quTuoViewModel.total_income(total_income);
 
                                                     }
