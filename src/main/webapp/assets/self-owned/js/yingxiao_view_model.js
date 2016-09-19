@@ -19,14 +19,21 @@ function Person() {
     self.level = ko.observable();
     self.level_array = ko.observableArray(["一级","二级","三级"]);
     
-    self.insurance_cost = ko.observable(10000);
-    self.commission = ko.observable(10000);
+    self.insurances = ko.observableArray([new Insurance()]);
     
     self.initial_commission = ko.observable(10000);
     self.tainning_allowance = ko.observable(10000);
     
     self.achievement_allowance = ko.observable(10000);
     self.increasing_num_bonus = ko.observable(10000);
+    
+    self.addInsurance = function() {
+        self.insurances.push(new Insurance());
+    };
+ 
+    self.removeInsurance = function() {
+        self.insurances.remove(this);
+    }
 }
 
 function Group() {
@@ -35,6 +42,12 @@ function Group() {
     self.per_capita_achievement = ko.observable(10000);
     self.manage_allowance = ko.observable(50000);
     self.budget = ko.observable(100000);
+}
+
+function Insurance(){
+    var self = this;
+    self.insurance_cost = ko.observable(0);
+    self.commission = ko.observable(0);
 }
 
 function Part() {
