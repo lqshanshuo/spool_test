@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="38px" height="30px" viewBox="0 0 38 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>简单</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icon" sketch:type="MSArtboardGroup" transform="translate(-197.000000, -9.000000)" fill="#54D09F">
+            <g id="简单" sketch:type="MSLayerGroup" transform="translate(197.000000, 9.000000)">
+                <rect id="Rectangle-122" sketch:type="MSShapeGroup" x="1" y="0" width="36" height="2"></rect>
+                <rect id="Rectangle-122" sketch:type="MSShapeGroup" x="1" y="7" width="36" height="2"></rect>
+                <rect id="Rectangle-122" sketch:type="MSShapeGroup" x="1" y="14" width="36" height="2"></rect>
+                <rect id="Rectangle-122" sketch:type="MSShapeGroup" x="1" y="21" width="36" height="2"></rect>
+                <rect id="Rectangle-122" sketch:type="MSShapeGroup" x="1" y="28" width="36" height="2"></rect>
+                <circle id="Oval-50" sketch:type="MSShapeGroup" cx="37" cy="1" r="1"></circle>
+                <circle id="Oval-41" sketch:type="MSShapeGroup" cx="37" cy="8" r="1"></circle>
+                <circle id="Oval-42" sketch:type="MSShapeGroup" cx="37" cy="15" r="1"></circle>
+                <circle id="Oval-43" sketch:type="MSShapeGroup" cx="37" cy="22" r="1"></circle>
+                <circle id="Oval-44" sketch:type="MSShapeGroup" cx="37" cy="29" r="1"></circle>
+                <circle id="Oval-45" sketch:type="MSShapeGroup" cx="1" cy="29" r="1"></circle>
+                <circle id="Oval-46" sketch:type="MSShapeGroup" cx="1" cy="22" r="1"></circle>
+                <circle id="Oval-47" sketch:type="MSShapeGroup" cx="1" cy="15" r="1"></circle>
+                <circle id="Oval-48" sketch:type="MSShapeGroup" cx="1" cy="8" r="1"></circle>
+                <circle id="Oval-49" sketch:type="MSShapeGroup" cx="1" cy="1" r="1"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
