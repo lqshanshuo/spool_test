@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The prototype website of web framework">
+  <meta name="author" content="LY">
+  <title>天玑大数据分析系统</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+
+
+  <!-- reference CSS-->
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome-3.2.1/css/font-awesome.min.css">
+
+  <!-- self-owned CSS-->
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/themes/flat-blue.css">
+
+
+
+</head>
+
+<body class="flat-blue">
+  <div class="app-container">
+    <div class="row content-container">
+
+      <!-- 应用顶部NAV导航，在prototype.js初始化时加载，默认为assets/html/header.html-->
+      <div id="navDIV"></div>
+
+      <div class="container-fluid">
+        <div class="side-body padding-top">
+
+          <!-- 应用具体内容DIV-->
+          <div id="contentDIV">
+            <h1>
+              <strong>Font Awesome Component</strong>
+            </h1>
+          </div>
+          <div id="response_div">
+            <div class="alert fresh-color" data-bind="css:styleClass,visible:resultVisible">
+              <strong>
+                  <span data-bind="text:resultTitle"></span>
+                </strong>
+              <span data-bind="text:resultSubTitle"></span>
+              <div data-bind="text:resultContent"></div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <p>
+                <a class="btn btn-large btn-danger" href="#"><i class="icon-flag icon-2x pull-left"></i>Font Awesome<br>Version 3.0</a>
+              </p>
+              <p><i class="icon-camera-retro  icon-4x"></i> icon-camera-retro</p>
+              <i class="icon-spinner icon-spin icon-4x"></i> Spinner icon when loading content...
+              <button type="button" class=" btn btn-default btn-md" style="border-color:#fff">
+                <span class="fa fa-spinner fa-2x" aria-hidden="true" title="">&nbsp;Modal With Manual Close</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- Javascript -->
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/self-owned/js/prototype.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+[{
+        "name": "usr",
+        "type": "folder",
+        "path": "/usr",
+        "attr": {
+            "id": "usr"
+        }
+    }, {
+        "name": "data",
+        "type": "folder",
+        "path": "/data",
+        "attr": {
+            "id": "data"
+        }
+    }, {
+        "name": "tmp",
+        "type": "folder",
+        "path": "/tmp",
+        "attr": {
+            "id": "tmp"
+        }
+    }, {
+        "name": "system",
+        "type": "folder",
+        "path": "/system",
+        "attr": {
+            "id": "system"
+        }
+    }, {
+        "name": "file1",
+        "type": "item",
+        "path": "/file1",
+        "attr": {
+            "icon": "glyphicon glyphicon-file",
+            "id": "file1"
+        }
+    }
+]
+

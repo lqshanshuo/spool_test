@@ -1,0 +1,177 @@
+<div id="genericModalDiv">
+
+  <!--RESULT DISPLAY DIV BEGIN-->
+  <div id="resultDIV" data-bind="visible: hasResult,css: styleClass" class="alert fresh-color">
+    <strong>
+      <span data-bind="text:resultTitle"></span>
+    </strong>
+    <span data-bind="text:resultSubTitle"></span>
+    <div data-bind="text:resultContent"></div>
+  </div>
+  <!--RESULT DISPLAY DIV END-->
+
+  <!--CONTENT DIV BEGIN-->
+  <div id="modal_content_div">
+    <div class="card card-success">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="title"><i class="fa fa-cogs"></i> Entity Delete </div>
+        </div>
+      </div>
+      <div class="card profile">
+        <div class="card-body">
+          <!--Validation DIV BEGIN-->
+          <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+            <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Warning!</strong>
+            <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+              <div data-bind="text:$data"></div>
+            </div>
+          </div>
+          <!--Validation DIV END-->
+          <!-- *******YOUR SHOULD CODING IN HERE:[BEGIN]*******-->
+          <div data-bind="if:businessPOJO()">
+            <div>
+
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Application</label>
+                  <div class="col-sm-4">
+                    <p class="form-control-static" data-bind="text:businessPOJO().application"></p>
+                  </div>
+                  <label class="col-sm-2 control-label">Job</label>
+                  <div class="col-sm-4">
+                    <p class="form-control-static" data-bind="text:businessPOJO().job">DemoDB</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Progress</label>
+                  <div class="col-sm-4">
+                    <p class="form-control-static" data-bind="text:businessPOJO().progress">Tab (\t)</p>
+                  </div>
+                  <label class="col-sm-2 control-label">Status</label>
+                  <div class="col-sm-4">
+                    <p class="form-control-static" data-bind="text:businessPOJO().status">Tab (\t)</p>
+                  </div>
+                </div>
+              </form>
+              <div class="alert alert-warning fresh-color">
+                <span>Warning: Are you sure to remove this entity from the storage database?</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- *******YOUR SHOULD CODING IN HERE:[END]*******-->
+          <div>
+            <form class="form-horizontal" id="formdata" role="form">
+              <div class="form-group pull-right">
+                <a href="#" class="btn btn-success" role="button" onclick="execute()">Execute</a>
+                <a href="#" class="btn btn-primary" role="button" onclick="ModalUtil.modal_close('popupModalPro')">Close</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--CONTENT DIV END-->
+</div>
+
+
+<script>
+  // Initialize the View Model
+  // Clean the paging binding nodes
+  // Binding the view Model
+  var genericModalViewModel = new GenericModalViewModel();
+  ko.cleanNode($('#genericModalDiv')[0]);
+  ko.applyBindings(genericModalViewModel, document.getElementById('genericModalDiv'));
+</script>
+
+<script>
+  // Setup the business model with view model
+  (function initialize() {
+    // *******YOUR SHOULD CODING IN HERE:*******
+    function BusinessPOJO() {
+      var self = this;
+      self.id = null;
+      self.application = ko.observable('DEMO_APPLICATION');
+      self.job = ko.observable('DEMO_JOB');
+      self.progress = ko.observable("28.0");
+      self.status = ko.observable('You Guess?');
+    }
+    var businessPOJO = new BusinessPOJO();
+    if(ModalUtil.businessPOJO){
+      businessPOJO.id =  ModalUtil.businessPOJO[0]; // Don't need observable bind!
+      businessPOJO.application(ModalUtil.businessPOJO[1]);
+      businessPOJO.job(ModalUtil.businessPOJO[2]);
+      businessPOJO.progress(ModalUtil.businessPOJO[5]);
+      businessPOJO.status(ModalUtil.businessPOJO[6]);
+    }
+    genericModalViewModel.businessPOJO(businessPOJO);
+  })();
+
+  function execute() {
+    // validation failed
+    // show validation error message in the warning DIV...
+    if (!genericModalViewModel.validation(businessValidation)) {
+      return;
+    } else {
+      // validation correct
+      // do your business...
+      runService();
+    }
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var businessValidation = function() {
+    var errorMessages = [];
+    //validate logic...
+
+    //validate
+    ValidationPOJO.validate("Entity ID", genericModalViewModel.businessPOJO().id, errorMessages, ['KEY_NOT_NULL']);
+    ValidationPOJO.validate("Application", genericModalViewModel.businessPOJO().application(), errorMessages, ['KEY_NOT_NULL']);
+
+    return errorMessages;
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var runService = function() {
+    var requestPOJO= {
+        "className": "v2.service.scripter.entity.job.JobRecall",
+        "attributes":{
+          "id":genericModalViewModel.businessPOJO().id,
+          "applicationId":genericModalViewModel.businessPOJO().application(),
+          "jobId":genericModalViewModel.businessPOJO().job(),
+          "progress":genericModalViewModel.businessPOJO().progress(),
+          "status":genericModalViewModel.businessPOJO().status()
+        }
+    };
+    var data = {
+        'queryJson': $.toJSON(requestPOJO)
+    };
+    $.serverRequest($.getServerRoot() + '/service_generic_query/api/cud/remove', data, "REMOVE_SUCCESS_LISTENER", "REMOVE_FAILED_LISTENER", "REMOVE_SERVER_FAILED_LISTENER");
+  }
+  $.subscribe("REMOVE_SUCCESS_LISTENER", successREMOVEListener);
+  $.subscribe("REMOVE_FAILED_LISTENER", failedREMOVEListener);
+  $.subscribe("REMOVE_SERVER_FAILED_LISTENER", failedServiceListener);
+
+  function successREMOVEListener() {
+    if (arguments && arguments[1]) {
+      // responseViewModel.correctResponse(arguments[1]);
+      genericModalViewModel.response(true, "REMOVE Entity Operation", "[Successed]", "Operation Successed, please close the console and reload the data.");
+    }
+  }
+
+  function failedREMOVEListener() {
+    if (arguments && arguments[1]) {
+      var errorMessage = arguments[1].errorMessage;
+      genericModalViewModel.response(false, "REMOVE Entity Operation", "[Failed]", errorMessage);
+    }
+  }
+
+  function failedServiceListener() {
+    genericModalViewModel.response(false, "REMOVE Entity Operation", "[Failed]", "SERVICE 'GENERIC CUD' FAILED! Please contact with the system admin for more information...");
+  }
+</script>

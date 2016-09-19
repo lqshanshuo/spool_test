@@ -1,0 +1,198 @@
+<div id="genericModalDiv">
+
+  <!--RESULT DISPLAY DIV BEGIN-->
+  <div id="resultDIV" data-bind="visible: hasResult,css: styleClass" class="alert fresh-color">
+    <strong>
+      <span data-bind="text:resultTitle"></span>
+    </strong>
+    <span data-bind="text:resultSubTitle"></span>
+    <div data-bind="text:resultContent"></div>
+  </div>
+  <!--RESULT DISPLAY DIV END-->
+
+  <!--CONTENT DIV BEGIN-->
+  <div id="modal_content_div">
+    <div class="card card-success">
+      <div class="card profile">
+        <div class="card-body">
+          <!--Validation DIV BEGIN-->
+          <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+            <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Warning!</strong>
+            <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+              <div data-bind="text:$data"></div>
+            </div>
+          </div>
+          <!--Validation DIV END-->
+          <!-- *******YOUR SHOULD CODING IN HERE:[BEGIN]*******-->
+          <div data-bind="if:businessPOJO()">
+            <div class="step">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="step" class="active">
+                        <a href="#step1" id="step1-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                            <div class="icon fa fa-database"></div>
+                            <div class="step-title">
+                                <div class="title">Step 1</div>
+                                <div class="description"><strong>Choose Database</strong></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="step">
+                        <a href="#step2" role="tab" id="step2-tab" data-toggle="tab" aria-controls="profile">
+                            <div class="icon fa fa-filter"></div>
+                            <div class="step-title">
+                                <div class="title">Step 2</div>
+                                <div class="description"><strong>Filter </strong><small>(Time, Noise, Condition...)</small></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="step">
+                        <a href="#step3" role="tab" id="step3-tab" data-toggle="tab" aria-controls="profile">
+                            <div class="icon fa fa-stethoscope"></div>
+                            <div class="step-title">
+                                <div class="title">Step 3</div>
+                                <div class="description"><strong>Result Setting</strong></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="step">
+                        <a href="#step4" role="tab" id="step4-tab" data-toggle="tab" aria-controls="profile">
+                            <div class="icon fa fa-flag-checkered"></div>
+                            <div class="step-title">
+                                <div class="title">Step 4</div>
+                                <div class="description"><strong>Confirm & Analyze </strong></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" data-bind="if:businessPOJO()">
+                    <div role="tabpanel" class="tab-pane fade in active" id="step1" aria-labelledby="home-tab">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <div class="title"><i class="fa fa-cogs"></i> balabalabala... :
+                                        <small>(balabalabala... )</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card profile">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="step2" aria-labelledby="profile-tab">
+                        <div class="card card-info">
+                            <div class="card-header">
+                              <div class="card-title">
+                                  <div class="title"><i class="fa fa-cogs"></i> balabalabala... :
+                                      <small>(balabalabala... )</small>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="card profile">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="step3" aria-labelledby="profile-tab">
+                        <div class="card card-info">
+                            <div class="card-header">
+                              <div class="card-title">
+                                  <div class="title"><i class="fa fa-cogs"></i> balabalabala... :
+                                      <small>(balabalabala... )</small>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="card profile">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="step4" aria-labelledby="profile-tab">
+                        <div class="card card-info">
+                            <div class="card-header">
+                              <div class="card-title">
+                                  <div class="title"><i class="fa fa-cogs"></i> balabalabala... :
+                                      <small>(balabalabala... )</small>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="card profile">
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                          <form class="form-horizontal" id="formdata" role="form">
+                            <div class="form-group pull-right">
+                              <a href="#" class="btn btn-success" role="button" onclick="execute()">Execute</a>
+                              <a href="#" class="btn btn-primary" role="button" onclick="ModalUtil.modal_close('popupModalPro')">Close</a>
+                            </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- *******YOUR SHOULD CODING IN HERE:[END]*******-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--CONTENT DIV END-->
+</div>
+
+<script>
+  // Initialize the View Model
+  // Clean the paging binding nodes
+  // Binding the view Model
+  var genericModalViewModel = new GenericModalViewModel();
+  ko.cleanNode($('#genericModalDiv')[0]);
+  ko.applyBindings(genericModalViewModel, document.getElementById('genericModalDiv'));
+</script>
+
+<script>
+  // Setup the business model with view model
+  (function initialize() {
+    // *******YOUR SHOULD CODING IN HERE:*******
+    function BusinessPOJO() {
+        var self = this;
+    }
+    var businessPOJO = new BusinessPOJO();
+    genericModalViewModel.businessPOJO(businessPOJO);
+  })();
+
+  function execute() {
+    // validation failed
+    // show validation error message in the warning DIV...
+    if (!genericModalViewModel.validation(businessValidation)) {
+      return;
+    } else {
+      // validation correct
+      // do your business...
+      runService();
+    }
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var businessValidation = function() {
+    var errorMessages = [];
+    //validate logic...
+
+    return errorMessages;
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var runService = function() {
+
+  }
+</script>

@@ -3,7 +3,7 @@ function QuTuoViewModel() {
     self.code = ko.observable(1001);
     self.name = ko.observable("张三");
     self.level = ko.observable();
-    self.total_income = ko.observable();
+    self.total_income = ko.observable(0);
     self.other_income_percent = ko.observable(45);
     self.level_array = ko.observableArray(["非优绩", "A1", "A2"]);
 
@@ -84,11 +84,11 @@ function Person() {
 function Zhangyequ() {
     var self = this;
     self.human_resource = ko.observable();          //人力
-    self.per_capita_achievement_history = ko.observable("历史值37021");  //人均业绩历史值
+    self.per_capita_achievement_history = ko.observable("37021");  //人均业绩历史值
     self.per_capita_achievement = ko.observable();  //人均业绩
     self.manage_allowance = ko.observable();        //管理津贴
     self.increasing_budget = ko.observable();       //增区拟算
-    self.increasing_budget_history = ko.observable("历史值33064");       //增区拟算里历史值
+    self.increasing_budget_history = ko.observable("33064");       //增区拟算里历史值
 
     self.guimo_coefficient = ko.observable(1);           //规模提奖系数
     self.renjunchanneng_coefficient = ko.observable(1);  //人均产能提奖系数
@@ -137,10 +137,10 @@ function Group() {
     var self = this;
     self.human_resource = ko.observable();          //人力
     self.per_capita_achievement = ko.observable();  //人均业绩
-    self.per_capita_achievement_history = ko.observable("历史值37045");  //人均业绩历史值
+    self.per_capita_achievement_history = ko.observable("37045");  //人均业绩历史值
     self.manage_allowance = ko.observable();        //管理津贴
     self.increasing_budget = ko.observable();       //增区拟算
-    self.increasing_budget_history = ko.observable("历史值33066");       //增区拟算里历史值
+    self.increasing_budget_history = ko.observable("33066");       //增区拟算里历史值
 
 
     self.guimo_coefficient = ko.observable(1);           //规模提奖系数

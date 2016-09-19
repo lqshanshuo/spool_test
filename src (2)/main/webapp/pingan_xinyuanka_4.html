@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Matrix Components Framework">
+  <meta name="author" content="LY">
+  <title>Matrix</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+
+  <style type="text/css">
+    #pinganlogo {
+      display: block;
+      position: relative;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/red4.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
+    <div class="app-container">
+      <div class="row content-container">
+        <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+        <div class="container">
+          <div>
+
+            <div class="row">
+
+              <!-- logo of the pingan -->
+              <div style="margin-top:58px;">&nbsp;</div>
+              <div>
+                <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;">
+              </div>
+
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+
+
+
+
+              <div class="col-xs-12 text-center">
+                <form class="form-horizontal">
+                  <div class="form-group ">
+                    <label class="col-xs-6 control-label">
+                      <span style="font-weight: bold;font-size: 16px; text-align: center;color:white">2016年我想要...</span>
+                    </label>
+                    <div class="col-xs-12 text-center" style="overflow: auto">
+                      <textarea data-bind="value:inputContent,valueUpdate:'input'" rows="3" cols="32" placeholder="请在此许下您的心愿" disabled="true"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <div class="col-xs-12 text-center">
+                      <a  class="btn btn-danger  btn-wide text-center" href="#" style="width:260px; color:white" onclick="location.href=$.getRootPath() + '/pingan_xinyuanka_1.html'">我也要许愿 </a>
+                    </div>
+                  </div>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="" style="color:white;font-size:11px">
+                  <span>本活动最终解释权归中国平安所有</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- /.container -->
+
+
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+  <!-- Javascript for Matrix Self Owned -->
+  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+  <script src="assets/self-owned/js/generic/generic_query.js"></script>
+  <script src="assets/self-owned/js/generic/generic_table.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+
+  <script>
+    $(document).ready(function() {});
+  </script>
+</body>
+
+</html>

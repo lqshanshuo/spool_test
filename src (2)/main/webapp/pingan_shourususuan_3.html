@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The Matrix Components Framework">
+        <meta name="author" content="LY">
+        <title>Matrix</title>
+        <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+        <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+
+        <style type="text/css">
+            #pinganlogo {
+                display: block;
+                position: relative;
+                margin: auto;
+            }
+            input{
+                width:100px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="flat-matrix" style="margin-top:-58px;">
+            <div class="app-container" id="contentDiv">
+                <div class="row content-container">
+                    <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+                    <div class="container" >
+                        <div>
+
+                            <div class="row">
+
+                                <!-- logo of the pingan -->
+                                <div style="margin-top:58px;">&nbsp;</div>
+                                <div>
+                                    <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:50%;">
+                                </div>
+                                <!-- title: such lik kaimenhong -->
+                                <div class="col-xs-10 col-xs-offset-1 text-center">
+                                    <span style="font-size:38px;color:#FB9E13">区拓收入测算</span>
+                                </div>
+
+                                <!-- button group of main function -->
+                                <div class="col-xs-10 col-xs-offset-1 text-center">
+                                    <div class="card card-danger">
+                                        <div class="card-body no-padding">
+                                            <form class="form-horizontal">
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-2 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">代码</span>
+                                                    </label>
+                                                    <div class="col-xs-2">
+                                                        <p class="form-control-static" data-bind="text:code" style="font-size: 15px;">No 1</p>
+                                                    </div>
+                                                    <label class="col-xs-2 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">姓名</span>
+                                                    </label>
+                                                    <div class="col-xs-2">
+                                                        <p class="form-control-static" data-bind="text:name" style="font-size: 15px;">张三</p>
+                                                    </div>
+                                                    <label class="col-xs-2 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">职级</span>
+                                                    </label>
+                                                    <div class="col-xs-2">
+                                                        <select style="font-size: 11px;margin-top: 5px;height:30px;width:100px" class="form-control"  data-bind="options:level_array,value:level,optionsCaption: '请选择...'"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-6 control-label ">
+                                                        <span style="font-weight: bold;font-size: 18px;">收入合计:<span style="color:red" data-bind="text:total_income">168.88</span>万元</span>
+                                                    </label>
+
+                                                    <label class="col-xs-6 control-label text-center">
+                                                        <span style="font-weight: normal;font-size: 15px;">其它收入占比: <span data-bind="text:other_income_percent">45%</span></span>
+                                                    </label>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="alert alert-danger fresh-color">
+                                            <span>备注: 其他收入包含以下收入以外的续保、综拓等收入，请依据个人实际情况进行比例调整</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group" style="font-size: 15px;">
+                                      <label class="col-xs-3 control-label">
+                                        <span style="font-weight: bold;font-size: 15px;"></span>
+                                      </label>
+                                      <div class="col-xs-6">
+                    
+                                      </div>
+                                    </div> -->
+                                    <div class="card card-danger" data-bind="if:person">
+                                        <div class="card-header" style="height:50px">
+                                            <div class="card-title" style="padding: 8px 20px;">
+                                                <div class="title"><i class="fa fa-child"></i> 个人情况:
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body no-padding" data-bind="with:person">
+                                            <br>
+                                            <form class="form-horizontal">
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left; ">上季度绩优档次:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <select style="font-size: 11px;margin-top: 5px;height:30px;width:100px" class="form-control"  data-bind="options:performance_level_array,value:last_performance_level,optionsCaption: '请选择...'"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;">总业绩:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:total_performance"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">增员人数:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:increasing_num"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">初佣:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:initial_commission"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;color:#E74C3C">训练津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:tainning_allowance"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">达成津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:complete_allowance"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;color:#E74C3C">岗位津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:post_allowance"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">事业超额奖金:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:excess_bonus"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;color:#E74C3C">增员奖金:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:increasing_num_bonus"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">绩优津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:performance_allowance"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="card card-danger" data-bind="if:zhangyequ">
+                                        <div class="card-header" style="height:50px">
+                                            <div class="card-title" style="padding: 8px 20px;">
+                                                <div class="title"><i class="fa fa-bank"></i> 展业区情况:
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body no-padding" data-bind="with:zhangyequ">
+                                            <br>
+                                            <form class="form-horizontal">
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;">团队人力:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:human_resource"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">人均业绩:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:per_capita_achievement"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">区管理津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:manage_allowance"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">增区拟算:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:increasing_budget"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="card card-danger" data-bind="if:zhangyeke">
+                                        <div class="card-header" style="height:50px">
+                                            <div class="card-title" style="padding: 8px 20px;">
+                                                <div class="title"><i class="fa fa-bank"></i> 展业课情况:
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body no-padding" data-bind="with:zhangyeke">
+                                            <br>
+                                            <form class="form-horizontal">
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;">团队人力:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:human_resource"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">人均业绩:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:per_capita_achievement"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">课管理津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:manage_allowance"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">增区拟算:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:increasing_budget"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="card card-danger" data-bind="if:zhangyechu">
+                                        <div class="card-header" style="height:50px">
+                                            <div class="card-title" style="padding: 8px 20px;">
+                                                <div class="title"><i class="fa fa-bank"></i> 展业处情况:
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body no-padding" data-bind="with:zhangyechu">
+                                            <br>
+                                            <form class="form-horizontal">
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;">团队人力:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:human_resource"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">人均业绩:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:per_capita_achievement"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">处管理津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:manage_allowance"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">增区拟算:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:increasing_budget"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="card card-danger" data-bind="if:zhangyequbu">
+                                        <div class="card-header" style="height:50px">
+                                            <div class="card-title" style="padding: 8px 20px;">
+                                                <div class="title"><i class="fa fa-bank"></i> 展业区部情况:
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body no-padding" data-bind="with:zhangyequbu">
+                                            <br>
+                                            <form class="form-horizontal">
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;">团队人力:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:human_resource"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">人均业绩:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:per_capita_achievement"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="font-size: 15px;">
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px; text-align: left;color:#E74C3C">区部管理津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:manage_allowance"/>
+                                                    </div>
+                                                    <label class="col-xs-3 control-label">
+                                                        <span style="font-weight: bold;font-size: 15px;">部增区拟算:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input style="margin-top: 5px;" data-bind="value:increasing_budget"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-10 col-xs-offset-1 text-center">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <div class="col-xs-12 text-center">
+                                                <button class="btn btn-danger  btn-wide text-center" style="width:180px">提交</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="" style="color:#888;font-size:11px">
+                                        <span>本操作仅为测算结果，实际收入以系统数据为准</span>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- /.container -->
+
+
+        <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+        <script src="assets/reference/jquery/jquery.json.js"></script>
+        <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+        <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+        <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+        <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+        <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+        <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+        <!-- Javascript for Matrix Self Owned -->
+        <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+        <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+        <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+        <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+        <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+        <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+        <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+        <script src="assets/self-owned/js/generic/generic_query.js"></script>
+        <script src="assets/self-owned/js/generic/generic_table.js"></script>
+        <script src="assets/self-owned/js/generic/generic_util.js"></script>
+        <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+        <script src="assets/self-owned/js/qutuo_view_model.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                var quTuoViewModel = new QuTuoViewModel();
+                aa = quTuoViewModel;
+                ko.applyBindings(quTuoViewModel, document.getElementById('contentDiv'));
+            });
+        </script>
+    </body>
+
+</html>

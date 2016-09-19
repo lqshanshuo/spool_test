@@ -1,0 +1,50 @@
+<div id="response_modal_DIV">
+  <div class="card card-success">
+    <div class="card profile">
+      <div class="card-body">
+        <div>
+
+          <div class="alert fresh-color" data-bind="css: styleClass">
+            <strong>
+              <span data-bind="text:resultTitle"></span>
+            </strong>
+            <span data-bind="text:resultSubTitle"></span>
+            <div data-bind="text:resultContent"></div>
+          </div>
+          <form class="form-horizontal">
+            <div class="form-group pull-right">
+              <a href="#" class="btn btn-primary" role="button" onclick="window.location.reload()">Close</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function ResponseModalViewModel() {
+    var self = this;
+    self.styleClass = ko.observable("alert-success");
+    self.resultTitle = ko.observable("Successed");
+    self.resultSubTitle = ko.observable("[General Search]");
+    self.resultContent = ko.observable("This is the result content...");
+
+    self.initData = function(){
+      if(ModalUtil.responseData){
+        if(ModalUtil.responseData.hasError){
+          self.styleClass("alert-danger");
+        }else{
+          self.styleClass("alert-success");
+        }
+        self.resultTitle(ModalUtil.responseData.resultTitle);
+        self.resultSubTitle(ModalUtil.responseData.resultSubTitle);
+        self.resultContent(ModalUtil.responseData.resultContent);
+      }
+    }
+  }
+
+  var responseModalViewModel = new ResponseModalViewModel();
+  ko.applyBindings(responseModalViewModel, document.getElementById('response_modal_DIV'));
+  responseModalViewModel.initData();
+</script>
