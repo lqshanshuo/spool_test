@@ -23,9 +23,9 @@
 
             .img_container_div{
                 margin: auto;
-                
-/*                margin-left: 300px;
-                margin-right: 0px;;*/
+
+                /*                margin-left: 300px;
+                                margin-right: 0px;;*/
                 width:100%;
                 /*margin:0px;*/
                 /*padding-top:0px;*/
@@ -58,7 +58,7 @@
                     <div class="container" id="contentDIV">
                         <div>
 
-                            <!--<div class="row" >-->
+
                             <div >
 
                                 <!-- logo of the pingan -->
@@ -66,31 +66,30 @@
                                 <div>
                                     <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;">
                                 </div>
-                                <div>
-                                    <!--<h2 data-bind="text:dream_type" align="center">&nbsp;</h2>-->
-                                </div>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
 
-                                <div id="img_container" class="img_container_div col-xs-12 col-xs-offset-0" >
-                                    <div class="col-xs-2 col-xs-offset-1 img_div" style="margin-top:30px;" id="plane_image_div">
-                                        <img src="assets/self-owned/img/xinyuanka/plane.jpg" class="img-circle img_size" id="plane_image" onclick="chooseType('plane')">
-                                    </div>
-                                    <div class="col-xs-2 col-xs-offset-1 img_div" style="margin-top:-13px;">
-                                        <img src="assets/self-owned/img/xinyuanka/car.jpg" class="img-circle img_size" id="car_image" onclick="chooseType('car')">
-                                    </div>
-                                    <div class="col-xs-2 col-xs-offset-1 img_div" style="margin-top:-30px;">
-                                        <img src="assets/self-owned/img/xinyuanka/house.jpg" class="img-circle img_size"id="house_image" onclick="chooseType('house')">
-                                    </div>
-                                    <div class="col-xs-2 col-xs-offset-1 img_div" style="margin-top:-13px;">
-                                        <img src="assets/self-owned/img/xinyuanka/travel.jpg" class="img-circle img_size" id="travel_image" onclick="chooseType('travel')">
-                                    </div>
-                                    <div class="col-xs-2 col-xs-offset-1 img_div" style="margin-top:30px;">
-                                        <img src="assets/self-owned/img/xinyuanka/career.jpg" class="img-circle img_size" id="career_image" onclick="chooseType('career')">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <div id="img_container" class="img_container_div" >
+                                        <div class="col-xs-2 col-xs-offset-1 " style="margin-top:30px;" id="plane_image_div">
+                                            <img src="assets/self-owned/img/xinyuanka/plane.jpg" class="img-circle img_size" id="plane_image" onclick="chooseType('plane')">
+                                        </div>
+                                        <div class="col-xs-2  " style="margin-top:-13px;">
+                                            <img src="assets/self-owned/img/xinyuanka/car.jpg" class="img-circle img_size" id="car_image" onclick="chooseType('car')">
+                                        </div>
+                                        <div class="col-xs-2  " style="margin-top:-30px;">
+                                            <img src="assets/self-owned/img/xinyuanka/house.jpg" class="img-circle img_size"id="house_image" onclick="chooseType('house')">
+                                        </div>
+                                        <div class="col-xs-2 " style="margin-top:-13px;">
+                                            <img src="assets/self-owned/img/xinyuanka/travel.jpg" class="img-circle img_size" id="travel_image" onclick="chooseType('travel')">
+                                        </div>
+                                        <div class="col-xs-2  " style="margin-top:30px;">
+                                            <img src="assets/self-owned/img/xinyuanka/career.jpg" class="img-circle img_size" id="career_image" onclick="chooseType('career')">
+                                        </div>
                                     </div>
                                 </div>
                                 <!--                                <div class="col-xs-2">
@@ -111,10 +110,10 @@
                                     <form class="form-horizontal">
                                         <div class="form-group ">
                                             <label class="col-xs-6 control-label">
-                                                <span style="font-weight: bold;font-size: 16px; text-align: center;color:white">2016年我想要...</span>
+                                                <span style="font-weight: bold;font-size: 16px; text-align: left;color:white">2016年我想要...</span>
                                             </label>
                                             <div class="col-xs-6">
-                                                <p class="form-control-static" style="font-size: 16px;text-align: center;color:white">还可以输入140字</p>
+                                                <p class="form-control-static" style="font-size: 16px;text-align: left;color:white">还可以输入140字</p>
                                             </div>
                                             <div class="col-xs-12 text-center" style="overflow: auto">
                                                 <textarea data-bind="value:inputContent,valueUpdate:'input'" rows="3" cols="32" placeholder="请在此许下您的心愿"></textarea>
@@ -141,14 +140,14 @@
 
                             </div>
 
-                        </div>
-                    </div>
 
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
         </div>
-
-
         <!-- /.container -->
 
 
@@ -183,6 +182,6 @@
                                                     ko.applyBindings(xinyuanka_3, document.getElementById('contentDiv'));
 
         </script>
-    </body>
 
+    </body>
 </html>
