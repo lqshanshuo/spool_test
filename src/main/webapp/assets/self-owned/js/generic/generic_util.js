@@ -1,3 +1,13 @@
+$.dispatchGenericResponse = function (responseJSON,listener_response_success, listener_response_error){
+  listener_response_success = listener_response_success || "SERVER_RESPONSE_SUCCESS";
+  listener_response_error = listener_response_error || "SERVER_RESPONSE_ERROR";
+  if (responseJSON.hasError) {
+    $.publish(listener_response_error, responseJSON);
+  } else {
+    $.publish(listener_response_success, responseJSON);
+  }
+}
+
 $.serverRequest = function(request_url, request_data, listener_response_success, listener_response_error, listener_service_error, request_type, needWrap, addtion) {
   listener_response_success = listener_response_success || "SERVER_RESPONSE_SUCCESS";
   listener_response_error = listener_response_error || "SERVER_RESPONSE_ERROR";
@@ -110,6 +120,12 @@ function switch_div_display(div_id) {
   } else {
     $('#' + div_id).css('display', 'none');
   }
+}
+function show_div(div_id) {
+  $('#' + div_id).css('display', '');
+}
+function hide_div(div_id) {
+  $('#' + div_id).css('display', 'none');
 }
 
 var UtilPOJO = UtilPOJO || {};

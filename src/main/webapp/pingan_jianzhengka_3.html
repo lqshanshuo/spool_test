@@ -13,17 +13,13 @@
   <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
   <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap-fileinput/css/fileinput.min.css" media="all">
 
-  <style type="text/css">
-    #pinganlogo {
-      display: block;
-      position: relative;
-      margin: auto;
-    }
-  </style>
+
 </head>
 
 <body>
+  <!-- <div class="flat-matrix" style="margin-top:-58px;"> -->
 
   <div class="flat-matrix" style="background-image: url(assets/self-owned/img/jianzheng2.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
     <div class="app-container">
@@ -37,58 +33,64 @@
               <!-- logo of the pingan -->
               <div style="margin-top:58px;">&nbsp;</div>
               <div>
-                <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;">
+                <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;display: block;position: relative;margin: auto;">
               </div>
               <!-- title: such lik kaimenhong -->
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <div class="col-xs-12 text-center">
-                <div style="font-weight: bold;font-size:14px;color:#e74c3c">
-                  你们的支持，给予我一往无前的勇气！
-                  <br> 你们的陪伴，让我再路途中不曾孤单！
-                  <br> 你们的理解，让我更加坚定前行的脚步！
-                  <br> 2015，感恩有你！2016，我们继续前行！
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-6 text-right">
-                  <img id="logoIMG" src="assets/self-owned/img/xinyuanka1.jpg" class="img-thumbnail" alt="500x500" style="width: 160px; height: 160px;">
-                </div>
-                <div class="col-xs-6 text-left">
-                  <img id="logoIMG" src="assets/self-owned/img/xinyuanka1.jpg" class="img-thumbnail" alt="500x500" style="width: 160px; height: 160px;">
-                </div>
-              </div>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
 
-
-              <!-- form div -->
-              <div class="col-xs-12 text-center">
-                <form class="form-horizontal">
-                  <div class="form-group" style="font-size: 11px;">
-                    <div class="col-xs-5 text-right">
-                      <img id="logoIMG" src="assets/self-owned/img/erweima.jpg" class="img-thumbnail" alt="500x500" style="width: 80px; height: 80px;">
-                    </div>
-                    <div class="col-xs-7 text-left">
-                      <p class="form-control-static" data-bind="text:key" style="font-size: 14px;margin-top: 5px;">扫码关注天下通MBO专属公众号
-                      <br> 参与见证活动，更有机会赢取大奖</p>
-                    </div>
-
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div id="business_content_div">
+                <div class="col-xs-12 text-center">
+                  <div style="font-weight: bold;font-size:14px;color:#e74c3c">
+                    <p class="form-control-static" data-bind="text:description()"></p>
                   </div>
-                </form>
-                <div class="" style="color:white;font-size:11px">
-                  <span>本活动最终解释权归中国平安所有</span>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                  <div data-bind="foreach:uploadedFileUrls">
+                    <div class="col-xs-6 text-center" style="margin-bottom:10px">
+                      <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px">
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <!-- form div -->
+                <div class="col-xs-12 text-center">
+
+
+
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+
+                  <form class="form-horizontal">
+                    <div class="form-group" style="font-size: 11px;">
+                      <div class="col-xs-5 text-right">
+                        <img id="logoIMG" src="assets/self-owned/img/erweima.jpg" class="img-thumbnail" alt="500x500" style="width: 80px; height: 80px;">
+                      </div>
+                      <div class="col-xs-7 text-left">
+                        <p class="form-control-static" style="font-size: 14px;margin-top: 5px;">扫码关注天下通MBO专属公众号
+                          <br> 参与见证活动，更有机会赢取大奖</p>
+                      </div>
+
+                    </div>
+                  </form>
+                  <div class="" style="color:white;font-size:11px">
+                    <p><strong>本活动最终解释权归中国平安所有</strong> </p>
+                  </div>
                 </div>
               </div>
-
             </div>
 
           </div>
@@ -99,9 +101,6 @@
   </div>
 
 
-  <!-- /.container -->
-
-
   <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
   <script src="assets/reference/jquery/jquery.json.js"></script>
   <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
@@ -110,6 +109,8 @@
   <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
   <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
   <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+  <script src="assets/reference/bootstrap-fileinput/js/fileinput.js"></script>
+  <script src="assets/reference/bootstrap-fileinput/js/locales/zh.js"></script>
   <!-- Javascript for Matrix Self Owned -->
   <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
   <script src="assets/self-owned/js/generic/generic_cache.js"></script>
@@ -122,9 +123,44 @@
   <script src="assets/self-owned/js/generic/generic_table.js"></script>
   <script src="assets/self-owned/js/generic/generic_util.js"></script>
   <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+  <script src="assets/self-owned/js/generic/generic_upload.js"></script>
 
   <script>
-    $(document).ready(function() {});
+    function BusinessViewModel() {
+      var self = this;
+      self.chosenItem = ko.observable('');
+      self.description = ko.observable('');
+      self.uploadedFileUrls = ko.observableArray([]);
+    }
+    var business_vm = new BusinessViewModel();
+    var json = retrieveData();
+
+    ko.applyBindings(business_vm, document.getElementById('business_content_div'));
+    business_vm.chosenItem(json.business_info.info_1);
+    business_vm.description(json.business_info.info_2);
+    business_vm.uploadedFileUrls(json.file_url_list);
+
+
+    function retrieveData() {
+
+      var tokenFlag = $.hasUrlParam('token');
+      var token = $.urlParamValue('token');
+      token = UtilPOJO.decode(token);
+      var jsonObj = JSON.parse(token);
+
+      //JSON like this:
+      // var json = {
+      //   file_url_list: ["http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg",
+      //     "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg",
+      //     "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg"
+      //   ],
+      //   business_info:{
+      //     info_1:'private',
+      //     info_2:'This is what i wanna say...'
+      //   }
+      // }
+      return jsonObj;
+    }
   </script>
 </body>
 
