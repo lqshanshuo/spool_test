@@ -22,48 +22,31 @@
             }
             .input_1{
                 font-size:8px;
-                width:98%;
-                /*height:98%;*/
+                width:100%;
                 height:22px;
-                margin-top:10px;
-                margin-left:1px;
-                margin-right:12px;
-
-                text-align:center;
-
-                /*border:solid;*/
-                
-/*                border-top:none;
-                border-right:none;
-                border-left:none;
-                border-bottom:solid;*/
-                /*border:1px;*/
+                margin-top:10px
+            }
+            .input_2{
+                font-size:8px;
+                width:70%;
+                float: left;
+                height:22px;
+                margin-top:10px
             }
 
-            /*            .input_2{
-                            font-size:8px;
-                            width:70%;
-                            float: left;
-                            height:22px;
-                            margin-top:10px;
-                            margin-left:1px;
-            
-                        }*/
-
             .label_div{
-                padding-top:10px;              
+                padding:0px;              
             }
 
             .label_span{
                 padding-top:10px;
                 font-weight: bold;
                 font-size: 9px; 
-                text-align: right;
+                text-align: left;
             }
 
             .input_div{
                 padding-left:0px;
-                text-align: left;
             }
 
             .select_1{
@@ -131,18 +114,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div" >
-                                                    <div class="col-xs-6 text-right" style="font-size:20px;font-weight:bold">
-                                                        <span >收入合计:</span>
-                                                    </div>
-                                                    <div class="col-xs-6 text-left" style="font-size:20px;font-weight:bold">
-                                                        <span style="color:red" data-bind="text:total_income"></span><span> 万</span>
-                                                    </div>
+                                                    <label class="col-xs-6 control-label">
+                                                        <span>收入合计:&nbsp;<span style="color:red;font-size:15px" data-bind="text:total_income"></span>万元</span>
+                                                    </label>
 
-                                                    <!--                                                    <label class="col-xs-6 control-label text-center label_div">
-                                                                                                            <span style="font-weight: normal;font-size: 11px;">其它收入占比: &nbsp;
-                                                                                                                <input class="input_1" style="margin-top: 10px; width:20px;height:20px" data-bind="value:other_income_percent"/> % 
-                                                                                                            </span>
-                                                                                                        </label>-->
+                                                    <label class="col-xs-6 control-label text-center label_div">
+                                                        <span style="font-weight: normal;font-size: 11px;">其它收入占比: &nbsp;
+                                                            <input class="input_1" style="margin-top: 10px; width:20px;height:20px" data-bind="value:other_income_percent"/> % 
+                                                        </span>
+                                                    </label>
 
                                                 </div>
                                             </form>
@@ -169,107 +149,72 @@
                                         <div class="card-body no-padding" data-bind="with:person">
                                             <br>
                                             <form class="form-horizontal">
-
                                                 <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>绩优人力:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:outstanding_human_resource"/>
-                                                    </div>
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>钻石人力:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:diamonds_human_resource"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>标准人力:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:standard_human_resource"/>
-                                                    </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>个人增员:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:human_resource"/>
+                                                        <input class="input_1" data-bind="value:increasing_num"/>
                                                     </div>
                                                 </div>
-                                                <div align="left">
-                                                    <span style="font-size:15px;font-weight:bold">个人产能：</span>
-                                                </div>
-
+                                                <!-- ko foreach: insurances -->
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>财富天赢:</span>
+                                                        <span data-bind="visible:($index()==$parent.insurances().length-1)">
+                                                            <a data-bind="click: $parent.addInsurance"><i class="fa fa-plus"></i></a>
+                                                        </span>
+                                                        <span data-bind="visible:!($index()==$parent.insurances().length-1)">
+                                                            <a data-bind="click: $parent.removeInsurance"><i class="fa fa-remove"></i></a>
+                                                        </span>
+                                                        <span>产品保费:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1"   data-bind="value:caifu_premium"/>
+                                                        <input class="input_1" data-bind="value:insurance_cost"/>
                                                     </div>
+                                                    <!--                                                    <label class="col-xs-6 control-label text-center label_div label_span">
+                                                                                                            <span>佣金率: 
+                                                                                                                <input class="input_1"  data-bind="value:commission"/> % 
+                                                                                                            </span>
+                                                                                                        </label>-->
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>赢越人生:</span>
+                                                        <span>佣金率:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:yingyue_premium"/>
+                                                        <span>
+                                                            <input class="input_2" data-bind="value:commission">
+                                                            <label class="control-label label_span">
+                                                                <span>%</span>
+                                                            </label>
+                                                        </span>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>双福保费:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"   data-bind="value:shuangfu_premium"/>
-                                                    </div>
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>双智保费:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:shuangzhi_premium"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>其他保费:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"   data-bind="value:other_premium"/>
-                                                    </div>
-                                                </div>
-
-
+                                                <!-- /ko -->
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>初佣:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:initial_commission"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:initial_commission"/>
                                                     </div>
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>续期:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:renewal_commission"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>训练津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:tainning_allowance"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:tainning_allowance"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group label_div">
+                                                    <label class="col-xs-3 control-label label_span">
+                                                        <span>业绩津贴:</span>
+                                                    </label>
+                                                    <div class="col-xs-3">
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:achievement_allowance"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>增员奖:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:increasing_num_bonus"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:increasing_num_bonus"/>
                                                     </div>
                                                 </div>
                                             </form>
@@ -288,46 +233,30 @@
                                             <form class="form-horizontal">
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>绩优人力:</span>
+                                                        <span>团队人力:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:outstanding_human_resource"/>
+                                                        <input class="input_1" data-bind="value:human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>钻石人力:</span>
+                                                        <span>人均业绩:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:diamonds_human_resource"/>
+                                                        <input class="input_1" data-bind="value:per_capita_achievement"/>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>标准人力:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:standard_human_resource"/>
-                                                    </div>
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>个人增员:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:human_resource"/>
-                                                    </div>
-                                                </div>
-
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>管理津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:manage_allowance"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:manage_allowance"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>育成利益:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:educate_benefits"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:budget"/>
                                                     </div>
                                                 </div>
                                             </form>
@@ -346,55 +275,38 @@
                                             <form class="form-horizontal">
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>绩优人力:</span>
+                                                        <span>团队人力:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:outstanding_human_resource"/>
+                                                        <input class="input_1" data-bind="value:human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>钻石人力:</span>
+                                                        <span>人均保费:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:diamonds_human_resource"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group label_div">
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>标准人力:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1"  data-bind="value:standard_human_resource"/>
-                                                    </div>
-                                                    <label class="col-xs-3 control-label label_span">
-                                                        <span>个人增员:</span>
-                                                    </label>
-                                                    <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:human_resource"/>
+                                                        <input class="input_1" data-bind="value:per_capita_achievement"/>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>经理津贴:</span>
+                                                        <span>管理津贴:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:manager_allowance"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:manage_allowance"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>增部利益:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:increasing_part_benefits"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:budget"/>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group label_div">
                                                     <label class="col-xs-3 control-label label_span">
-                                                        <span>总监津贴:</span>
+                                                        <span>总盈利益:</span>
                                                     </label>
                                                     <div class="col-xs-3">
-                                                        <input class="input_1" disabled="true"  data-bind="value:director_benefits"/>
+                                                        <input class="input_1" disabled="true" style="margin-top: 5px;" data-bind="value:total_budget"/>
                                                     </div>
                                                 </div>
                                             </form>
@@ -453,54 +365,50 @@
         <script src="assets/self-owned/js/generic/generic_table.js"></script>
         <script src="assets/self-owned/js/generic/generic_util.js"></script>
         <script src="assets/self-owned/js/generic/generic_validation.js"></script>
-        <script src="assets/self-owned/js/yingxiao.js"></script>
+        <script src="assets/self-owned/js/yingxiao_view_model.js"></script>
 
         <script>
+                                                    var yingXiaoViewModel = new YingXiaoViewModel();
+                                                    $(document).ready(function () {
+                                                        ko.applyBindings(yingXiaoViewModel, document.getElementById('contentDiv'));
+                                                    });
+                                                    var run = function () {
+                                                        var income = 0;
+                                                        //初佣
+                                                        income += yingXiaoViewModel.person.initial_commission();
+                                                        //训练津贴
+                                                        income += yingXiaoViewModel.person.tainning_allowance();
+                                                        //业绩津贴
+                                                        income += yingXiaoViewModel.person.achievement_allowance();
+                                                        //增员奖
+                                                        income += yingXiaoViewModel.person.increasing_num_bonus();
+                                                        //管理津贴
+                                                        income += yingXiaoViewModel.group.manage_allowance();
+                                                        //育成利益
+                                                        income += yingXiaoViewModel.group.budget();
+                                                        //管理津贴
+                                                        income += yingXiaoViewModel.part.manage_allowance();
+                                                        //增部利益
+                                                        income += yingXiaoViewModel.part.budget();
+                                                        //总盈利益
+                                                        income += yingXiaoViewModel.part.total_budget();
 
+                                                        //总收益万元小数点两位
+                                                        income = income / (100 * (100 - yingXiaoViewModel.other_income_percent()));
+                                                        income = income + "";
+                                                        if (income.indexOf(".") > 0) {
+                                                            income = income.substring(0, income.indexOf(".") + 3);
+                                                        }
+                                                        yingXiaoViewModel.total_income(new Number(income));
+                                                    }
+                                                    var compute_initial_commission = function () {
+                                                        var result = 0;
+                                                        $.each(yingXiaoViewModel.person.insurances(), function (key, val) {
+                                                            result += val.insurance_cost() * val.commission() / 100;
+                                                        })
+                                                        yingXiaoViewModel.person.initial_commission(result);
+                                                    }
         </script>
-
-        <script>
-            var yingXiaoViewModel = new YingXiaoViewModel();
-            $(document).ready(function () {
-                ko.applyBindings(yingXiaoViewModel, document.getElementById('contentDiv'));
-            });
-
-            function run() {
-                //累计收入=初佣+续期+训练津贴+增员奖+直接管理津贴+育成利益+经理津贴+增部利益+总监利益
-                var income = 0;
-
-                //初佣
-                income += yingXiaoViewModel.person.initial_commission();
-                //续期
-                income += yingXiaoViewModel.person.renewal_commission();
-                //训练津贴
-                income += yingXiaoViewModel.person.tainning_allowance();
-                //增员奖
-                income += yingXiaoViewModel.person.increasing_num_bonus();
-                //直接管理津贴
-                income += yingXiaoViewModel.group.manage_allowance();
-                //育成利益
-                income += yingXiaoViewModel.group.educate_benefits();
-                //经理津贴
-                income += yingXiaoViewModel.part.manager_allowance();
-                //增部利益
-                income += yingXiaoViewModel.part.increasing_part_benefits();
-                //总监利益
-                income += yingXiaoViewModel.part.director_benefits();
-
-
-                income = income / (100 * (100 - yingXiaoViewModel.other_income_percent()));
-
-                income = income + "";
-                if (income.indexOf(".") > 0) {
-                    income = income.substring(0, income.indexOf(".") + 3);
-                }
-                yingXiaoViewModel.total_income(new Number(income));
-            }
-
-
-        </script>
-
     </body>
 
 </html>
