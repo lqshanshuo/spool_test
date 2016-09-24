@@ -1,167 +1,217 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Matrix Components Framework">
-  <meta name="author" content="LY">
-  <title>Matrix</title>
-  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
-  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
-  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
-  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap-fileinput/css/fileinput.min.css" media="all">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The Matrix Components Framework">
+        <meta name="author" content="LY">
+        <title>Matrix</title>
+        <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+        <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap-fileinput/css/fileinput.min.css" media="all">
 
 
-</head>
+    </head>
 
-<body>
-  <!-- <div class="flat-matrix" style="margin-top:-58px;"> -->
+    <body>
+        <!-- <div class="flat-matrix" style="margin-top:-58px;"> -->
 
-  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/jianzheng2.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
-    <div class="app-container">
-      <div class="row content-container">
-        <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
-        <div class="container">
-          <div>
+        <div class="flat-matrix" style="background-image: url(assets/self-owned/img/jianzheng2.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
+            <div class="app-container">
+                <div class="row content-container">
+                    <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+                    <div class="container">
+                        <div>
 
-            <div class="row">
+                            <div class="row">
 
-              <!-- logo of the pingan -->
-              <div style="margin-top:58px;">&nbsp;</div>
-              <div>
-                <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;display: block;position: relative;margin: auto;">
-              </div>
-              <!-- title: such lik kaimenhong -->
+                                <!-- logo of the pingan -->
+                                <div style="margin-top:58px;">&nbsp;</div>
+                                <div>
+                                    <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;display: block;position: relative;margin: auto;">
+                                </div>
+                                <!-- title: such lik kaimenhong -->
 
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <div id="business_content_div">
-                <div class="col-xs-12 text-center">
-                  <div style="font-weight: bold;font-size:14px;color:#e74c3c">
-                    <p class="form-control-static" data-bind="text:description()"></p>
-                  </div>
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div class="row">
-                  <div data-bind="foreach:uploadedFileUrls">
-                    <div class="col-xs-6 text-center" style="margin-bottom:10px">
-                      <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <div id="business_content_div">
+                                    <div class="col-xs-12 text-center">
+                                        <div style="font-weight: bold;font-size:14px;color:#e74c3c">
+                                            <p class="form-control-static" data-bind="text:description()"></p>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <div data-bind="foreach:uploadedFileUrls">
+                                            <div class="col-xs-6 text-center" style="margin-bottom:10px">
+                                                <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <!-- form div -->
+                                    <div class="col-xs-12 text-center">
+
+
+
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+
+                                        <form class="form-horizontal">
+                                            <div class="form-group" style="font-size: 11px;">
+                                                <div class="col-xs-5 text-right">
+                                                    <img id="logoIMG" src="assets/self-owned/img/erweima.jpg" class="img-thumbnail" alt="500x500" style="width: 80px; height: 80px;">
+                                                </div>
+                                                <div class="col-xs-7 text-left">
+                                                    <p class="form-control-static" style="font-size: 14px;margin-top: 5px;">扫码关注天下通MBO专属公众号
+                                                        <br> 参与见证活动，更有机会赢取大奖</p>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                        <div class="" style="color:white;font-size:11px">
+                                            <p><strong>本活动最终解释权归中国平安所有</strong> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                  </div>
 
                 </div>
-                <br>
-                <!-- form div -->
-                <div class="col-xs-12 text-center">
-
-
-
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-
-                  <form class="form-horizontal">
-                    <div class="form-group" style="font-size: 11px;">
-                      <div class="col-xs-5 text-right">
-                        <img id="logoIMG" src="assets/self-owned/img/erweima.jpg" class="img-thumbnail" alt="500x500" style="width: 80px; height: 80px;">
-                      </div>
-                      <div class="col-xs-7 text-left">
-                        <p class="form-control-static" style="font-size: 14px;margin-top: 5px;">扫码关注天下通MBO专属公众号
-                          <br> 参与见证活动，更有机会赢取大奖</p>
-                      </div>
-
-                    </div>
-                  </form>
-                  <div class="" style="color:white;font-size:11px">
-                    <p><strong>本活动最终解释权归中国平安所有</strong> </p>
-                  </div>
-                </div>
-              </div>
             </div>
-
-          </div>
         </div>
 
-      </div>
-    </div>
-  </div>
+
+        <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+        <script src="assets/reference/jquery/jquery.json.js"></script>
+        <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+        <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+        <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+        <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+        <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+        <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+        <script src="assets/reference/bootstrap-fileinput/js/fileinput.js"></script>
+        <script src="assets/reference/bootstrap-fileinput/js/locales/zh.js"></script>
+        <!-- Javascript for Matrix Self Owned -->
+        <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+        <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+        <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+        <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+        <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+        <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+        <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+        <script src="assets/self-owned/js/generic/generic_query.js"></script>
+        <script src="assets/self-owned/js/generic/generic_table.js"></script>
+        <script src="assets/self-owned/js/generic/generic_util.js"></script>
+        <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+        <script src="assets/self-owned/js/generic/generic_upload.js"></script>
+        <script>
+            var SharePOJO = SharePOJO || {};
+            SharePOJO = {
+                environmentCheck: function () {
+                    var tokenFlag = $.hasUrlParam('token');
+                    if (!tokenFlag) {
+                        SharePOJO.redirect('INVALID');
+                    }
+                    var token = $.urlParamValue('token');
+                    if (!token) {
+                        SharePOJO.redirect('INVALID');
+                    }
+
+                    $.serverRequest($.getServerRoot() + '/matrix_share/api/share/fetch/' + token, null, "NOTEBOOK_SHARE_SUCCESS", "NOTEBOOK_SHARE_FAILED", "NOTEBOOK_SHARE_SERVICE_FAILED");
+                },
+                redirect: function (type) {
+                    if (type == 'INVALID') {
+                        console.log("REDIRECT TO INVALID PAGE");
+                        window.location.href = "matrix_share_invalid.html";
+                    } else if (type == 'EXPIRED') {
+                        console.log("REDIRECT TO EXPIRED PAGE");
+                        window.location.href = "matrix_share_expired.html";
+                    }
+                }
+            }
+            $.subscribe("NOTEBOOK_SHARE_SUCCESS", successListener);
+            $.subscribe("NOTEBOOK_SHARE_FAILED", failedListener);
+            $.subscribe("NOTEBOOK_SHARE_SERVICE_FAILED", failedServiceListener);
+            function successListener() {
+                if (arguments && arguments[1]) {
+                    var jianzhengka = arguments[1].result[0].json;
+                    retrieveData(jianzhengka);
+                }
+            }
+
+            function failedListener() {
+                console.log("failed");
+            }
+
+            function failedServiceListener() {
+                if (arguments && arguments[1]) {
+                    var errorMessage = arguments[1].errorMessage;
+                    if (errorMessage == "Token Invalid!") {
+                        SharePOJO.redirect('INVALID');
+                    } else if (errorMessage == "Token Expire!") {
+                        SharePOJO.redirect('EXPIRED');
+                    }
+                }
+            }
+        </script>
+        <script>
+            function BusinessViewModel() {
+                var self = this;
+                self.chosenItem = ko.observable('');
+                self.description = ko.observable('');
+                self.uploadedFileUrls = ko.observableArray([]);
+            }
+            var business_vm = new BusinessViewModel();
+            ko.applyBindings(business_vm, document.getElementById('business_content_div'));
+            SharePOJO.environmentCheck();
+            var json = retrieveData();
 
 
-  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
-  <script src="assets/reference/jquery/jquery.json.js"></script>
-  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
-  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
-  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
-  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
-  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
-  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
-  <script src="assets/reference/bootstrap-fileinput/js/fileinput.js"></script>
-  <script src="assets/reference/bootstrap-fileinput/js/locales/zh.js"></script>
-  <!-- Javascript for Matrix Self Owned -->
-  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
-  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
-  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
-  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
-  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
-  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
-  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
-  <script src="assets/self-owned/js/generic/generic_query.js"></script>
-  <script src="assets/self-owned/js/generic/generic_table.js"></script>
-  <script src="assets/self-owned/js/generic/generic_util.js"></script>
-  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
-  <script src="assets/self-owned/js/generic/generic_upload.js"></script>
 
-  <script>
-    function BusinessViewModel() {
-      var self = this;
-      self.chosenItem = ko.observable('');
-      self.description = ko.observable('');
-      self.uploadedFileUrls = ko.observableArray([]);
-    }
-    var business_vm = new BusinessViewModel();
-    var json = retrieveData();
+            function retrieveData(param) {
+                param = UtilPOJO.decode(param);
+                var jsonObj = JSON.parse(param);
+                console.log(jsonObj)
 
-    ko.applyBindings(business_vm, document.getElementById('business_content_div'));
-    business_vm.chosenItem(json.business_info.info_1);
-    business_vm.description(json.business_info.info_2);
-    business_vm.uploadedFileUrls(json.file_url_list);
+                business_vm.chosenItem(jsonObj.business_info.info_1);
+                business_vm.description(jsonObj.business_info.info_2);
+                business_vm.uploadedFileUrls(jsonObj.file_url_list);
 
+                //JSON like this:
+                // var json = {
+                //   file_url_list: ["http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg",
+                //     "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg",
+                //     "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg"
+                //   ],
+                //   business_info:{
+                //     info_1:'private',
+                //     info_2:'This is what i wanna say...'
+                //   }
+                // }
+//                return jsonObj;
+            }
+        </script>
 
-    function retrieveData() {
-
-      var tokenFlag = $.hasUrlParam('token');
-      var token = $.urlParamValue('token');
-      token = UtilPOJO.decode(token);
-      var jsonObj = JSON.parse(token);
-
-      //JSON like this:
-      // var json = {
-      //   file_url_list: ["http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg",
-      //     "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg",
-      //     "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1474515354080.jpg"
-      //   ],
-      //   business_info:{
-      //     info_1:'private',
-      //     info_2:'This is what i wanna say...'
-      //   }
-      // }
-      return jsonObj;
-    }
-  </script>
-</body>
+    </body>
 
 </html>
