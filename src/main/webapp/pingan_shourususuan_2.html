@@ -32,11 +32,11 @@
                 text-align:center;
 
                 /*border:solid;*/
-                
-/*                border-top:none;
-                border-right:none;
-                border-left:none;
-                border-bottom:solid;*/
+
+                /*                border-top:none;
+                                border-right:none;
+                                border-left:none;
+                                border-bottom:solid;*/
                 /*border:1px;*/
             }
 
@@ -51,10 +51,18 @@
                         }*/
 
             .label_div{
-                padding-top:10px;              
+                padding-top:10px; 
+                width:100%
             }
 
+            .label_div_1{
+                padding-top:10px; 
+            }
+
+
             .label_span{
+                padding-left:0px;
+                padding-right:2px;
                 padding-top:10px;
                 font-weight: bold;
                 font-size: 9px; 
@@ -63,6 +71,7 @@
 
             .input_div{
                 padding-left:0px;
+                padding-right:0px;
                 text-align: left;
             }
 
@@ -103,9 +112,9 @@
                                     <div class="card card-danger">
                                         <div class="card-body no-padding">
                                             <form class="form-horizontal">
-                                                <div class="form-group" style="">
+                                                <div class="form-group label_div">
 
-                                                    <div class="col-xs-3 col-xs-offset-1 label_div">
+                                                    <div class="col-xs-3 col-xs-offset-1 label_div_1">
                                                         <label class=" control-label">
                                                             <span>代码</span>
                                                         </label>
@@ -113,7 +122,7 @@
                                                         <p class="form-control-static" data-bind="text:code" style="font-size: 11px;">No 1</p>
 
                                                     </div>
-                                                    <div class="col-xs-3 label_div" >
+                                                    <div class="col-xs-3 label_div_1" >
                                                         <label class="control-label">
                                                             <span>姓名</span>
                                                         </label>
@@ -121,7 +130,7 @@
                                                         <p class="form-control-static" data-bind="text:name" style="font-size: 11px;">张三</p>
 
                                                     </div>
-                                                    <div class="col-xs-4 label_div">
+                                                    <div class="col-xs-4 label_div_1">
                                                         <label class=" control-label">
                                                             <span>职级</span>
                                                         </label>
@@ -130,7 +139,7 @@
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div class="form-group label_div" >
+                                                <div class="form-group label_div_1" >
                                                     <div class="col-xs-6 text-right" style="font-size:20px;font-weight:bold">
                                                         <span >收入合计:</span>
                                                     </div>
@@ -174,13 +183,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>绩优人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:outstanding_human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>钻石人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:diamonds_human_resource"/>
                                                     </div>
                                                 </div>
@@ -189,13 +198,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>标准人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:standard_human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>个人增员:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:human_resource"/>
                                                     </div>
                                                 </div>
@@ -207,13 +216,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>财富天赢:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:caifu_premium"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>赢越人生:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:yingyue_premium"/>
                                                     </div>
                                                 </div>
@@ -222,13 +231,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>双福保费:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:shuangfu_premium"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>双智保费:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:shuangzhi_premium"/>
                                                     </div>
                                                 </div>
@@ -237,7 +246,7 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>其他保费:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"   data-bind="value:other_premium"/>
                                                     </div>
                                                 </div>
@@ -247,13 +256,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>初佣:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:initial_commission"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>续期:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:renewal_commission"/>
                                                     </div>
                                                 </div>
@@ -262,13 +271,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>训练津贴:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:tainning_allowance"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>增员奖:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:increasing_num_bonus"/>
                                                     </div>
                                                 </div>
@@ -290,13 +299,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>绩优人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:outstanding_human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>钻石人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:diamonds_human_resource"/>
                                                     </div>
                                                 </div>
@@ -305,13 +314,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>标准人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:standard_human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>个人增员:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:human_resource"/>
                                                     </div>
                                                 </div>
@@ -320,13 +329,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>管理津贴:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:manage_allowance"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>育成利益:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:educate_benefits"/>
                                                     </div>
                                                 </div>
@@ -348,13 +357,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>绩优人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:outstanding_human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>钻石人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:diamonds_human_resource"/>
                                                     </div>
                                                 </div>
@@ -363,13 +372,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>标准人力:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1"  data-bind="value:standard_human_resource"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>个人增员:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:human_resource"/>
                                                     </div>
                                                 </div>
@@ -378,13 +387,13 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>经理津贴:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:manager_allowance"/>
                                                     </div>
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>增部利益:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:increasing_part_benefits"/>
                                                     </div>
                                                 </div>
@@ -393,7 +402,7 @@
                                                     <label class="col-xs-3 control-label label_span">
                                                         <span>总监津贴:</span>
                                                     </label>
-                                                    <div class="col-xs-3">
+                                                    <div class="col-xs-3 input_div">
                                                         <input class="input_1" disabled="true"  data-bind="value:director_benefits"/>
                                                     </div>
                                                 </div>
