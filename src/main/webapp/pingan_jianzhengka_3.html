@@ -137,7 +137,7 @@
                         SharePOJO.redirect('INVALID');
                     }
 
-                    $.serverRequest($.getServerRoot() + '/matrix_share/api/share/fetch/' + token, null, "NOTEBOOK_SHARE_SUCCESS", "NOTEBOOK_SHARE_FAILED", "NOTEBOOK_SHARE_SERVICE_FAILED");
+                    $.serverRequest($.getServerRoot() + '/service_generic_query/api/share/fetch/' + token, null, "NOTEBOOK_SHARE_SUCCESS", "NOTEBOOK_SHARE_FAILED", "NOTEBOOK_SHARE_SERVICE_FAILED");
                 },
                 redirect: function (type) {
                     if (type == 'INVALID') {
