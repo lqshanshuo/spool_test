@@ -13,9 +13,12 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 import static v2.service.generic.library.constants.GenericStatus.Service_Failed;
 import static v2.service.generic.library.constants.GenericStatus.Service_Successed;
 import v2.service.generic.library.model.QueryPOJO;
@@ -24,7 +27,8 @@ import v2.service.generic.library.model.ResponsePOJO;
 import v2.service.generic.library.model.http.HttpResponsePOJO;
 import v2.service.generic.library.utils.HttpClientUtil;
 import v2.service.generic.library.utils.JsonUtil;
-import v2.zgpa.model.Businessentity1;
+import v2.zgpa.ZgpaContext;
+import v2.zgpa.model.Stuffentity;
 import v2.zgpa.model.RequestPOJO;
 
 /**
@@ -41,7 +45,11 @@ public class loginResource {
 
     @POST
     @Path("login")
-    public String login(@FormParam("queryJson") String queryJson) throws IOException {
+    public String login(@FormParam("queryJson") String queryJson,
+            @Context HttpServletRequest httpRequest) throws IOException {
+
+        HttpSession session = httpRequest.getSession();
+        String session_id = session.getId();
 
         String result = "";
         boolean hasError = true;
@@ -50,19 +58,18 @@ public class loginResource {
         String status = Failed;
         List<String> result_list = new ArrayList();
         try {
-
             RequestPOJO request = JsonUtil.toPojo(queryJson, RequestPOJO.class);
 
             String name = request.getName();
             String passwd = request.getPasswd();
 
             QueryPOJO query = new QueryPOJO();
-            query.setClassName("Businessentity1");
+            query.setClassName("Stuffentity");
             query.setPageMaxSize(1);
             query.setCurrentPageNumber(1);
             Map eq = new HashMap();
-            eq.put("type", "USER_MESSAGE");
-            eq.put("name", name);
+            eq.put("type", "STUFF_INFO");
+            eq.put("personal_code", name);
             query.setEqMap(eq);
             String jsonRequest = JsonUtil.toJsonWithoutEmpth(query);
             HttpResponsePOJO pojo = HttpClientUtil.jsonRequest(QueryUrl, jsonRequest, "POST", null);
@@ -81,8 +88,8 @@ public class loginResource {
             } else {
                 String user_message = JsonUtil.toJson(queryResult.getResult().get(0));
                 System.out.println("-------------------- " + user_message);
-                Businessentity1 userPOJO = JsonUtil.toPojo(user_message, Businessentity1.class);
-                String id_number = userPOJO.getStr1();
+                Stuffentity userPOJO = JsonUtil.toPojo(user_message, Stuffentity.class);
+                String id_number = userPOJO.getId_last_four();
                 if (id_number.length() < 4) {
                     hasError = true;
                     errMsg = "密码错误";
@@ -93,9 +100,12 @@ public class loginResource {
                         hasError = false;
                         errMsg = "";
 
-                        result_list.add("验证通过");
+                        result_list.add(user_message);
                         statusCode = Service_Successed;
                         status = Succeesed;
+
+                        ZgpaContext.userMap.put(session_id, userPOJO);
+
                     } else {
                         hasError = true;
                         errMsg = "密码错误";
@@ -107,6 +117,40 @@ public class loginResource {
             errMsg = ex.getMessage();
             Logger.getLogger(loginResource.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ResponsePOJO response = new ResponsePOJO(hasError, errMsg, statusCode, status, result_list);
+        result = JsonUtil.toJson(response);
+        return result;
+    }
+
+    @POST
+    @Path("getUserInfo")
+    public String getUserInfo(@FormParam("queryJson") String queryJson,
+            @Context HttpServletRequest httpRequest) throws IOException {
+
+        HttpSession session = httpRequest.getSession();
+        String session_id = session.getId();
+
+        String result;
+        boolean hasError = true;
+        String errMsg = "No user info,Please login first";
+        int statusCode = Service_Failed;
+        String status = Failed;
+        List<String> result_list = new ArrayList();
+
+        for (Map.Entry<String, Stuffentity> entry : ZgpaContext.userMap.entrySet()) {
+            if (entry.getKey().equals(session_id)) {
+                Stuffentity userPOJO = entry.getValue();
+                String user_message = JsonUtil.toJson(userPOJO);
+                user_message = new String(user_message.getBytes(), "UTF-8");
+//                System.out.println();
+                hasError = false;
+                errMsg = "";
+                statusCode = Service_Successed;
+                status = Succeesed;
+                result_list.add(user_message);
+            }
+        }
+
         ResponsePOJO response = new ResponsePOJO(hasError, errMsg, statusCode, status, result_list);
         result = JsonUtil.toJson(response);
         return result;

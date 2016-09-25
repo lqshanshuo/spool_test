@@ -29,20 +29,20 @@ function QuTuoViewModel() {
 
 function Person() {
     var self = this;
-    self.last_performance_level = ko.observable();          //上季度绩优档次
-    self.performance_level_array = ko.observableArray(["非优绩", "A1", "A2"]);  //所有档次
-    self.commission_coefficient = ko.observable(0.01);  //佣金提取系数 数值？？
-    self.total_performance = ko.observable(0);      //总业绩
-    self.increasing_num = ko.observable(0);             //增援人数
-    self.initial_commission = ko.observable(0);         //初佣
-    self.tainning_allowance = ko.observable(0);     //训练津贴
-    self.complete_allowance = ko.observable(0);     //达成津贴
-    self.job_allowance = ko.observable(0);     //岗位津贴
-    self.excess_bonus = ko.observable(0);       //展业超额奖金
-    self.increasing_num_bonus = ko.observable(0);   //增员奖金
-    self.performance_allowance = ko.observable(0);  //绩优津贴
-    self.performance_coefficient = ko.observable(0.01);     //提取比例  ?? 多少
-    self.post_allowance = ko.observable(0);     //职务津贴
+    self.last_performance_level = ko.observable();                              //上季度绩优档次
+    self.performance_level_array = ko.observableArray(["非优绩", "A1", "A2"]);   //所有档次
+    self.commission_coefficient = ko.observable(0.01);                          //佣金提取系数 数值？？
+    self.total_performance = ko.observable(0);                                  //总业绩
+    self.increasing_num = ko.observable(0);                                     //增援人数
+    self.initial_commission = ko.observable(0);                                 //初佣
+    self.tainning_allowance = ko.observable(0);                                 //训练津贴
+    self.complete_allowance = ko.observable(0);                                 //达成津贴
+    self.job_allowance = ko.observable(0);                                      //岗位津贴
+    self.excess_bonus = ko.observable(0);                                       //展业超额奖金
+    self.increasing_num_bonus = ko.observable(0);                               //增员奖金
+    self.performance_allowance = ko.observable(0);                              //绩优津贴
+    self.performance_coefficient = ko.observable(0.01);                         //提取比例  ?? 多少
+    self.post_allowance = ko.observable(0);                                     //职务津贴
 
     self.sum = ko.computed(function () {
         var sum_tmp = self.initial_commission() + self.tainning_allowance() + self.complete_allowance() +
