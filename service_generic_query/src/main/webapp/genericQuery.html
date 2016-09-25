@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The prototype website of web framework">
+        <meta name="author" content="LY">
+        <title>天玑大数据分析系统</title>
+        <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+
+
+        <!-- reference CSS-->
+        <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+
+        <!-- self-owned CSS-->
+        <link rel="stylesheet" type="text/css" href="assets/self-owned/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/self-owned/css/themes/flat-blue.css">
+
+
+
+    </head>
+
+    <body class="flat-blue">
+        <div class="app-container">
+            <div class="row content-container">
+
+                <!-- 应用顶部NAV导航，在prototype.js初始化时加载，默认为assets/html/header.html-->
+                <div id="navDIV"></div>
+
+                <div class="container-fluid">
+                    <div class="side-body padding-top">
+
+                        <!-- 应用具体内容DIV-->
+                        <div id="contentDIV">
+                            <h1>
+                                <i class="fa fa-tasks"></i>
+                                <strong> &nbsp; Generic Query Component</strong>
+                            </h1>
+
+                            <div id="response_div">
+                                <div class="alert fresh-color" data-bind="css:styleClass,visible:resultVisible">
+                                    <strong>
+                                        <span data-bind="text:resultTitle"></span>
+                                    </strong>
+                                    <span data-bind="text:resultSubTitle"></span>
+                                    <div data-bind="text:resultContent"></div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="tableDIV">
+                                <!-- 文件列表区域 -->
+                                <div class="col-xs-12">
+                                    <div class="card card-success">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <div class="title"><i class="fa fa-table"></i> Table server side paging example
+                                                    <small>(&nbsp;Total counts:
+                                                        <strong data-bind="text: totalCounts()"></strong>&nbsp;)</small>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right card-action">
+                                                <form class="navbar-form navbar-left" role="search">
+                                                    <div class="form-group">
+                                                        <input data-bind="value:entityClassName" class="form-control" placeholder="Entity Class Name" type="text" value="ZEntity">
+                                                    </div>
+                                                    <button onclick="viewModel.retrieveData()" type="button" class=" btn btn-primary btn-md">
+                                                        <span class="fa fa-search" aria-hidden="true" title="重置">&nbsp;Go!</span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row" data-bind="visible: viewData().length<1">
+                                            <div class="col-md-12">
+                                                <div class="card green summary-inline">
+                                                    <div class="card-body">
+                                                        <i class="icon fa fa-info-circle fa-1x"> &nbsp;<strong>Information</strong></i>
+                                                    </div>
+                                                    <div class="row text-center" style="font-size:28px">
+                                                        <div class="col-md-12">
+                                                            <i class="fa fa-bullhorn fa-1x"></i> <span id="infoMessage">Currently no result return, please select one Entity and searching ...</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body" data-bind="visible: viewData().length>0">
+
+                                            <form class="navbar-form navbar-right" role="search">
+                                                <div class="form-group">
+                                                    <input data-bind="value:searchKeyword" class="form-control" placeholder="输入关键字" type="text">
+                                                </div>
+                                                <button data-bind="click:function(){searchByKeyword()}" type="submit" class="btn btn-success">搜索</button>
+                                            </form>
+                                            <div class="row">
+                                                <div class="col-md-12" style="overflow: auto">
+                                                    <table class="table table-striped" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <!-- ko foreach: columnNames -->
+                                                                <th>
+                                                                    <span data-bind="text: $data"></span>
+                                                                </th>
+                                                                <!-- /ko -->
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody data-bind="foreach: viewData">
+                                                            <tr data-bind="foreach: $data">
+                                                                <td data-bind="text: $data"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <!-- <table class="table table-striped" cellspacing="0" width="100%">
+                                              <thead>
+                                                <tr>
+                                                  <th>id</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody data-bind="foreach: viewData">
+                                                <tr>
+                                                  <td data-bind="text:id">
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table> -->
+
+                                            <div id="pagingDIV">
+
+                                                <nav>
+
+                                                    <ul class="pager">
+                                                        <span class="pull-right">
+                                                            <select class="form-control" style="width:88px" data-bind="options:pagingSizeArray,value:pageMaxSize"></select>
+                                                        </span>
+                                                        <li><a data-bind="click:function(){toPage(1)}" href="#">首页</a></li>
+                                                        <li><a data-bind="click:function(){toPage(currentPageNumber()-1)}" href="#">前翻</a></li>
+                                                        <li>
+                                                            <input data-bind="value:currentPageNumber" style="width:38px" ;type="text" class="text-center">
+                                                        </li>
+                                                        <li><a data-bind="click:function(){toPage(currentPageNumber()+1)}" href="#">后翻</a></li>
+                                                        <li><a data-bind="click:function(){toPage(totalPage())}" href="#">末页</a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Javascript -->
+        <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+        <script src="assets/reference/jquery/jquery.json.js"></script>
+        <script src="assets/reference/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/self-owned/js/prototype.js"></script>
+        <script src="assets/self-owned/js/generic/generic_query.js"></script>
+        <script src="assets/self-owned/js/scripter_algorithm.js"></script>
+        <script src="assets/reference/sorttable.js/sorttable.js"></script>
+
+        <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+        <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+
+        <!-- Using knockout for MVVM injection-->
+
+        <script>
+                                                        function ResponseViewModel() {
+                                                            var self = this;
+                                                            self.styleClass = ko.observable("alert-success");
+                                                            self.resultVisible = ko.observable(false);
+                                                            self.resultTitle = ko.observable("Successed");
+                                                            self.resultSubTitle = ko.observable("[General Search]");
+                                                            self.resultContent = ko.observable("This is the result content...");
+
+
+                                                            self.validationError = function () {
+                                                                self.styleClass("alert-danger");
+                                                                self.resultTitle("Error:");
+                                                                self.resultSubTitle("");
+                                                                self.resultContent("[Validation Failed] Please enter the entity class name first...");
+                                                                self.resultVisible(true);
+                                                            }
+
+                                                            self.errorResponse = function (content) {
+                                                                self.styleClass("alert-danger");
+                                                                self.resultTitle("Error:");
+                                                                self.resultSubTitle("");
+                                                                self.resultContent(content);
+                                                                self.resultVisible(true);
+                                                            }
+                                                        }
+
+                                                        function reset() {
+                                                            responseViewModel && responseViewModel.resultVisible(false);
+                                                        }
+                                                        var responseViewModel = new ResponseViewModel();
+                                                        ko.applyBindings(responseViewModel, document.getElementById('response_div'));
+        </script>
+        <script>
+            var retrieveData = function () {
+                if (!preQueryAction()) {
+                    return;
+                }
+                LoaderUtil.add('tableDIV');
+
+                var queryPOJO = ClonePOJO.shallowClone(ServerPagingQueryPOJO.queryPOJO);
+                $(queryPOJO).attr("pageMaxSize", viewModel.pageMaxSize());
+                $(queryPOJO).attr("currentPageNumber", viewModel.currentPageNumber());
+                // var headers = viewModel.columnNames();
+                // var likeVar = {};
+                // $.each(headers,function(index,value){
+                //   likeVar[value] = viewModel.searchKeyword();
+                // });
+
+                var likeVar = {
+                    'applicationId': viewModel.searchKeyword(),
+                    'jobId': viewModel.searchKeyword(),
+                    "appName": viewModel.searchKeyword()
+                }
+                var eqVar = {
+                    // 'description': '3'
+                    // "description": viewModel.searchKeyword()
+                };
+                var inVar = {};
+                $(queryPOJO).attr("className", viewModel.entityClassName());
+                $(queryPOJO).attr("likeORMap", likeVar);
+                $(queryPOJO).attr("eqMap", eqVar);
+                $(queryPOJO).attr("inMap", inVar);
+
+                ServerPagingQueryPOJO.search(queryPOJO, "SEARCH_SUCCESS_TEST");
+            }
+            $.subscribe("SEARCH_SUCCESS_TEST", successListener);
+            $.subscribe("PAGING_SEARCH_FAILED", failedListener);
+
+            function failedListener() {
+                if (arguments && arguments[1]) {
+                    var errorMessage = arguments[1].errorMessage;
+                    responseViewModel.errorResponse(errorMessage)
+                }
+                // LoaderUtil.remove('tableDIV');
+                setTimeout(removeLoader, 1000);
+            }
+
+            function successListener() {
+                if (arguments && arguments[1]) {
+                    var headers = AlgorithmPOJO.buildKeys(arguments[1].result);
+                    // viewModel.buildData(arguments[1]);
+                    viewModel.buildSearchData(arguments[1]);
+                }
+                setTimeout(removeLoader, 500);
+
+            }
+
+
+            function removeLoader() {
+                LoaderUtil.remove('tableDIV');
+            }
+
+            var preQueryAction = function () {
+                reset();
+                var result_validation = false;
+
+                if (viewModel.entityClassName()) {
+                    result_validation = true;
+                } else {
+                    responseViewModel.validationError();
+                }
+
+                return result_validation;
+            }
+
+            var viewModel = new ServerPagingViewModel();
+            ko.applyBindings(viewModel, document.getElementById('tableDIV'));
+            viewModel.retrieveData = retrieveData;
+            // viewModel.retrieveData();
+        </script>
+
+
+    </body>
+
+</html>

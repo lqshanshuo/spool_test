@@ -1,0 +1,94 @@
+<div id="genericModalDiv">
+
+  <!--RESULT DISPLAY DIV BEGIN-->
+  <div id="resultDIV" data-bind="visible: hasResult,css: styleClass" class="alert fresh-color">
+    <strong>
+      <span data-bind="text:resultTitle"></span>
+    </strong>
+    <span data-bind="text:resultSubTitle"></span>
+    <div data-bind="text:resultContent"></div>
+  </div>
+  <!--RESULT DISPLAY DIV END-->
+
+  <!--CONTENT DIV BEGIN-->
+  <div id="modal_content_div">
+    <div class="card card-success">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="title" id="popup_modal_title_div"><i class="fa fa-cogs"></i> Your Modal Title </div>
+        </div>
+      </div>
+      <div class="card profile">
+        <div class="card-body">
+          <!--Validation DIV BEGIN-->
+          <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+            <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Warning!</strong>
+            <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+              <div data-bind="text:$data"></div>
+            </div>
+          </div>
+          <!--Validation DIV END-->
+          <!-- *******YOUR SHOULD CODING IN HERE:[BEGIN]*******-->
+          <div data-bind="if:businessPOJO()">
+
+          </div>
+          <!-- *******YOUR SHOULD CODING IN HERE:[END]*******-->
+          <br>
+          <div>
+            <form class="form-horizontal" id="formdata" role="form">
+              <div class="form-group pull-right">
+                <a href="#" class="btn btn-success" role="button" onclick="execute()">Execute</a>
+                <a href="#" class="btn btn-primary" role="button" onclick="ModalUtil.modal_close('popupModalPro')">Close</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--CONTENT DIV END-->
+</div>
+
+<script>
+  // Initialize the View Model
+  // Clean the paging binding nodes
+  // Binding the view Model
+  var genericModalViewModel = new GenericModalViewModel();
+  ko.cleanNode($('#genericModalDiv')[0]);
+  ko.applyBindings(genericModalViewModel, document.getElementById('genericModalDiv'));
+</script>
+
+<script>
+  // Setup the business model with view model
+  (function initialize() {
+    // *******YOUR SHOULD CODING IN HERE:*******
+  })();
+
+  function execute() {
+    // validation failed
+    // show validation error message in the warning DIV...
+    if (!genericModalViewModel.validation(businessValidation)) {
+      return;
+    } else {
+      // validation correct
+      // do your business...
+      runService();
+    }
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var businessValidation = function() {
+    var errorMessages = [];
+    //validate logic...
+
+    return errorMessages;
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var runService = function() {
+
+  }
+</script>

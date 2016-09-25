@@ -1,0 +1,67 @@
+<div class="side-menu sidebar-inverse">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="side-menu-container" >
+      <div class="navbar-header">
+        <a class="navbar-brand" href="javascript:void(0);">
+          <div class="icon fa fa-search"></div>
+          <div class="title" style="font-size:18px">Components</div>
+          <button type="button" class="navbar-expand-toggle pull-right">
+            <i class="fa fa-bars icon"></i>
+          </button>
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        </li>
+        <li class="panel panel-default dropdown">
+          <a data-toggle="collapse" href="#dropdown-icon">
+            <span class="icon fa fa-archive"></span>
+            <span class="title" style="font-size:14px">
+              <strong>Dragables</strong>
+            </span>
+          </a>
+          <div id="dropdown-icon" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li>
+                  <div class="sidebar">
+                    <div class="grid-stack-item">
+                      <div class="grid-stack-item-content">Draaag</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </nav>
+</div>
+
+
+
+<script>
+  $(function() {
+    $(".navbar-expand-toggle").click(function() {
+      $(".app-container").toggleClass("expanded");
+      return $(".navbar-expand-toggle").toggleClass("fa-rotate-90");
+    });
+    return $(".navbar-right-expand-toggle").click(function() {
+      $(".navbar-right").toggleClass("expanded");
+      return $(".navbar-right-expand-toggle").toggleClass("fa-rotate-90");
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    $('.sidebar .grid-stack-item').draggable({
+      revert: 'invalid',
+      handle: '.grid-stack-item-content',
+      scroll: false,
+      appendTo: 'body'
+    });
+  });
+</script>

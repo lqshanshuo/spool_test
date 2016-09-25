@@ -1,0 +1,278 @@
+<div id="genericModalDiv">
+
+  <!--RESULT DISPLAY DIV BEGIN-->
+  <div id="resultDIV" data-bind="visible: hasResult,css: styleClass" class="alert fresh-color">
+    <strong>
+      <span data-bind="text:resultTitle"></span>
+    </strong>
+    <span data-bind="text:resultSubTitle"></span>
+    <div data-bind="text:resultContent"></div>
+  </div>
+  <!--RESULT DISPLAY DIV END-->
+
+  <!--CONTENT DIV BEGIN-->
+  <div id="modal_content_div">
+    <div class="card card-success">
+      <div class="card profile">
+        <div class="card-body">
+          <!--Validation DIV BEGIN-->
+          <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+            <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Warning!</strong>
+            <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+              <div data-bind="text:$data"></div>
+            </div>
+          </div>
+          <!--Validation DIV END-->
+          <!-- *******YOUR SHOULD CODING IN HERE:[BEGIN]*******-->
+          <div data-bind="if:businessPOJO()">
+
+
+            <div class="step">
+              <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="step" class="active">
+                  <a href="#step1" id="step1-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                    <div class="icon fa fa-database"></div>
+                    <div class="step-title">
+                      <div class="title">Step 1</div>
+                      <div class="description">Detail setting</div>
+                    </div>
+                  </a>
+                </li>
+                <li role="step">
+                  <a href="#step2" role="tab" id="step2-tab" data-toggle="tab" aria-controls="profile">
+                    <div class="icon fa fa-stethoscope"></div>
+                    <div class="step-title">
+                      <div class="title">Step 2</div>
+                      <div class="description">Information confirming </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+
+              <div class="tab-content" data-bind="if:businessPOJO()">
+                <div role="tabpanel" class="tab-pane fade in active" id="step1" aria-labelledby="home-tab">
+                  <div class="card card-info">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <div class="title"><i class="fa fa-cogs"></i> Setting the details
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card profile">
+                      <div class="card-body">
+                        <div>
+                          <form class="form-horizontal">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">Application</label>
+                              <div class="col-sm-8">
+                                <input data-bind="value:businessPOJO().application" type="text" class="form-control" placeholder="" disabled>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">Job</label>
+                              <div class="col-sm-8">
+                                <input data-bind="value:businessPOJO().job" type="text" class="form-control" placeholder="" disabled>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">Progress</label>
+                              <div class="col-sm-8">
+                                <input data-bind="value:businessPOJO().progress" type="text" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">Status</label>
+                              <div class="col-sm-8">
+                                <input data-bind="value:businessPOJO().status" type="text" class="form-control" placeholder="">
+                              </div>
+                            </div>
+                            <div class="alert alert-info fresh-color">
+                              <strong>
+                                <span>Note:</span>
+                              </strong>
+                              <br>
+                              <span> 1, You can .....</span>
+                              <br>
+                              <span> 2, For XXX, the .....</span>
+                              <br>
+                              <span> 3, Other notes......</span>
+                            </div>
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="step2" aria-labelledby="profile-tab">
+                  <div class="card card-info">
+                    <div class="card-header">
+                      <div class="card-title">
+                        <div class="title"><i class="fa fa-cogs"></i> Confirm the setting info and execute </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="card profile">
+                      <div class="card-body">
+
+
+                        <div>
+                          <form class="form-horizontal">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">Application</label>
+                              <div class="col-sm-4">
+                                <p class="form-control-static" data-bind="text:businessPOJO().application"></p>
+                              </div>
+                              <label class="col-sm-2 control-label">Job</label>
+                              <div class="col-sm-4">
+                                <p class="form-control-static" data-bind="text:businessPOJO().job">DemoDB</p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">Progress</label>
+                              <div class="col-sm-4">
+                                <p class="form-control-static" data-bind="text:businessPOJO().progress">Tab (\t)</p>
+                              </div>
+                              <label class="col-sm-2 control-label">Status</label>
+                              <div class="col-sm-4">
+                                <p class="form-control-static" data-bind="text:businessPOJO().status">Tab (\t)</p>
+                              </div>
+                            </div>
+                          </form>
+                          <form class="form-horizontal">
+                            <div class="form-group pull-right">
+                              <a href="#" class="btn btn-success" role="button" onclick="execute()">Execute</a>
+                              <a href="#" class="btn btn-primary" role="button" onclick="ModalUtil.modal_close('popupModalPro')">Close</a>
+                            </div>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+          </div>
+          <!-- *******YOUR SHOULD CODING IN HERE:[END]*******-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--CONTENT DIV END-->
+</div>
+
+<script>
+  // Initialize the View Model
+  // Clean the paging binding nodes
+  // Binding the view Model
+  var genericModalViewModel = new GenericModalViewModel();
+  ko.cleanNode($('#genericModalDiv')[0]);
+  ko.applyBindings(genericModalViewModel, document.getElementById('genericModalDiv'));
+</script>
+
+<script>
+  // Setup the business model with view model
+  (function initialize() {
+    // *******YOUR SHOULD CODING IN HERE:*******
+    function BusinessPOJO() {
+      var self = this;
+      self.id = null;
+      self.application = ko.observable('DEMO_APPLICATION');
+      self.job = ko.observable('DEMO_JOB');
+      self.progress = ko.observable("28.0");
+      self.status = ko.observable('You Guess?');
+    }
+    var businessPOJO = new BusinessPOJO();
+    if(ModalUtil.businessPOJO){
+      businessPOJO.id =  ModalUtil.businessPOJO[0]; // Don't need observable bind!
+      businessPOJO.application(ModalUtil.businessPOJO[1]);
+      businessPOJO.job(ModalUtil.businessPOJO[2]);
+      businessPOJO.progress(ModalUtil.businessPOJO[5]);
+      businessPOJO.status(ModalUtil.businessPOJO[6]);
+    }
+    genericModalViewModel.businessPOJO(businessPOJO);
+  })();
+
+  function execute() {
+    // validation failed
+    // show validation error message in the warning DIV...
+    if (!genericModalViewModel.validation(businessValidation)) {
+      return;
+    } else {
+      // validation correct
+      // do your business...
+      runService();
+    }
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var businessValidation = function() {
+    var errorMessages = [];
+    //validate logic...
+
+    //validate
+    ValidationPOJO.validate("Entity ID", genericModalViewModel.businessPOJO().id, errorMessages, ['KEY_NOT_NULL']);
+    ValidationPOJO.validate("Application", genericModalViewModel.businessPOJO().application(), errorMessages, ['KEY_NOT_NULL']);
+    ValidationPOJO.validate("Job", genericModalViewModel.businessPOJO().job(), errorMessages, ['KEY_NOT_NULL']);
+    ValidationPOJO.validate("Progress", genericModalViewModel.businessPOJO().progress(), errorMessages, ['KEY_NOT_NULL']);
+    ValidationPOJO.validate("Status", genericModalViewModel.businessPOJO().status, errorMessages,['KEY_NOT_NULL']);
+
+    return errorMessages;
+  }
+
+  // *******YOUR SHOULD CODING IN HERE:*******
+  var runService = function() {
+    var requestPOJO= {
+        "className": "v2.service.scripter.entity.job.JobRecall",
+        "attributes":{
+          "id":genericModalViewModel.businessPOJO().id,
+          "applicationId":genericModalViewModel.businessPOJO().application(),
+          "jobId":genericModalViewModel.businessPOJO().job(),
+          "progress":genericModalViewModel.businessPOJO().progress(),
+          "status":genericModalViewModel.businessPOJO().status()
+        }
+    };
+    var data = {
+        'queryJson': $.toJSON(requestPOJO)
+    };
+    // ServerCUDPOJO.update(requestPOJO, "UPDATE_SUCCESS_LISTENER");
+    $.serverRequest($.getServerRoot() + '/service_generic_query/api/cud/update',data, "UPDATE_SUCCESS_LISTENER","UPDATE_FAILED_LISTENER","UPDATE_SERVER_FAILED_LISTENER");
+  }
+  $.subscribe("UPDATE_SUCCESS_LISTENER", successAddListener);
+  $.subscribe("UPDATE_FAILED_LISTENER", failedAddListener);
+  $.subscribe("UPDATE_SERVER_FAILED_LISTENER", failedServiceListener);
+
+  function successAddListener() {
+    if (arguments && arguments[1]) {
+      // responseViewModel.correctResponse(arguments[1]);
+      genericModalViewModel.response(true,"Update Entity Operation","[Successed]", "Operation Successed, please close the console and reload the data.");
+    }
+  }
+
+  function failedAddListener() {
+    if (arguments && arguments[1]) {
+      var errorMessage = arguments[1].errorMessage;
+      genericModalViewModel.response(false, "Update Entity Operation", "[Failed]", errorMessage);
+    }
+  }
+  function failedServiceListener() {
+    genericModalViewModel.response(false, "Update Entity Operation", "[Failed]", "SERVICE 'GENERIC CUD' FAILED! Please contact with the system admin for more information...");
+  }
+</script>
