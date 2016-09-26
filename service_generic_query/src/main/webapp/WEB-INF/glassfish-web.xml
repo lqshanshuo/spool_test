@@ -7,6 +7,6 @@
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
   </jsp-config>
-  <!--<property description="Uploaded Images" name="alternatedocroot_1" value="from=/matrix/upload/* dir=/opt/" />-->
-  <property description="Uploaded Images" name="alternatedocroot_1" value="from=/matrix/upload/* dir=E:\opt\" />
+  <property description="Uploaded Images" name="alternatedocroot_1" value="from=/matrix/upload/* dir=/opt/" />
+  <!--<property description="Uploaded Images" name="alternatedocroot_1" value="from=/matrix/upload/* dir=E:\opt\"/>-->
 </glassfish-web-app>
