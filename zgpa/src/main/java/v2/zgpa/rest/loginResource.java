@@ -28,7 +28,7 @@ import v2.service.generic.library.model.http.HttpResponsePOJO;
 import v2.service.generic.library.utils.HttpClientUtil;
 import v2.service.generic.library.utils.JsonUtil;
 import v2.zgpa.ZgpaContext;
-import v2.zgpa.model.Stuffentity;
+import v2.zgpa.model.Staffentity;
 import v2.zgpa.model.RequestPOJO;
 
 /**
@@ -88,7 +88,7 @@ public class loginResource {
             } else {
                 String user_message = JsonUtil.toJson(queryResult.getResult().get(0));
                 System.out.println("-------------------- " + user_message);
-                Stuffentity userPOJO = JsonUtil.toPojo(user_message, Stuffentity.class);
+                Staffentity userPOJO = JsonUtil.toPojo(user_message, Staffentity.class);
                 String id_number = userPOJO.getId_last_four();
                 if (id_number.length() < 4) {
                     hasError = true;
@@ -137,9 +137,9 @@ public class loginResource {
         String status = Failed;
         List<String> result_list = new ArrayList();
 
-        for (Map.Entry<String, Stuffentity> entry : ZgpaContext.userMap.entrySet()) {
+        for (Map.Entry<String, Staffentity> entry : ZgpaContext.userMap.entrySet()) {
             if (entry.getKey().equals(session_id)) {
-                Stuffentity userPOJO = entry.getValue();
+                Staffentity userPOJO = entry.getValue();
                 String user_message = JsonUtil.toJson(userPOJO);
                 user_message = new String(user_message.getBytes(), "UTF-8");
 //                System.out.println();

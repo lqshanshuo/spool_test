@@ -1,6 +1,8 @@
-v2/matrix/client/MockResource.class
 v2/zgpa/model/Businessentity1.class
-v2/zgpa/model/QueryResultPOJO.class
+v2/zgpa/model/Staffentity.class
 v2/zgpa/model/RequestPOJO.class
+v2/zgpa/ZgpaContext.class
 v2/zgpa/rest/loginResource.class
 v2/matrix/client/ApplicationConfig.class
+v2/matrix/client/MockResource.class
+v2/zgpa/model/QueryResultPOJO.class
