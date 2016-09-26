@@ -483,7 +483,7 @@
             function getUserInfo(target) {
                 var query = {};
                 var url = $.getRootPath() + "/api/account/getUserInfo";
-                var data = {'queryJson': "JSON.stringify(query)"}
+                var data = {'queryJson': JSON.stringify(query)}
 
 
                 $.serverRequest(url, data, "YINGXIAO_GET_USER_INFO_SUCCESS", "YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", "YINGXIAO_GET_USER_INFO_SERVER_ERROR", "POST");
