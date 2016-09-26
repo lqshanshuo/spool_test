@@ -64,11 +64,11 @@ public class loginResource {
             String passwd = request.getPasswd();
 
             QueryPOJO query = new QueryPOJO();
-            query.setClassName("Stuffentity");
+            query.setClassName("Staffentity");
             query.setPageMaxSize(1);
             query.setCurrentPageNumber(1);
             Map eq = new HashMap();
-            eq.put("type", "STUFF_INFO");
+            eq.put("type", "STAFF_INFO");
             eq.put("personal_code", name);
             query.setEqMap(eq);
             String jsonRequest = JsonUtil.toJsonWithoutEmpth(query);
