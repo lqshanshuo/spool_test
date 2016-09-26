@@ -12,7 +12,7 @@ import v2.service.generic.library.utils.JsonUtil;
 
 public class ConfigurationUtil {
 
-    static boolean isDev = true;
+    static boolean isDev = false;
     private static String instance = null;
 
     public static String getRequestURL() {
