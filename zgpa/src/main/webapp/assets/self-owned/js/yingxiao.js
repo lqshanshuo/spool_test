@@ -8,7 +8,7 @@ function YingXiaoViewModel() {
     //累计收入=初佣+续期+训练津贴+增员奖+直接管理津贴+育成利益+经理津贴+增部利益+总监利益
     //其他收入=提供往年占总收入占比，计算公式如下（累计收入*对应占比）/（1-对应占比）
     self.other_income_percent = ko.observable(0); //提供往年占总收入占比
-    self.level_array = ko.observableArray(["00", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+    self.level_array = ko.observableArray(["00", "02", "04", "05", "06", "08", "09", "10",
         "17", "31", "32", "33", "34", "D1", "D2", "D3"]);
 //        self.level_array = ko.observableArray(["[00]", "[02]", "[03]", "[04]", "[05]", "[06]", "[07]", "[08]", "[09]", "[10]",
 //        "[17]", "[31]", "[32]", "[33]", "[34]", "[D1]", "[D2]", "[D3]"]);
@@ -21,6 +21,9 @@ function YingXiaoViewModel() {
     self.isGroupDisplay = ko.observable(false);
     self.isPartDisplay = ko.observable(false);
     self.level.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         var group_permission = ["04", "05", "06"];
         var all_permission = ["08", "09", "10", "17", "D1", "D2", "D3"];
         self.isPersonDisplay = ko.observable(true);
@@ -47,6 +50,9 @@ function YingXiaoViewModel() {
 
     });
     self.userPOJO.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.other_income_percent(newValue.other_income_percent);
         self.person.renewal_commission(newValue.renewal_history); //续佣
         self.person.trainning_allowance(computeTrainingAllawance(self)); //训练津贴
@@ -65,7 +71,11 @@ function YingXiaoViewModel() {
         self.part.history_num_4(newValue.history_num_4); //历史数据4
         self.part.subordinate_part_num(newValue.subordinate_part_num); //下辖部数量
     });
+
     self.other_income_percent.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         newValue = newValue.replace("%", "");
         if (newValue == null || isNaN(newValue)) {
             newValue = 0;
@@ -80,56 +90,86 @@ function YingXiaoViewModel() {
 
 function Person() {
     var self = this;
-    self.human_resource = ko.observable(0); //个人增员
-    self.outstanding_human_resource = ko.observable(0); //绩优增员
-    self.diamonds_human_resource = ko.observable(0); //钻石增员
-    self.standard_human_resource = ko.observable(0); //标准增员
+    self.human_resource = ko.observable(0);                                     //个人增员
+    self.outstanding_human_resource = ko.observable();                          //绩优增员
+    self.diamonds_human_resource = ko.observable();                             //钻石增员
+    self.standard_human_resource = ko.observable();                             //标准增员
 
-    self.caifu_premium = ko.observable(0); //财富天赢保费
-    self.yingyue_premium = ko.observable(0); //赢越人生保费
-    self.shuangfu_premium = ko.observable(0); //双福保费
-    self.shuangzhi_premium = ko.observable(0); //双智保费
-    self.other_premium = ko.observable(0); //其他保费
+    self.caifu_premium = ko.observable();                                       //财富天赢保费
+    self.yingyue_premium = ko.observable();                                    //赢越人生保费
+    self.shuangfu_premium = ko.observable();                                   //双福保费
+    self.shuangzhi_premium = ko.observable();                                  //双智保费
+    self.other_premium = ko.observable();                                      //其他保费
 
 
-    self.initial_commission = ko.observable(0); //初佣 ： 财富天赢保费*6%+赢越人生保费*12%+双福保费*55%+双智保费*26%+其他保费*22%
-    self.renewal_commission = ko.observable(0); //续期 ： 历史数据，2016年初佣
-    self.trainning_allowance = ko.observable(0); //训练津贴 ：张家口、衡水、承德、邢台按照III类标准，其余按照II类标准，具体标准见训练津贴计算表
-    self.increasing_num_bonus = ko.observable(0); //增员奖 ： 绩优人力人数*6000*19%+钻石人力人数*3000*18%+标准人力人数*2000*18%
+    self.initial_commission = ko.observable(0);                                 //初佣 ： 财富天赢保费*6%+赢越人生保费*12%+双福保费*55%+双智保费*26%+其他保费*22%
+    self.renewal_commission = ko.observable(0);                                 //续期 ： 历史数据，2016年初佣
+    self.trainning_allowance = ko.observable(0);                                //训练津贴 ：张家口、衡水、承德、邢台按照III类标准，其余按照II类标准，具体标准见训练津贴计算表
+    self.increasing_num_bonus = ko.observable(0);                               //增员奖 ： 绩优人力人数*6000*19%+钻石人力人数*3000*18%+标准人力人数*2000*18%
 
 
     self.outstanding_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.outstanding_human_resource(formatNumber(newValue, true, 0));
     });
     self.diamonds_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.diamonds_human_resource(formatNumber(newValue, true, 0));
     });
     self.standard_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.standard_human_resource(formatNumber(newValue, true, 0));
     });
     self.human_resource = ko.computed(function () {         //个人增员
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
 
-        var num = self.outstanding_human_resource() + self.diamonds_human_resource() + self.standard_human_resource();
+        var num = outstanding_human + diamonds_human + standard_human;
         num = formatNumber(num, true, 0) || 0;
         return num;
     }, this);
     self.caifu_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
 
         self.caifu_premium(formatNumber(newValue, true));
     });
     self.yingyue_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.yingyue_premium(formatNumber(newValue, true));
     });
     self.shuangfu_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.shuangfu_premium(formatNumber(newValue, true));
     });
     self.shuangzhi_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.shuangzhi_premium(formatNumber(newValue, true));
     });
     self.other_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.other_premium(formatNumber(newValue, true));
     });
     self.initial_commission.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
 
         var commission = formatNumber(newValue, true, 2);
         self.initial_commission(commission);
@@ -140,18 +180,34 @@ function Person() {
         self.trainning_allowance(computeTrainingAllawance(yingXiaoViewModel)); //训练津贴
     });
     self.renewal_commission.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.renewal_commission(formatNumber(newValue, true));
     });
     self.trainning_allowance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.trainning_allowance(formatNumber(newValue, true));
     });
     self.increasing_num_bonus.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.increasing_num_bonus(formatNumber(newValue, true));
     });
+
     self.initial_commission = ko.computed(function () {
-        var commission = self.caifu_premium() * 0.06 + self.yingyue_premium() * 0.12 +
-                self.shuangfu_premium() * 0.55 + self.shuangzhi_premium() * 0.26 +
-                self.other_premium() * 0.22;
+        var caifu_premium = self.caifu_premium() || 0;
+        var yingyue_premium = self.yingyue_premium() || 0;
+        var shuangfu_premium = self.shuangfu_premium() || 0;
+        var shuangzhi_premium = self.shuangzhi_premium() || 0;
+        var other_premium = self.other_premium() || 0;
+
+        var commission = caifu_premium * 0.06 + yingyue_premium * 0.12 +
+                shuangfu_premium * 0.55 + shuangzhi_premium * 0.26 +
+                other_premium * 0.22;
         var commission = formatNumber(commission, true, 2) || 0;
         if (yingXiaoViewModel) {
             yingXiaoViewModel.group.initial_commission(commission);
@@ -162,9 +218,14 @@ function Person() {
         return commission;
     }, this);
     self.increasing_num_bonus = ko.computed(function () {
-        var bonus = self.outstanding_human_resource() * 6000 * 0.19 +
-                self.diamonds_human_resource() * 3000 * 0.18 +
-                self.standard_human_resource() * 2000 * 0.18;
+        var outstanding_human_resource = self.outstanding_human_resource() || 0;
+        var diamonds_human_resource = self.diamonds_human_resource() || 0;
+        var standard_human_resource = self.standard_human_resource() || 0;
+
+
+        var bonus = outstanding_human_resource * 6000 * 0.19 +
+                diamonds_human_resource * 3000 * 0.18 +
+                standard_human_resource * 2000 * 0.18;
         var bonus = formatNumber(bonus, true) || 0;
         return bonus;
     }, this);
@@ -173,9 +234,9 @@ function Person() {
 function Group() {
     var self = this;
     self.human_resource = ko.observable(0); //小组规划人力
-    self.outstanding_human_resource = ko.observable(0); //绩优人力
-    self.diamonds_human_resource = ko.observable(0); //钻石人力
-    self.standard_human_resource = ko.observable(0); //标准人力
+    self.outstanding_human_resource = ko.observable(); //绩优人力
+    self.diamonds_human_resource = ko.observable(); //钻石人力
+    self.standard_human_resource = ko.observable(); //标准人力
 
     self.initial_commission = ko.observable(0); //个人情况中的初佣
 
@@ -197,30 +258,53 @@ function Group() {
 
 
     self.human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.human_resource(formatNumber(newValue, true));
     });
     self.outstanding_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.outstanding_human_resource(formatNumber(newValue, true, 0));
     });
     self.diamonds_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.diamonds_human_resource(formatNumber(newValue, true, 0));
     });
     self.standard_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.standard_human_resource(formatNumber(newValue, true, 0));
     });
 
 
     self.human_resource = ko.computed(function () {
-        var num = self.outstanding_human_resource() + self.diamonds_human_resource() + self.standard_human_resource();
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+
+        var num = outstanding_human + diamonds_human + standard_human;
         num = formatNumber(num, true, 0) || 0;
         return num;
+
     }, this);
 
     self.FYC_group = ko.computed(function () {
-        var FYC = self.outstanding_human_resource() * 6000 +
-                self.diamonds_human_resource() * 3000 +
-                self.standard_human_resource() * 2000 +
-                self.initial_commission();
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+        var initial_commission = self.initial_commission() || 0;
+
+
+        var FYC = outstanding_human * 6000 +
+                diamonds_human * 3000 +
+                standard_human * 2000 +
+                initial_commission;
         console.log("FYC_group change")
         FYC = formatNumber(FYC, true, 2) || 0;
         self.level_coefficient(computeManageAllawanceCoefficient(FYC, yingXiaoViewModel));
@@ -228,7 +312,11 @@ function Group() {
     }, this);
 
     self.manage_allowance = ko.computed(function () {
+//        console.log("self.FYC_group() = " + self.FYC_group());
+//        console.log("self.level_coefficient() = " + self.level_coefficient());
+
         var allowance = self.FYC_group() * self.level_coefficient() * 1.15;
+//        console.log("manage_allowance = " + allowance);
         allowance = formatNumber(allowance, true) || 0;
         return allowance;
     }, this);
@@ -245,9 +333,9 @@ function Group() {
 function Part() {
     var self = this;
     self.human_resource = ko.observable(0); //部门规划人力
-    self.outstanding_human_resource = ko.observable(0); //绩优人力
-    self.diamonds_human_resource = ko.observable(0); //钻石人力
-    self.standard_human_resource = ko.observable(0); //标准人力
+    self.outstanding_human_resource = ko.observable(); //绩优人力
+    self.diamonds_human_resource = ko.observable(); //钻石人力
+    self.standard_human_resource = ko.observable(); //标准人力
 
     self.initial_commission = ko.observable(0); //个人情况中的初佣
 
@@ -267,42 +355,57 @@ function Part() {
 
 
     self.outstanding_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.outstanding_human_resource(formatNumber(newValue, true, 0));
     });
 
     self.diamonds_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.diamonds_human_resource(formatNumber(newValue, true, 0));
     });
 
     self.standard_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.standard_human_resource(formatNumber(newValue, true, 0));
     });
 
     self.human_resource = ko.computed(function () {
-        var num = self.outstanding_human_resource() + self.diamonds_human_resource() + self.standard_human_resource();
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+
+        var num = outstanding_human + diamonds_human + standard_human;
         num = formatNumber(num, true, 0) || 0;
         return num;
+
     }, this);
 
     self.FYC_part = ko.computed(function () {
-        var FYC = self.outstanding_human_resource() * 6000 +
-                self.diamonds_human_resource() * 3000 +
-                self.standard_human_resource() * 2000 +
-                self.initial_commission();
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+        var initial_commission = self.initial_commission() || 0;
+
+
+        var FYC = outstanding_human * 6000 + diamonds_human * 3000 +
+                standard_human * 2000 + initial_commission;
+        
         FYC = formatNumber(FYC, true) || 0;
         self.level_coefficient(computeManagerCoefficient(FYC, yingXiaoViewModel));
         return FYC;
     }, this);
-//------------------ TODO ------------------------------
+
     self.manager_allowance = ko.computed(function () {
-        //TODO
-//        self.FYC_part() * 部门总FYC*对应分档系数（见经理津贴分档系数表）*110%
         var allowance = self.FYC_part() * self.level_coefficient() * 1.10;
         allowance = formatNumber(allowance, true) || 0;
         return allowance;
     }, this);
-//-----------------------------------------------------------------
-
 
     self.increasing_part_benefits = ko.computed(function () {
         var benefits = self.subordinate_part_num() * self.history_num_3();
@@ -342,7 +445,7 @@ function computeTrainingAllawance(yingXiaoViewModel) {
 //        console.log("FYC =" + FYC)
 
         if (yingXiaoViewModel.level() == "01") {                                // 01职级2类
-            console.log("01");
+//            console.log("01");
             if ((month > 10 && month < 13) || month == 1) {                         //2016年 11-12月，或2017年1月
                 if (FYC >= 500 && FYC < 800) {
                     trainning_allowance = 500;
@@ -436,7 +539,7 @@ function computeManageAllawanceCoefficient(FYC, yingXiaoViewModel) {
 
     var x = getXForManageAllawanceCoefficient(FYC);
     var y = getYForManageAllawanceCoefficient(yingXiaoViewModel.level());
-
+//
 //    console.log("computeManageAllawanceCoefficient in");
 //    console.log("x = " + x);
 //    console.log("y = " + y);
@@ -529,9 +632,9 @@ function computeManagerCoefficient(FYC, yingXiaoViewModel) {
     var x = getXForManagerCoefficient(FYC);
     var y = getYForManagerCoefficient(yingXiaoViewModel.level());
 
-    console.log("computeManagerCoefficient in");
-    console.log("x = " + x);
-    console.log("y = " + y);
+//    console.log("computeManagerCoefficient in");
+//    console.log("x = " + x);
+//    console.log("y = " + y);
 
 
 

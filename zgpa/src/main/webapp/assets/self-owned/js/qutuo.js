@@ -48,6 +48,12 @@ function QuTuoViewModel() {
         self.other_income_percent(newValue);
     });
 
+    self.userPOJO.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
+        self.person.renewal_commission(newValue.renewal_history);
+    });
 
 
 }
@@ -71,7 +77,7 @@ function Person() {
 
     self.initial_commission = ko.observable(0);             //初佣 ： 根据个人职级（各职级标准见计算规则见PPT第2页）和所填写的产能进行计算。
     self.renewal_commission = ko.observable(0);             //续期 ： 
-    self.trainning_allowance = ko.observable(0);             //训练津贴 ：
+    self.trainning_allowance = ko.observable(0);            //训练津贴 ：
     self.increasing_num_bonus = ko.observable(0);           //增员奖 ： 
 
     self.job_allowance = ko.observable(0);                  //岗位津贴
@@ -203,9 +209,6 @@ function Person() {
 
     }, this);
 
-    self.renewal_commission = ko.computed(function () {
-
-    }, this);
 
     self.increasing_num_bonus = ko.computed(function () {
 
@@ -323,6 +326,7 @@ function Group() {
 
 }
 
+//计算初佣
 function getInitialCommission(level, performance) {
     var commission = 0;
     var type_1 = ["试用收展员"];
@@ -355,6 +359,7 @@ function getInitialCommission(level, performance) {
     return commission;
 }
 
+//计算训练津贴
 function getTrainningAllowance(institution, time, performance) {
     var allowance = 0;
     var time_arr = time.split("/") || [];
@@ -459,6 +464,7 @@ function getTrainningAllowance(institution, time, performance) {
 
 }
 
+//计算超额奖金
 function getExcessBonus(level, performance) {
     var bonus = 0;
     var duty_arr = {"试用收展员": 2000, "收展员八级": 2400, "收展员七级": 3000, "收展员六级": 4000, "收展员五级": 6000
@@ -534,6 +540,7 @@ function getExcessBonus(level, performance) {
     return bonus;
 }
 
+//计算达成奖金
 function getCompleteAllowance(level, performance) {
     var allowance = 0;
     var duty_arr = {"收展员八级": 2400, "收展员七级": 3000, "收展员六级": 4000, "收展员五级": 6000
@@ -605,7 +612,79 @@ function getCompleteAllowance(level, performance) {
     return allowance;
 }
 
+//计算岗位/职务津贴
+function getJobAllowance(level, performance) {
+    var allowance = 0;
+    var allowanceArray = [
+        {"level": "收展员八级", "standard": 500, "allowance": 120},
+        {"level": "收展员七级", "standard": 500, "allowance": 150},
+        {"level": "收展员六级", "standard": 500, "allowance": 300},
+        {"level": "收展员五级", "standard": 600, "allowance": 400},
+        {"level": "收展员四级", "standard": 800, "allowance": 500},
+        {"level": "收展员三级", "standard": 1200, "allowance": 700},
+        {"level": "收展员二级", "standard": 1800, "allowance": 1000},
+        {"level": "收展员一级", "standard": 2400, "allowance": 1200},
+        {"level": "区主任八级", "standard": 0, "allowance": 600},
+        {"level": "区主任七级", "standard": 0, "allowance": 800},
+        {"level": "区主任六级", "standard": 0, "allowance": 1000},
+        {"level": "区主任五级", "standard": 0, "allowance": 1200},
+        {"level": "区主任四级", "standard": 0, "allowance": 1400},
+        {"level": "区主任三级", "standard": 0, "allowance": 1600},
+        {"level": "区主任二级", "standard": 0, "allowance": 1800},
+        {"level": "区主任一级", "standard": 0, "allowance": 2000},
+        {"level": "课长", "standard": 0, "allowance": 2000},
+        {"level": "高级课长", "standard": 0, "allowance": 3000},
+        {"level": "资深课长", "standard": 0, "allowance": 4000},
+        {"level": "处经理", "standard": 0, "allowance": 7000},
+        {"level": "高级处经理", "standard": 0, "allowance": 8000},
+        {"level": "资深处经理", "standard": 0, "allowance": 9000},
+        {"level": "区部经理", "standard": 0, "allowance": 12000},
+        {"level": "高级区部经理", "standard": 0, "allowance": 14000},
+        {"level": "资深区部经理", "standard": 0, "allowance": 16000},
+    ];
 
+    var quZhuRenArray = ["区主任八级", "区主任八级", "区主任八级", "区主任八级",
+        "区主任八级", "区主任八级", "区主任八级", "区主任八级"];
+
+    var quZhuRenStandardArray = [
+        {"区主任八级": 1000},
+        {"区主任七级": 1000},
+        {"区主任六级": 1000},
+        {"区主任五级": 1000},
+        {"区主任四级": 1000},
+        {"区主任三级": 1000},
+        {"区主任二级": 1000},
+        {"区主任一级": 1000},
+    ]
+
+    for (var i in allowanceArray) {
+        if (allowanceArray[i].level == level) {
+            console.log("get job allowance hit level = " + level);
+            if (performance >= allowanceArray[i].standard) {
+                console.log("达到标准");
+                allowance = allowanceArray[i].allowance;
+
+                //如果是区主任，计算责任额达成率
+                if ($.inArray(level, quZhuRenArray) > -1) {
+                    console.log("区主任")
+                    var standard = quZhuRenStandardArray[level];
+                    if (standard && standard > 0) {
+                        var rate = performance / standard;
+                        if (rate < 70) {
+                            console.log("区主任 责任额未到 70%");
+                            allowance = allowance * 0.8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return allowance;
+}
+
+
+//去小数
 function formatNumber(num, rounding, digit) {
     digit = digit || 0;
     if (num === null || isNaN(num)) {
