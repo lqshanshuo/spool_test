@@ -29,15 +29,18 @@ function QuTuoViewModel() {
 
     self.person = new Person();
 
-    self.qu = new Group();
-    self.ke = new Group();
-    self.chu = new Group();
+    self.qu = new Group("qu");
+    self.ke = new Group("ke");
+    self.chu = new Group("chu");
 
     self.level.subscribe(function () {
         self.person.initial_commission(getInitialCommission(self.level(), self.person.performance()));
     });
 
     self.other_income_percent.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         } else if (newValue >= 100) {
@@ -52,7 +55,18 @@ function QuTuoViewModel() {
         if (!newValue) {
             return;
         }
-        self.person.renewal_commission(newValue.renewal_history);
+        var renewal_commission = newValue.renewal_history || 0;
+        var educate_benefits = newValue.educate_benefits || 0;
+        var zengke_benefits = newValue.zengke_benefits || 0;
+        var zengchu_benefits = newValue.zengchu_benefits || 0;
+        var development_allowance = newValue.development_allowance || 0;
+
+        self.person.renewal_commission(renewal_commission);
+        self.qu.educate_benefits(educate_benefits);
+        self.ke.zengke_benefits(zengke_benefits);
+        self.chu.zengchu_benefits(zengchu_benefits);
+        self.chu.development_allowance(development_allowance);
+
     });
 
 
@@ -88,48 +102,77 @@ function Person() {
 
 //-------------------------去除小数 begin--------------------------------
     self.outstanding_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.outstanding_human_resource(formatNumber(newValue, true, 0));
     });
 
     self.diamonds_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.diamonds_human_resource(formatNumber(newValue, true, 0));
     });
 
     self.standard_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.standard_human_resource(formatNumber(newValue, true, 0));
     });
 
 
     self.caifu_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.caifu_premium(formatNumber(newValue, true));
     });
 
     self.yingyue_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.yingyue_premium(formatNumber(newValue, true));
     });
 
     self.shuangfu_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.shuangfu_premium(formatNumber(newValue, true));
     });
 
     self.shuangzhi_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.shuangzhi_premium(formatNumber(newValue, true));
     });
 
     self.other_premium.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.other_premium(formatNumber(newValue, true));
     });
 
     self.performance.subscribe(function (newValue) {
-        newValue = formatNumber(newValue, true, 0);
-//        var commission = self.performance() * self.initial_commission_coefficient();
-//        self.initial_commission();
+        if (!newValue) {
+            return;
+        }
+        newValue = formatNumber(newValue, true, 0) || 0;
+
         if (quTuoViewModel) {
             self.initial_commission(getInitialCommission(quTuoViewModel.level(), newValue));
             self.trainning_allowance(getTrainningAllowance(quTuoViewModel.userPOJO().institution, quTuoViewModel.userPOJO().begin_time, newValue));
             self.excess_bonus(getExcessBonus(quTuoViewModel.level(), newValue));
             self.complete_allowance(getCompleteAllowance(quTuoViewModel.level(), newValue));
 
+            quTuoViewModel.qu.performance(newValue);
+            quTuoViewModel.ke.performance(newValue);
+            quTuoViewModel.chu.performance(newValue);
         }
         self.performance(newValue);
 
@@ -137,6 +180,9 @@ function Person() {
 
 
     self.initial_commission.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         var commission = formatNumber(newValue, true, 0);
         self.initial_commission(commission);
         if (quTuoViewModel) {
@@ -147,26 +193,44 @@ function Person() {
     });
 
     self.renewal_commission.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.renewal_commission(formatNumber(newValue, true));
     });
 
     self.trainning_allowance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.trainning_allowance(formatNumber(newValue, true));
     });
 
     self.increasing_num_bonus.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.increasing_num_bonus(formatNumber(newValue, true));
     });
 
     self.job_allowance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.job_allowance(formatNumber(newValue, true));
     });
 
     self.complete_allowance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.complete_allowance(formatNumber(newValue, true));
     });
 
     self.excess_bonus.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         self.excess_bonus(formatNumber(newValue, true));
     });
 //-------------------------去除小数 end --------------------------------
@@ -199,6 +263,10 @@ function Person() {
             self.excess_bonus(getExcessBonus(quTuoViewModel.level(), performance));
             self.complete_allowance(getCompleteAllowance(quTuoViewModel.level(), performance));
 
+            quTuoViewModel.qu.performance(newValue);
+            quTuoViewModel.ke.performance(newValue);
+            quTuoViewModel.chu.performance(newValue);
+
         }
         return performance;
 
@@ -221,20 +289,22 @@ function Person() {
 
 }
 
-function Group() {
+function Group(type) {
     var self = this;
+    self.type = ko.onbservable(type);
+
     self.human_resource = ko.observable(0);                 //个人增员
-    self.outstanding_human_resource = ko.observable(0);     //绩优增员
-    self.diamonds_human_resource = ko.observable(0);        //钻石增员
-    self.standard_human_resource = ko.observable(0);        //标准增员
+    self.outstanding_human_resource = ko.observable();     //绩优增员
+    self.diamonds_human_resource = ko.observable();        //钻石增员
+    self.standard_human_resource = ko.observable();        //标准增员
 
     self.manage_allowance = ko.observable(0);               //管理津贴
-    self.initial_commission = ko.observable(0);             //初佣
-
+//    self.initial_commission = ko.observable(0);             //初佣
+    self.performance = ko.observable(0);                    //新契约业绩
 
 
     self.guimo_coefficient = ko.observable(1);              //规模提奖系数
-    self.renjunchanneng_coefficient = ko.observable(1);     //人均产能提奖系数
+    self.renjunchanneng_coefficient = ko.observable(0);     //人均产能提奖系数
     self.huodonglv_coefficient = ko.observable(1.08);       //活动率提奖系数
 
 //---------------------各部分特殊的属性 begin-------------------------------------------
@@ -250,14 +320,30 @@ function Group() {
 
 
 //---------------------去掉小数 begin -------------------------------------------
+
     self.human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
         self.human_resource(newValue);
     });
 
+    self.performance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
+
+        self.guimo_coefficient(getGuimoCoefficient(self.type, newValue));
+
+    });
+
     self.outstanding_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
@@ -265,6 +351,9 @@ function Group() {
     });
 
     self.diamonds_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
@@ -272,6 +361,9 @@ function Group() {
     });
 
     self.standard_human_resource.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
@@ -279,6 +371,9 @@ function Group() {
     });
 
     self.manage_allowance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
@@ -286,6 +381,9 @@ function Group() {
     });
 
     self.educate_benefits.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
@@ -293,6 +391,9 @@ function Group() {
     });
 
     self.development_allowance.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
         if (newValue === null || isNaN(newValue)) {
             newValue = 0;
         }
@@ -310,17 +411,29 @@ function Group() {
         return num;
     }, this);
 
+
+
     self.manage_allowance = ko.computed(function () {
-        //TODO
+        var performance = self.performance || 0;                    //新契约业绩
+        var guimo_coefficient = self.guimo_coefficient || 1;        //规模提奖系数
+        var renjunchanneng_coefficient = self.renjunchanneng_coefficient || 0;//人均产能提奖系数
+        var jixulv_coefficient = self.jixulv_coefficient || 1;      //继续率调整比例
+
+        var coefficient1 = guimo_coefficient * renjunchanneng_coefficient;
+        console.log("coefficient1 = " + coefficient1)
+        if (coefficient1 > 0.07) {
+            coefficient1 = 0.07;
+        }
+
+        var allowance = performance * coefficient1;
+        if (self.type == "qu") {
+            allowance = allowance * jixulv_coefficient;
+        }
+
+        allowance = formatNumber(allowance, true, 0) || 0;
+        return allowance;
     }, this);
 
-    self.educate_benefits = ko.computed(function () {
-        //TODO
-    }, this);
-
-    self.development_allowance = ko.computed(function () {
-        //TODO
-    }, this);
 
 //---------------------compute end -----------------------------------------
 
@@ -647,14 +760,14 @@ function getJobAllowance(level, performance) {
         "区主任八级", "区主任八级", "区主任八级", "区主任八级"];
 
     var quZhuRenStandardArray = [
-        {"区主任八级": 1000},
-        {"区主任七级": 1000},
-        {"区主任六级": 1000},
-        {"区主任五级": 1000},
-        {"区主任四级": 1000},
-        {"区主任三级": 1000},
-        {"区主任二级": 1000},
-        {"区主任一级": 1000},
+        {"区主任八级": 20000},
+        {"区主任七级": 30000},
+        {"区主任六级": 40000},
+        {"区主任五级": 50000},
+        {"区主任四级": 60000},
+        {"区主任三级": 70000},
+        {"区主任二级": 80000},
+        {"区主任一级": 90000},
     ]
 
     for (var i in allowanceArray) {
@@ -683,6 +796,105 @@ function getJobAllowance(level, performance) {
     return allowance;
 }
 
+//计算规模系数
+function getGuimoCoefficient(type, performance) {
+    var coefficient = 1;
+
+    var quCoefficientArray = [1, 1.2, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75];
+    var quPerformanceArray = [0, 12000, 18000, 24000, 36000, 48000, 72000, 96000, 120000, 180000, 240000, Infinity];
+
+    var keCoefficientArray = [1, 1.25, 1.45, 1.54, 1.55, 1.60, 1.70, 1.72, 1.74, 1.75, 1.78, 1.80];
+    var kePerformanceArray = [0, 35000, 60000, 85000, 110000, 135000, 160000, 185000, 300000, 450000, 600000, 750000, Infinity];
+
+    var chuCoefficientArray = [1.025, 1.225, 1.275, 1.400, 1.500, 1.675, 1.775, 1.800, 1.825, 1.850, 1.875, 1.900];
+    var chuPerformanceArray = [0, 100000, 200000, 300000, 400000, 500000, 750000, 1000000, 1500000, 2000000, 2500000, 3000000, Infinity];
+
+
+    var coefficientTable = [
+        {"type": "qu", "coefficientArray": quCoefficientArray, "performanceArray": quPerformanceArray},
+        {"type": "ke", "coefficientArray": keCoefficientArray, "performanceArray": kePerformanceArray},
+        {"type": "chu", "coefficientArray": chuCoefficientArray, "performanceArray": chuPerformanceArray}
+    ];
+
+    var coefficientArray;
+    var performanceArray;
+    for (var n in coefficientTable) {
+        if (coefficientTable[n].type == type) {
+            coefficientArray = coefficientTable[n].coefficientArray;
+            performanceArray = coefficientTable[n].performanceArray;
+            break;
+        }
+    }
+
+    if (!coefficientArray || !performanceArray) {
+        return coefficient;
+    }
+
+
+
+
+    for (var i = 0; i < performanceArray.length - 1; i++) {
+        if (performance >= performanceArray[i] && performance < performanceArray[i + 1]) {
+            console.log("performanceArray[i] = " + performanceArray[i]);
+            console.log("performanceArray[i +1]  = " + performanceArray[i + 1]);
+
+            coefficient = coefficientArray[i];
+        }
+    }
+
+    return coefficient;
+
+}
+
+//计算人均产能提奖系数
+function getRenjunchannengCoefficient(type, channeng) {
+    var coefficient = 1;
+
+    var quCoefficientArray = [0, 0.015, 0.02, 0.0313, 0.0338, 0.0358, 0.0378, 0.0388, 0.0393, 0.0398, 0.0403, 0.0408];
+    var quChannengArray = [0, 1500, 2250, 2750, 3250, 3750, 4250, 5250, 7250, 9250, 12500, 16000, Infinity];
+
+    var keCoefficientArray = [0, 0.007, 0.01, 0.0135, 0.0150, 0.0155, 0.0160, 0.0170, 0.01775, 0.0185, 0.01875, 0.019];
+    var keChannengArray = [0, 1500, 2250, 2750, 3250, 3750, 4250, 5250, 7250, 9250, 12500, 16000, Infinity];
+
+    var chuCoefficientArray = [0, 0.00420, 0.0044, 0.0055, 0.0060, 0.00625, 0.00650, 0.00675, 0.0070, 0.00725, 0.00750, 0.00775];
+    var chuChannengArray = [0, 1500, 2250, 2750, 3250, 3750, 4250, 5250, 7250, 9250, 12500, 16000, Infinity];
+
+
+    var coefficientTable = [
+        {"type": "qu", "coefficientArray": quCoefficientArray, "channengArray": quChannengArray},
+        {"type": "ke", "coefficientArray": keCoefficientArray, "channengArray": keChannengArray},
+        {"type": "chu", "coefficientArray": chuCoefficientArray, "channengArray": chuChannengArray}
+    ];
+
+    var coefficientArray;
+    var channengArray;
+    for (var n in coefficientTable) {
+        if (coefficientTable[n].type == type) {
+            coefficientArray = coefficientTable[n].coefficientArray;
+            channengArray = coefficientTable[n].channengArray;
+            break;
+        }
+    }
+
+    if (!coefficientArray || !channengArray) {
+        return coefficient;
+    }
+
+
+
+
+    for (var i = 0; i < channengArray.length - 1; i++) {
+        if (channeng >= channengArray[i] && channeng < channengArray[i + 1]) {
+            console.log("channengArray[i] = " + channengArray[i]);
+            console.log("channengArray[i +1]  = " + channengArray[i + 1]);
+
+            coefficient = coefficientArray[i];
+        }
+    }
+
+    return coefficient;
+
+}
 
 //去小数
 function formatNumber(num, rounding, digit) {
