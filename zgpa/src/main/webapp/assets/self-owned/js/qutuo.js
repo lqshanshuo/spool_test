@@ -16,9 +16,6 @@ function QuTuoViewModel() {
     ]);
 
 
-
-
-
     self.total_income = ko.observable(0);
 
     self.other_income_percent = ko.observable(0);
@@ -27,14 +24,23 @@ function QuTuoViewModel() {
 
 
 
-    self.person = new Person();
+    self.person = new Person(self.level());
 
-    self.qu = new Group("qu");
-    self.ke = new Group("ke");
-    self.chu = new Group("chu");
+    self.qu = new Group("qu", self.level());
+    self.ke = new Group("ke", self.level());
+    self.chu = new Group("chu", self.level());
 
-    self.level.subscribe(function () {
-        self.person.initial_commission(getInitialCommission(self.level(), self.person.performance()));
+    //TODO level变了之后很多东西得重新计算
+    self.level.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
+        self.person.level(newValue);
+        self.qu.level(newValue);
+        self.ke.level(newValue);
+        self.chu.level(newValue);
+
+//        self.person.initial_commission(getInitialCommission(self.level(), self.person.performance()));
     });
 
     self.other_income_percent.subscribe(function (newValue) {
@@ -55,6 +61,15 @@ function QuTuoViewModel() {
         if (!newValue) {
             return;
         }
+        var dev = true;
+
+        if (dev) {
+            newValue.educate_benefits = 2000;
+            newValue.zengke_benefits = 1000;
+            newValue.zengchu_benefits = 3000;
+            newValue.development_allowance = 3100;
+        }
+
         var renewal_commission = newValue.renewal_history || 0;
         var educate_benefits = newValue.educate_benefits || 0;
         var zengke_benefits = newValue.zengke_benefits || 0;
@@ -72,56 +87,175 @@ function QuTuoViewModel() {
 
 }
 
-function Person() {
+function Person(level) {
     var self = this;
-    self.human_resource = ko.observable(0);                 //个人增员
-    self.outstanding_human_resource = ko.observable(0);     //绩优增员
-    self.diamonds_human_resource = ko.observable(0);        //钻石增员
-    self.standard_human_resource = ko.observable(0);        //标准增员
+    self.level = ko.observable(level);
 
-    self.caifu_premium = ko.observable(0);                  //财富天赢保费
-    self.yingyue_premium = ko.observable(0);                //赢越人生保费
-    self.shuangfu_premium = ko.observable(0);               //双福保费
-    self.shuangzhi_premium = ko.observable(0);              //双智保费
-    self.other_premium = ko.observable(0);                  //其他保费
+    //----------增员情况-------------
+    self.outstanding_human_resource = ko.observable();     //绩优增员
+    self.diamonds_human_resource = ko.observable();        //钻石增员
+    self.standard_human_resource = ko.observable();        //标准增员
+    self.human_resource = ko.observable(0);                //个人增员 checked
+    self.increasing_num_bonus = ko.observable(0);          //增员奖   checked
+
+    //----------个人产能-------------
+    self.caifu_premium = ko.observable();                  //财富天赢保费
+    self.yingyue_premium = ko.observable();                //赢越人生保费
+    self.shuangfu_premium = ko.observable();               //双福保费
+    self.shuangzhi_premium = ko.observable();              //双智保费
+    self.other_premium = ko.observable();                  //其他保费
 
     self.performance = ko.observable(0);                    //新契约业绩
 
-    self.initial_commission_coefficient = ko.observable(0);             //初佣 ： 根据个人职级（各职级标准见计算规则见PPT第2页）和所填写的产能进行计算。
+    self.initial_commission = ko.observable(0);             //初佣 ：checked 根据个人职级（各职级标准见计算规则见PPT第2页）和所填写的产能进行计算。
+    self.renewal_commission = ko.observable(0);             //续期 ： checked
+    self.trainning_allowance = ko.observable(0);            //训练津贴 ：checked
 
-    self.initial_commission = ko.observable(0);             //初佣 ： 根据个人职级（各职级标准见计算规则见PPT第2页）和所填写的产能进行计算。
-    self.renewal_commission = ko.observable(0);             //续期 ： 
-    self.trainning_allowance = ko.observable(0);            //训练津贴 ：
-    self.increasing_num_bonus = ko.observable(0);           //增员奖 ： 
-
-    self.job_allowance = ko.observable(0);                  //岗位津贴
+    self.job_allowance = ko.observable(0);                  //岗位津贴  
     self.complete_allowance = ko.observable(0);             //达成津贴
     self.excess_bonus = ko.observable(0);                   //展业超额奖金
 
-//function getInitialCommission(level, performance) {
+
+//-------------------------compute begin-------------------------------------
+
+
+    self.human_resource = ko.computed(function () {         //个人增员
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+
+        var num = Number(outstanding_human) + Number(diamonds_human) + Number(standard_human);
+        num = formatNumber(num, true, 0) || 0;
+        return num;
+    }, this);
+
+    self.increasing_num_bonus = ko.computed(function () {
+
+        var outstanding_human_resource = self.outstanding_human_resource() || 0;
+        var diamonds_human_resource = self.diamonds_human_resource() || 0;
+        var standard_human_resource = self.standard_human_resource() || 0;
+
+        console.log("outstanding_human_resource = " + outstanding_human_resource);
+        console.log("diamonds_human_resource = " + diamonds_human_resource);
+        console.log("diamonds_human_resource = " + diamonds_human_resource);
+
+
+        var increasing_num_bonus = getIncreasingNumBonus(outstanding_human_resource, diamonds_human_resource, standard_human_resource) || 0;
+
+        increasing_num_bonus = formatNumber(increasing_num_bonus, true);
+        return increasing_num_bonus;
+    }, this);
+
+
+    self.performance = ko.computed(function () {
+        var caifu_premium = Number(self.caifu_premium()) || 0;
+        var yingyue_premium = Number(self.yingyue_premium()) || 0;
+        var shuangfu_premium = Number(self.shuangfu_premium()) || 0;
+        var shuangzhi_premium = Number(self.shuangzhi_premium()) || 0;
+        var other_premium = Number(self.other_premium()) || 0;
+
+        var performance = caifu_premium + yingyue_premium +
+                shuangfu_premium + shuangzhi_premium +
+                other_premium;
+
+//        console.log("performance = " + performance)
+
+        var performance = formatNumber(performance, true, 0) || 0;
+//
+//        if (quTuoViewModel) {
+//            quTuoViewModel.qu.performance(performance);
+//            quTuoViewModel.ke.performance(performance);
+//            quTuoViewModel.chu.performance(performance);
+//        }
+        return performance;
+
+    }, this);
+
+    self.trainning_allowance = ko.computed(function () {
+        var trainning_allowance = 0;
+        var performance = self.performance();
+        if (quTuoViewModel && quTuoViewModel.userPOJO()) {
+            trainning_allowance = getTrainningAllowance(quTuoViewModel.userPOJO().institution, quTuoViewModel.userPOJO().begin_time, performance);
+        }
+        trainning_allowance = formatNumber(trainning_allowance, true);
+        return trainning_allowance;
+    }, this);
+
+    self.excess_bonus = ko.computed(function () {
+        var excess_bonus = 0;
+        var level = self.level();
+        var performance = self.performance();
+
+        excess_bonus = getExcessBonus(level, performance);
+
+        excess_bonus = formatNumber(excess_bonus, true);
+        return excess_bonus;
+    }, this);
+
+    self.complete_allowance = ko.computed(function () {
+        var complete_allowance = 0;
+        var level = self.level();
+        var performance = self.performance()
+
+        complete_allowance = getExcessBonus(level, performance);
+
+        complete_allowance = formatNumber(complete_allowance, true);
+        return complete_allowance;
+    }, this);
+
+    self.job_allowance = ko.computed(function () {
+        var job_allowance = 0;
+        var level = self.level();
+        var performance = self.performance();
+        console.log("--------performance = " + performance);
+
+        job_allowance = getJobAllowance(level, performance);
+
+        job_allowance = formatNumber(job_allowance, true);
+        return job_allowance;
+    }, this);
+
+    self.initial_commission = ko.computed(function () {
+        var level = self.level();
+        var performance = self.performance();
+        var initial_commission = getInitialCommission(level, performance);
+        initial_commission = formatNumber(initial_commission, true);
+        return initial_commission;
+
+    }, this);
+
+
 
 //-------------------------去除小数 begin--------------------------------
     self.outstanding_human_resource.subscribe(function (newValue) {
         if (!newValue) {
             return;
         }
-        self.outstanding_human_resource(formatNumber(newValue, true, 0));
+        if (newValue === null || isNaN(newValue)) {
+            newValue = 0;
+        }
+        self.outstanding_human_resource(newValue);
     });
 
     self.diamonds_human_resource.subscribe(function (newValue) {
         if (!newValue) {
             return;
         }
-        self.diamonds_human_resource(formatNumber(newValue, true, 0));
+        if (newValue === null || isNaN(newValue)) {
+            newValue = 0;
+        }
+        self.diamonds_human_resource(newValue);
     });
 
     self.standard_human_resource.subscribe(function (newValue) {
         if (!newValue) {
             return;
         }
-        self.standard_human_resource(formatNumber(newValue, true, 0));
+        if (newValue === null || isNaN(newValue)) {
+            newValue = 0;
+        }
+        self.standard_human_resource(newValue);
     });
-
 
     self.caifu_premium.subscribe(function (newValue) {
         if (!newValue) {
@@ -158,40 +292,6 @@ function Person() {
         self.other_premium(formatNumber(newValue, true));
     });
 
-    self.performance.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        newValue = formatNumber(newValue, true, 0) || 0;
-
-        if (quTuoViewModel) {
-            self.initial_commission(getInitialCommission(quTuoViewModel.level(), newValue));
-            self.trainning_allowance(getTrainningAllowance(quTuoViewModel.userPOJO().institution, quTuoViewModel.userPOJO().begin_time, newValue));
-            self.excess_bonus(getExcessBonus(quTuoViewModel.level(), newValue));
-            self.complete_allowance(getCompleteAllowance(quTuoViewModel.level(), newValue));
-
-            quTuoViewModel.qu.performance(newValue);
-            quTuoViewModel.ke.performance(newValue);
-            quTuoViewModel.chu.performance(newValue);
-        }
-        self.performance(newValue);
-
-    });
-
-
-    self.initial_commission.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        var commission = formatNumber(newValue, true, 0);
-        self.initial_commission(commission);
-        if (quTuoViewModel) {
-            quTuoViewModel.qu.initial_commission(commission);
-            quTuoViewModel.ke.initial_commission(commission);
-            quTuoViewModel.chu.initial_commission(commission);
-        }
-    });
-
     self.renewal_commission.subscribe(function (newValue) {
         if (!newValue) {
             return;
@@ -199,88 +299,11 @@ function Person() {
         self.renewal_commission(formatNumber(newValue, true));
     });
 
-    self.trainning_allowance.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        self.trainning_allowance(formatNumber(newValue, true));
-    });
-
-    self.increasing_num_bonus.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        self.increasing_num_bonus(formatNumber(newValue, true));
-    });
-
-    self.job_allowance.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        self.job_allowance(formatNumber(newValue, true));
-    });
-
-    self.complete_allowance.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        self.complete_allowance(formatNumber(newValue, true));
-    });
-
-    self.excess_bonus.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        self.excess_bonus(formatNumber(newValue, true));
-    });
 //-------------------------去除小数 end --------------------------------
 
 
 
 
-
-//-------------------------compute begin-------------------------------------
-
-
-    self.human_resource = ko.computed(function () {         //个人增员
-
-        var num = self.outstanding_human_resource() + self.diamonds_human_resource() + self.standard_human_resource();
-        num = formatNumber(num, true, 0) || 0;
-        return num;
-    }, this);
-
-
-    self.performance = ko.computed(function () {
-        var performance = self.caifu_premium() + self.yingyue_premium() +
-                self.shuangfu_premium() + self.shuangzhi_premium() +
-                self.other_premium();
-
-        var performance = formatNumber(performance, true, 0) || 0;
-
-        if (quTuoViewModel) {
-            self.initial_commission(getInitialCommission(quTuoViewModel.level(), performance));
-            self.trainning_allowance(getTrainningAllowance(quTuoViewModel.userPOJO().institution, quTuoViewModel.userPOJO().begin_time, performance));
-            self.excess_bonus(getExcessBonus(quTuoViewModel.level(), performance));
-            self.complete_allowance(getCompleteAllowance(quTuoViewModel.level(), performance));
-
-            quTuoViewModel.qu.performance(newValue);
-            quTuoViewModel.ke.performance(newValue);
-            quTuoViewModel.chu.performance(newValue);
-
-        }
-        return performance;
-
-    }, this);
-
-
-    self.job_allowance = ko.computed(function () {
-
-    }, this);
-
-
-    self.increasing_num_bonus = ko.computed(function () {
-
-    }, this);
 
 
 //------------------------compute end----------------------------------------
@@ -289,20 +312,22 @@ function Person() {
 
 }
 
-function Group(type) {
+function Group(type, level) {
     var self = this;
-    self.type = ko.onbservable(type);
+    self.type = ko.observable(type);
+    self.level = ko.observable(level);
 
-    self.human_resource = ko.observable(0);                 //个人增员
+    self.human_resource = ko.observable(0);                //个人增员
     self.outstanding_human_resource = ko.observable();     //绩优增员
     self.diamonds_human_resource = ko.observable();        //钻石增员
     self.standard_human_resource = ko.observable();        //标准增员
 
     self.manage_allowance = ko.observable(0);               //管理津贴
-//    self.initial_commission = ko.observable(0);             //初佣
+//    self.initial_commission = ko.observable(0);           //初佣
     self.performance = ko.observable(0);                    //新契约业绩
 
 
+    self.renjunchanneng = ko.observable();                  //人均产能
     self.guimo_coefficient = ko.observable(1);              //规模提奖系数
     self.renjunchanneng_coefficient = ko.observable(0);     //人均产能提奖系数
     self.huodonglv_coefficient = ko.observable(1.08);       //活动率提奖系数
@@ -314,31 +339,110 @@ function Group(type) {
 
     self.zengchu_benefits = ko.observable(0);               //增处利益，仅对部有意义
     self.development_allowance = ko.observable(0);          //区部发展津贴，仅对部有意义 
-    self.jixulv_coefficient = ko.observable(1);             //继续率调整比例 ，仅对部有意义,其他应该为1
+    self.jixulv_coefficient = ko.observable(1.15);             //继续率调整比例 ，仅对部有意义,其他应该为1
 //---------------------各部分特殊的属性 end-------------------------------------------
+
+
+//---------------------compute begin -----------------------------------------
+
+
+
+    self.human_resource = ko.computed(function () {
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+
+        var num = Number(outstanding_human) + Number(diamonds_human) + Number(standard_human);
+        num = formatNumber(num, true, 0) || 0;
+        return num;
+    }, this);
+
+    self.renjunchanneng = ko.computed(function () {
+        var channeng = 0;
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+
+        var human_resource = Number(outstanding_human) + Number(diamonds_human) + Number(standard_human);
+        var sum = Number(outstanding_human) * 14400 + Number(diamonds_human) * 7200 + Number(standard_human) * 6000;
+
+        if (human_resource > 0) {
+            channeng = sum / human_resource || 0;
+        }
+        channeng = formatNumber(channeng, true, 0) || 0;
+        return channeng;
+    }, this);
+
+    self.performance = ko.computed(function () {
+        var performance = 0;
+        var outstanding_human = self.outstanding_human_resource() || 0;
+        var diamonds_human = self.diamonds_human_resource() || 0;
+        var standard_human = self.standard_human_resource() || 0;
+
+        var performance = Number(outstanding_human) * 14400 + Number(diamonds_human) * 7200 + Number(standard_human) * 6000;
+        performance = formatNumber(performance, true, 0) || 0;
+        return performance;
+    }, this);
+
+    self.guimo_coefficient = ko.computed(function () {
+        var guimo_coefficient = 1;
+        var type = self.type();
+        var performance = self.performance();
+
+        guimo_coefficient = getGuimoCoefficient(type, performance);
+//        guimo_coefficient = formatNumber(guimo_coefficient, true, 0) || 0;
+        return guimo_coefficient;
+    }, this);
+
+    self.renjunchanneng_coefficient = ko.computed(function () {
+        var renjunchanneng_coefficient = 1;
+        var type = self.type();
+        var renjunchanneng = self.renjunchanneng();
+
+        console.log("----------- renjunchanneng = " + renjunchanneng);
+        renjunchanneng_coefficient = getRenjunchannengCoefficient(type, renjunchanneng);
+//        renjunchanneng_coefficient = formatNumber(renjunchanneng_coefficient, true, 0) || 0;
+        console.log("11111 renjunchanneng_coefficient = " + renjunchanneng_coefficient)
+        return renjunchanneng_coefficient;
+    }, this);
+
+    self.manage_allowance = ko.computed(function () {
+        var performance = self.performance() || 0;                    //新契约业绩
+        var guimo_coefficient = self.guimo_coefficient() || 1;        //规模提奖系数
+        var renjunchanneng_coefficient = self.renjunchanneng_coefficient() || 0;//人均产能提奖系数
+        var jixulv_coefficient = self.jixulv_coefficient() || 1;      //继续率调整比例
+
+        console.log("guimo_coefficient = " + guimo_coefficient)
+        console.log("renjunchanneng_coefficient = " + renjunchanneng_coefficient)
+
+        var coefficient1 = Number(guimo_coefficient) * Number(renjunchanneng_coefficient);
+        console.log("coefficient1 = " + coefficient1)
+        if (self.type == "qu" && coefficient1 > 0.07) {
+            coefficient1 = 0.07;
+        }
+        if (self.type == "ke" && coefficient1 > 0.034) {
+            coefficient1 = 0.034;
+        }
+        if (self.type == "chu" && coefficient1 > 0.14) {
+            coefficient1 = 0.14;
+        }
+
+        var allowance = performance * coefficient1;
+        if (self.type == "qu") {
+            allowance = allowance * jixulv_coefficient;
+        }
+
+        allowance = formatNumber(allowance, true, 0) || 0;
+        return allowance;
+    }, this);
+
+
+//---------------------compute end -----------------------------------------
+
 
 
 
 //---------------------去掉小数 begin -------------------------------------------
-
-    self.human_resource.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        if (newValue === null || isNaN(newValue)) {
-            newValue = 0;
-        }
-        self.human_resource(newValue);
-    });
-
-    self.performance.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-
-        self.guimo_coefficient(getGuimoCoefficient(self.type, newValue));
-
-    });
 
     self.outstanding_human_resource.subscribe(function (newValue) {
         if (!newValue) {
@@ -370,16 +474,6 @@ function Group(type) {
         self.standard_human_resource(newValue);
     });
 
-    self.manage_allowance.subscribe(function (newValue) {
-        if (!newValue) {
-            return;
-        }
-        if (newValue === null || isNaN(newValue)) {
-            newValue = 0;
-        }
-        self.manage_allowance(newValue);
-    });
-
     self.educate_benefits.subscribe(function (newValue) {
         if (!newValue) {
             return;
@@ -400,47 +494,20 @@ function Group(type) {
         self.development_allowance(newValue);
     });
 
+
+
+
 //---------------------去掉小数 end -------------------------------------------
 
 
 
-//---------------------compute begin -----------------------------------------
-    self.human_resource = ko.computed(function () {
-        var num = self.outstanding_human_resource() + self.diamonds_human_resource() + self.standard_human_resource();
-        num = formatNumber(num, true, 0) || 0;
-        return num;
-    }, this);
-
-
-
-    self.manage_allowance = ko.computed(function () {
-        var performance = self.performance || 0;                    //新契约业绩
-        var guimo_coefficient = self.guimo_coefficient || 1;        //规模提奖系数
-        var renjunchanneng_coefficient = self.renjunchanneng_coefficient || 0;//人均产能提奖系数
-        var jixulv_coefficient = self.jixulv_coefficient || 1;      //继续率调整比例
-
-        var coefficient1 = guimo_coefficient * renjunchanneng_coefficient;
-        console.log("coefficient1 = " + coefficient1)
-        if (coefficient1 > 0.07) {
-            coefficient1 = 0.07;
-        }
-
-        var allowance = performance * coefficient1;
-        if (self.type == "qu") {
-            allowance = allowance * jixulv_coefficient;
-        }
-
-        allowance = formatNumber(allowance, true, 0) || 0;
-        return allowance;
-    }, this);
-
-
-//---------------------compute end -----------------------------------------
 
 }
 
 //计算初佣
 function getInitialCommission(level, performance) {
+    console.log("getInitialCommission performance = " + performance);
+
     var commission = 0;
     var type_1 = ["试用收展员"];
     var type_2 = ["收展员四级", "收展员五级", "收展员六级", "收展员七级", "收展员八级"];
@@ -479,11 +546,11 @@ function getTrainningAllowance(institution, time, performance) {
 //    console.log("time_arr = " + time_arr);
     var month = Number(time_arr[0]) || 0;
     var year = Number(time_arr[2]) || 0;
-
-    console.log("year = " + year);
-    console.log("time = " + time);
-    console.log("institution = " + institution);
-    console.log("performance = " + performance);
+//
+//    console.log("year = " + year);
+//    console.log("time = " + time);
+//    console.log("institution = " + institution);
+//    console.log("performance = " + performance);
 
     if (performance <= 0 || year != 2016) {
         return allowance;
@@ -492,7 +559,7 @@ function getTrainningAllowance(institution, time, performance) {
 
 
     if (institution != "秦皇岛") {
-//        console.log("not 秦皇岛")
+        console.log("not 秦皇岛")
         if (month >= 1 && month <= 3) {
 //            console.log("month >= 1 && month <= 3")
 
@@ -575,6 +642,56 @@ function getTrainningAllowance(institution, time, performance) {
     }
     return allowance;
 
+}
+
+//计算增员奖 checked
+function getIncreasingNumBonus(outstanding_num, diamonds_num, standard_num) {
+    var bonus = 0;
+
+    var outstanding_num_performance = outstanding_num * 14400;
+    var diamonds_num_performance = diamonds_num * 7200;
+    var standard_numm_performance = standard_num * 6000;
+
+    var bonusRateArray = [0.028, 0.035, 0.063, 0.066];
+
+    var getIndex = function (performance) {
+//        console.log("performance = " + performance);
+        var x = -1;
+        if (performance >= 0 && performance < 3000) {
+            x = 0;
+        } else if (performance >= 3000 && performance < 5700) {
+            x = 1;
+        } else if (performance >= 5700 && performance < 12000) {
+            x = 2;
+        } else if (performance >= 12000) {
+            x = 3;
+        }
+        return x;
+    }
+
+    var x1 = getIndex(outstanding_num_performance);
+    var x2 = getIndex(diamonds_num_performance);
+    var x3 = getIndex(standard_numm_performance);
+
+//    console.log("x1=" + x1);
+//    console.log("x2=" + x2);
+//    console.log("x3=" + x3);
+
+
+
+    var outstanding_num_bonus_rate = bonusRateArray[x1] || 0;
+    var diamonds_num_bonus_rate = bonusRateArray[x2] || 0;
+    var standard_num_bonus_rate = bonusRateArray[x3] || 0;
+
+    var outstanding_num_bonus = outstanding_num_performance * outstanding_num_bonus_rate || 0;
+    var diamonds_num_bonus_bonus = diamonds_num_performance * diamonds_num_bonus_rate || 0;
+    var standard_num_bonus = standard_numm_performance * standard_num_bonus_rate || 0;
+
+
+
+    bonus = outstanding_num_bonus + diamonds_num_bonus_bonus + standard_num_bonus;
+
+    return bonus;
 }
 
 //计算超额奖金
@@ -727,6 +844,7 @@ function getCompleteAllowance(level, performance) {
 
 //计算岗位/职务津贴
 function getJobAllowance(level, performance) {
+    console.log("getJobAllowance performance = " + performance);
     var allowance = 0;
     var allowanceArray = [
         {"level": "收展员八级", "standard": 500, "allowance": 120},
@@ -796,7 +914,8 @@ function getJobAllowance(level, performance) {
     return allowance;
 }
 
-//计算规模系数
+
+//计算规模系数 
 function getGuimoCoefficient(type, performance) {
     var coefficient = 1;
 
@@ -846,9 +965,9 @@ function getGuimoCoefficient(type, performance) {
 
 }
 
-//计算人均产能提奖系数
+//计算人均产能提奖系数 
 function getRenjunchannengCoefficient(type, channeng) {
-    var coefficient = 1;
+    var coefficient = 0;
 
     var quCoefficientArray = [0, 0.015, 0.02, 0.0313, 0.0338, 0.0358, 0.0378, 0.0388, 0.0393, 0.0398, 0.0403, 0.0408];
     var quChannengArray = [0, 1500, 2250, 2750, 3250, 3750, 4250, 5250, 7250, 9250, 12500, 16000, Infinity];
@@ -881,14 +1000,17 @@ function getRenjunchannengCoefficient(type, channeng) {
     }
 
 
+    console.log("channeng = " + channeng);
 
 
     for (var i = 0; i < channengArray.length - 1; i++) {
         if (channeng >= channengArray[i] && channeng < channengArray[i + 1]) {
             console.log("channengArray[i] = " + channengArray[i]);
             console.log("channengArray[i +1]  = " + channengArray[i + 1]);
-
+            console.log("i = " + i);
             coefficient = coefficientArray[i];
+            console.log("=== coefficient = " + coefficient);
+
         }
     }
 

@@ -73,7 +73,7 @@
                                                             <span>职级</span>
                                                         </label>
                                                         <div align="center">
-                                                            <select class="form-control select_1" data-bind="options:yingXiaoViewModel.level_array,value:yingXiaoViewModel.level"></select>
+                                                            <select class="form-control select_1" data-bind="options:quTuoViewModel.level_array,value:quTuoViewModel.level"></select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -82,7 +82,7 @@
                                                         <span>收入合计:</span>
                                                     </div>
                                                     <div class="col-xs-6 text-left" style="font-size:20px;font-weight:bold">
-                                                        <span style="color:red" data-bind="text:yingXiaoViewModel.total_income"></span><span> 万</span>
+                                                        <span style="color:red" data-bind="text:quTuoViewModel.total_income"></span><span> 万</span>
                                                     </div>
                                                 </div>
                                             </form>
@@ -191,7 +191,7 @@
                                                             <span style="font-weight: bold;font-size: 12px;">职务/岗位津贴:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="职务/岗位津贴" disabled style="color:black" data-bind="value:job_allowance">
+                                                            <input type="text" class="form-control" placeholder="职务/岗位" disabled style="color:black" data-bind="value:job_allowance">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;" >
                                                             <span style="font-weight: bold;font-size: 14px;">续期:</span>
@@ -485,22 +485,22 @@
         <script src="assets/self-owned/js/generic/generic_table.js"></script>
         <script src="assets/self-owned/js/generic/generic_util.js"></script>
         <script src="assets/self-owned/js/generic/generic_validation.js"></script>
-        <script src="assets/self-owned/js/yingxiao.js"></script>
+        <script src="assets/self-owned/js/qutuo.js"></script>
 
         <script>
         </script>
 
         <script>
-            var yingXiaoViewModel = new YingXiaoViewModel();
+            var quTuoViewModel = new QuTuoViewModel();
             // level_array
-            var user = {
-                personal_code: 1234567890,
-                str9: '张三'
-            }
+//            var user = {
+//                personal_code: 1234567890,
+//                str9: '张三'
+//            }
             $(document).ready(function () {
-                ko.applyBindings(yingXiaoViewModel, document.getElementById('contentDiv'));
-                // getUserInfo();
-                yingXiaoViewModel.userPOJO(user);
+                ko.applyBindings(quTuoViewModel, document.getElementById('contentDiv'));
+                getUserInfo();
+//                quTuoViewModel.userPOJO(user);
             });
 
 
@@ -514,26 +514,26 @@
 
                 $.serverRequest(url, data, "YINGXIAO_GET_USER_INFO_SUCCESS", "YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", "YINGXIAO_GET_USER_INFO_SERVER_ERROR", "POST");
 
-                $.subscribe("YINGXIAO_GET_USER_INFO_SUCCESS", yingxiaoGetUserInfoSuccessListener);
-                $.subscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", yingxiaoGetUserInfoFailedListener);
-                $.subscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", yingxiaoGetUserInfoFailedListener);
+                $.subscribe("YINGXIAO_GET_USER_INFO_SUCCESS", qutuoGetUserInfoSuccessListener);
+                $.subscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", qutuoGetUserInfoFailedListener);
+                $.subscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", qutuoGetUserInfoFailedListener);
 
             }
 
-            function yingxiaoGetUserInfoSuccessListener() {
+            function qutuoGetUserInfoSuccessListener() {
                 clear();
 
                 if (arguments && arguments[1]) {
                     var resp = arguments[1];
                     var userInfo = eval("(" + resp.result[0] + ")");
-                    yingXiaoViewModel.userPOJO(userInfo);
+                    quTuoViewModel.userPOJO(userInfo);
                 }
             }
 
-            function yingxiaoGetUserInfoFailedListener() {
+            function qutuoGetUserInfoFailedListener() {
                 clear();
                 console.log("get user failed")
-                // location.href = $.getRootPath() + '/pingan_shourususuan_1.html';
+                location.href = $.getRootPath() + '/pingan_shourususuan_1.html';
             }
 
 
@@ -544,48 +544,52 @@
                 var income = 0;
 
                 //初佣
-                income += yingXiaoViewModel.person.initial_commission();
+                income += quTuoViewModel.person.initial_commission();
                 //续期
-                income += yingXiaoViewModel.person.renewal_commission();
+                income += quTuoViewModel.person.renewal_commission();
                 //训练津贴
-                income += yingXiaoViewModel.person.trainning_allowance();
+                income += quTuoViewModel.person.trainning_allowance();
                 //增员奖
-                income += yingXiaoViewModel.person.increasing_num_bonus();
+                income += quTuoViewModel.person.increasing_num_bonus();
+                //达成津贴
+                income += quTuoViewModel.person.trainning_allowance();
+                //超额奖金
+                income += quTuoViewModel.person.increasing_num_bonus();
 
-                if (yingXiaoViewModel.isGroupDisplay()) {
-                    //直接管理津贴
-                    income += yingXiaoViewModel.group.manage_allowance();
-                    //育成利益
-                    income += yingXiaoViewModel.group.educate_benefits();
-                }
+                //-----------------------区--------------------------
+                //管理津贴
+                income += quTuoViewModel.qu.manage_allowance();
+                //育成利益
+                income += quTuoViewModel.qu.educate_benefits();
 
-                if (yingXiaoViewModel.isPartDisplay()) {
-                    //经理津贴
-                    income += yingXiaoViewModel.part.manager_allowance();
-                    //增部利益
-                    income += yingXiaoViewModel.part.increasing_part_benefits();
-                    //总监利益
-                    income += yingXiaoViewModel.part.director_benefits();
+                //-----------------------课--------------------------
+                //管理津贴
+                income += quTuoViewModel.ke.manage_allowance();
+                //增课利益
+                income += quTuoViewModel.ke.zengke_benefits();
 
-                }
+                //-----------------------处--------------------------
+                //管理津贴
+                income += quTuoViewModel.chu.manage_allowance();
+                //增处利益
+                income += quTuoViewModel.chu.zengchu_benefits();
+                //区部发展津贴
+                income += quTuoViewModel.chu.zengchu_benefits();
 
-
-
-
-                income = income / (100 * (100 - yingXiaoViewModel.other_income_percent()));
+                income = income / (100 * (100 - quTuoViewModel.other_income_percent()));
 
                 income = income + "";
                 if (income.indexOf(".") > 0) {
                     income = income.substring(0, income.indexOf(".") + 3);
                 }
-                yingXiaoViewModel.total_income(new Number(income));
+                quTuoViewModel.total_income(new Number(income));
             }
 
 
             function clear() {
-                $.unsubscribe("YINGXIAO_GET_USER_INFO_SUCCESS", yingxiaoGetUserInfoSuccessListener);
-                $.unsubscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", yingxiaoGetUserInfoFailedListener);
-                $.unsubscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", yingxiaoGetUserInfoFailedListener);
+                $.unsubscribe("YINGXIAO_GET_USER_INFO_SUCCESS", qutuoGetUserInfoSuccessListener);
+                $.unsubscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", qutuoGetUserInfoFailedListener);
+                $.unsubscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", qutuoGetUserInfoFailedListener);
             }
         </script>
 
