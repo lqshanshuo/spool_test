@@ -41,54 +41,69 @@
               </div>
               <!-- title: such lik kaimenhong -->
               <div class="col-xs-10 col-xs-offset-1 text-center">
-                <span style="font-size:38px;color:#e74c3c">心愿</span>
+                <span style="font-weight: bold;font-size:38px;color:white">心愿卡</span>
               </div>
-
-
-              <!-- form div -->
+              <br>
               <div class="col-xs-10 col-xs-offset-1 text-center">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">
-                      <span style="font-weight: bold;font-size: 14px; text-align: left;">收入突破</span>
-                    </label>
-                    <div class="col-xs-6 ">
-                      <input data-bind="value:key" type="text" class="form-control text-center" placeholder="">
-                    </div>
-                    <div class="col-xs-2">
-                      <p class="form-control-static" style="font-size: 14px;text-align: left;">万</p>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">
-                      <span style="font-weight: bold;font-size: 14px; text-align: left;">团队突破</span>
-                    </label>
-                    <div class="col-xs-6 ">
-                      <input data-bind="value:key" type="text" class="form-control text-center" placeholder="">
-                    </div>
-                    <div class="col-xs-2">
-                      <p class="form-control-static" style="font-size: 14px;text-align: left;">人</p>
+                <div id="validation_div" style="margin:0px 18px">
+                  <!--Validation DIV BEGIN-->
+                  <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+                    <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>友情提示:</strong>
+                    <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+                      <div data-bind="text:$data"></div>
                     </div>
                   </div>
-
-                  <div class="form-group ">
-                    <div class="col-xs-12 text-center">
-                      <a  class="btn btn-danger  btn-wide text-center" href="#" style="width:260px; color:white" onclick="location.href=$.getRootPath() + '/pingan_xinyuanka_3.html'">通往幸福下一站 </a>
-                    </div>
-                  </div>
-                </form>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="" style="color:white;font-size:11px">
-                  <span>本活动最终解释权归中国平安所有</span>
+                  <!--Validation DIV END-->
                 </div>
               </div>
+              <!-- form div -->
+              <div id="business_content_div">
+                <div class="col-xs-10 col-xs-offset-1 text-center">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label class="col-xs-4 control-label text-right" style="padding-right: 0px;">
+                        <span style="font-weight: bold;font-size: 14px; color:white">收入突破</span>
+                      </label>
+                      <div class="col-xs-6 ">
+                        <input data-bind="value:key_1" type="text" class="form-control text-center" placeholder="">
+                      </div>
+                      <div class="col-xs-2" style="padding-left: 0px;">
+                        <p class="form-control-static" style="font-size: 14px;text-align: left;color:white">万</p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-xs-4 control-label text-right" style="padding-right: 0px;">
+                        <span style="font-weight: bold;font-size: 14px; color:white">团队突破</span>
+                      </label>
+                      <div class="col-xs-6 ">
+                        <input data-bind="value:key_2" type="text" class="form-control text-center" placeholder="">
+                      </div>
+                      <div class="col-xs-2" style="padding-left: 0px;">
+                        <p class="form-control-static" style="font-size: 14px;text-align: left;color:white">人</p>
+                      </div>
+                    </div>
 
+                    <div class="form-group ">
+                      <div class="col-xs-12 text-center">
+                        <a class="btn btn-danger  btn-wide text-center" href="#" style="width:260px; color:white" onclick="execute()">通往幸福下一站 </a>
+                      </div>
+                    </div>
+                  </form>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+
+                  <div class="" style="color:white;font-size:11px">
+                    <p><strong>本活动最终解释权归中国平安所有</strong> </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -125,6 +140,46 @@
 
   <script>
     $(document).ready(function() {});
+
+    function BusinessViewModel() {
+      var self = this;
+      self.key_1 = ko.observable();
+      self.key_2 = ko.observable();
+    }
+    var business_vm = new BusinessViewModel();
+    ko.applyBindings(business_vm, document.getElementById('business_content_div'));
+
+
+    // *******YOUR SHOULD CODING IN HERE:*******
+    var businessValidation = function() {
+      var errorMessages = [];
+      //validate logic...
+
+      //validate
+      ValidationPOJO.validate("收入突破", business_vm.key_1(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_NEGATIVE', 'KEY_MUST_NUMBER', 'KEY_NOT_MAX']);
+      ValidationPOJO.validate("团队突破", business_vm.key_2(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_NEGATIVE', 'KEY_MUST_NUMBER', 'KEY_NOT_MAX']);
+
+      return errorMessages;
+    }
+
+    var genericModalViewModel = new GenericModalViewModel();
+    ko.applyBindings(genericModalViewModel, document.getElementById('validation_div'));
+
+
+    var execute = function() {
+      if (!genericModalViewModel.validation(businessValidation)) {
+        return;
+      } else {
+        console.log("Validation Success, go to the function invoke..");
+        var json_obj={
+          key_1:business_vm.key_1(),
+          key_2:business_vm.key_2()
+        }
+
+        var param = UtilPOJO.encode(JSON.stringify(json_obj));
+        window.location.replace($.getRootPath() + '/pingan_xinyuanka_3.html?token=' + param);
+      }
+    }
   </script>
 </body>
 
