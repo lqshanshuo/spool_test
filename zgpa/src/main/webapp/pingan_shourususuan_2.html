@@ -20,6 +20,7 @@
                 position: relative;
                 margin: auto;
             }
+
         </style>
     </head>
 
@@ -78,11 +79,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group label_div_1">
-                                                    <div class="col-xs-6 text-right" style="font-size:20px;font-weight:bold">
+                                                    <div class="col-xs-6 text-right" style="font-size:30px;">
                                                         <span>收入合计:</span>
                                                     </div>
-                                                    <div class="col-xs-6 text-left" style="font-size:20px;font-weight:bold">
-                                                        <span style="color:red" data-bind="text:yingXiaoViewModel.total_income"></span><span> 万</span>
+                                                    <div class="col-xs-6 text-left" style="font-size:30px;">
+                                                        <span style="color:red;font-weight:bold;" data-bind="text:yingXiaoViewModel.total_income"></span><span> 万</span>
                                                     </div>
                                                 </div>
                                             </form>
@@ -102,80 +103,49 @@
                                         <div class="card-body no-padding" data-bind="with:person">
                                             <br>
                                             <div>
-                                                <form class="form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">绩优人力:</span>
-                                                        </label>
-                                                        <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" data-bind="value:outstanding_human_resource" placeholder="绩优人力">
-                                                        </div>
-                                                        <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;" >钻石人力:</span>
-                                                        </label>
-                                                        <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" data-bind="value:diamonds_human_resource" placeholder="钻石人力">
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <form class="form-horizontal">
-                                                    <div class="form-group">
-                                                        <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">标准人力:</span>
-                                                        </label>
-                                                        <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" data-bind="value:standard_human_resource" placeholder="标准人力">
-                                                        </div>
-                                                        <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">个人增员:</span>
-                                                        </label>
-                                                        <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" data-bind="value:human_resource" placeholder="个人增员" disabled style="color:black">
-                                                        </div>
-                                                    </div>
-                                                </form>
+
                                                 <div class="alert alert-info alert-dismissible fresh-color text-left" role="alert" style="padding-top: 3px;padding-bottom:3px">
-                                                    <strong><i class="fa fa-key fa-1x "></i>&nbsp;个人产能:</strong>
+                                                    <strong><i class="fa fa-key fa-1x "></i>&nbsp;开门红个人产能规划:</strong>
                                                 </div>
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">财富天赢:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">财富天赢:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px" >
-                                                            <input type="text" class="form-control" placeholder="财富天赢" data-bind="value:caifu_premium">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:caifu_premium">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">赢越人生:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">赢越人生:</span>
                                                         </label>
-                                                        <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" data-bind="value:yingyue_premium" class="form-control" placeholder="赢越人生">
+                                                        <div class="col-xs-4" style="padding-left: 5px;color:red;">
+                                                            <input type="text" data-bind="value:yingyue_premium" class="form-control" placeholder="0">
                                                         </div>
                                                     </div>
                                                 </form>
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">双福保费:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">双福保费:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" data-bind="value:shuangfu_premium" placeholder="双福保费">
+                                                            <input type="text" class="form-control" data-bind="value:shuangfu_premium" placeholder="0">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">双智保费:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">双智保费:</span>
                                                         </label>
                                                         <div class="col-xs-4"  style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="双智保费" data-bind="value:shuangzhi_premium">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:shuangzhi_premium">
                                                         </div>
                                                     </div>
                                                 </form>
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">其他保费:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">其他保费:</span>
                                                         </label>
                                                         <div class="col-xs-3"  style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="其他保费" data-bind="value:other_premium">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:other_premium">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -185,13 +155,13 @@
                                                             <span style="font-weight: bold;font-size: 14px;">初佣:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px" >
-                                                            <input type="text" class="form-control" placeholder="初佣" disabled style="color:black" data-bind="value:initial_commission">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black" data-bind="value:initial_commission">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
                                                             <span style="font-weight: bold;font-size: 14px;">续期:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="续期" data-bind="value:renewal_commission" disabled style="color:black">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:renewal_commission" disabled style="color:black">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -201,16 +171,63 @@
                                                             <span style="font-weight: bold;font-size: 14px;">训练津贴:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="训练津贴" data-bind="value:trainning_allowance" disabled value="123" style="color:black">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:trainning_allowance" disabled value="123" style="color:black">
                                                         </div>
-                                                        <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">增员奖:</span>
-                                                        </label>
-                                                        <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="增员奖" data-bind="value:increasing_num_bonus" disabled style="color:black">
-                                                        </div>
+
                                                     </div>
                                                 </form>
+
+
+                                                <div data-bind="visible:is_increasing_num_display">
+                                                    <div class="alert alert-info alert-dismissible fresh-color text-left" role="alert" style="padding-top: 3px;padding-bottom:3px">
+                                                        <strong><i class="fa fa-key fa-1x "></i>&nbsp;开门红个人产能规划:</strong>
+                                                    </div>
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
+                                                                <span style="font-weight: bold;font-size: 14px;color:red;">绩优人力:</span>
+                                                            </label>
+                                                            <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
+                                                                <input type="text" class="form-control" data-bind="value:outstanding_human_resource" placeholder="0">
+                                                            </div>
+                                                            <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
+                                                                <span style="font-weight: bold;font-size: 14px;color:red;">钻石人力:</span>
+                                                            </label>
+                                                            <div class="col-xs-4" style="padding-left: 5px;">
+                                                                <input type="text" class="form-control" data-bind="value:diamonds_human_resource" placeholder="0">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
+                                                                <span style="font-weight: bold;font-size: 14px;color:red;">标准人力:</span>
+                                                            </label>
+                                                            <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
+                                                                <input type="text" class="form-control" data-bind="value:standard_human_resource" placeholder="0">
+                                                            </div>
+                                                            <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
+                                                                <span style="font-weight: bold;font-size: 14px;">个人增员:</span>
+                                                            </label>
+                                                            <div class="col-xs-4" style="padding-left: 5px;">
+                                                                <input type="text" class="form-control" data-bind="value:human_resource" placeholder="0" disabled style="color:black">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
+                                                                <span style="font-weight: bold;font-size: 14px;">增员奖:</span>
+                                                            </label>
+                                                            <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
+                                                                <input type="text" class="form-control" data-bind="value:increasing_num_bonus" placeholder="0" disabled style="color:black">
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -229,32 +246,32 @@
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">绩优人力:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">绩优人力:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="绩优人力" data-bind="value:outstanding_human_resource" >
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:outstanding_human_resource" >
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">钻石人力:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">钻石人力:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="钻石人力" data-bind="value:diamonds_human_resource" >
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:diamonds_human_resource" >
                                                         </div>
                                                     </div>
                                                 </form>
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">标准人力:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">标准人力:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="标准人力" data-bind="value:standard_human_resource">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:standard_human_resource">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
                                                             <span style="font-weight: bold;font-size: 14px;">规划人力:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="规划人力" disabled style="color:black" data-bind="value:human_resource">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black" data-bind="value:human_resource">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -264,13 +281,13 @@
                                                             <span style="font-weight: bold;font-size: 14px;">管理津贴:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="管理津贴" disabled style="color:black" data-bind="value:manage_allowance">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black" data-bind="value:manage_allowance">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
                                                             <span style="font-weight: bold;font-size: 14px;">育成利益:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="育成利益" disabled style="color:black"  data-bind="value:educate_benefits">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black"  data-bind="value:educate_benefits">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -291,32 +308,32 @@
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">绩优人力:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">绩优人力:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="绩优人力" data-bind="value:outstanding_human_resource" >
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:outstanding_human_resource" >
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">钻石人力:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">钻石人力:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="钻石人力" data-bind="value:diamonds_human_resource" >
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:diamonds_human_resource" >
                                                         </div>
                                                     </div>
                                                 </form>
                                                 <form class="form-horizontal">
                                                     <div class="form-group">
                                                         <label class="col-xs-3 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
-                                                            <span style="font-weight: bold;font-size: 14px;">标准人力:</span>
+                                                            <span style="font-weight: bold;font-size: 14px;color:red;">标准人力:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="标准人力" data-bind="value:standard_human_resource">
+                                                            <input type="text" class="form-control" placeholder="0" data-bind="value:standard_human_resource">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
                                                             <span style="font-weight: bold;font-size: 14px;">规划人力:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="规划人力" disabled style="color:black" data-bind="value:human_resource">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black" data-bind="value:human_resource">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -326,13 +343,13 @@
                                                             <span style="font-weight: bold;font-size: 14px;">经理津贴:</span>
                                                         </label>
                                                         <div class="col-xs-3" style="padding-left: 5px;padding-right:0px">
-                                                            <input type="text" class="form-control" placeholder="经理津贴" disabled style="color:black" data-bind="value:manager_allowance">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black" data-bind="value:manager_allowance">
                                                         </div>
                                                         <label class="col-xs-2 control-label text-right" style="padding-left:0px;padding-right:0px;margin-top: 3px;">
                                                             <span style="font-weight: bold;font-size: 14px;">增部利益:</span>
                                                         </label>
                                                         <div class="col-xs-4" style="padding-left: 5px;">
-                                                            <input type="text" class="form-control" placeholder="" disabled style="color:black" data-bind="value:increasing_part_benefits">
+                                                            <input type="text" class="form-control" placeholder="0" disabled style="color:black" data-bind="value:increasing_part_benefits">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -421,8 +438,8 @@
             });
 
 
-            function getUserInfo(target) {
-                var query = {};
+            function getUserInfo() {
+                var query = {"param1": "YINGXIAO"};
                 var url = $.getRootPath() + "/api/account/getUserInfo";
                 var data = {
                     'queryJson': JSON.stringify(query)
