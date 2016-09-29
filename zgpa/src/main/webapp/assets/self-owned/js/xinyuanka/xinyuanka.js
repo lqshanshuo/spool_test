@@ -7,16 +7,11 @@
 
 function Xinyuanka_3() {
     var self = this;
-    self.dream_type = ko.observable("");
-    self.isPlaneSelected = ko.observable();
-    self.isCarSelected = ko.observable();
-    self.isHouseSelected = ko.observable();
-    self.isTravelSelected = ko.observable();
-    self.isTCareerSelected = ko.observable();
+    self.dream_type = ko.observable();
 
-    self.key_1=null;
-    self.key_2=null;
-    
+    self.key_1 = null;
+    self.key_2 = null;
+
     self.inputContent = ko.observable();
 }
 
@@ -29,8 +24,26 @@ function chooseType(type) {
 
     $('.img_size').css('width', "60px").css('height', "60px").css('border', "2px solid grey");
 
-    var $element = $('#'+type+'_image');
-    if($element.length){
-      $element.css('width', "70px").css('height', "70px").css('border', "5px solid yellow");
+    var type_name="";
+    switch (type) {
+        case '1':
+            type_name="plane"
+            break;
+        case '2':
+            type_name="car"
+            break;
+        case '3':
+            type_name="house"
+            break;
+        case '4':
+            type_name="travel"
+            break;
+        case '5':
+            type_name="career"
+            break;
+    }
+    var $element = $('#' + type_name + '_image');
+    if ($element.length) {
+        $element.css('width', "70px").css('height', "70px").css('border', "5px solid yellow");
     }
 }

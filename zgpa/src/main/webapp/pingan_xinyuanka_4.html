@@ -1,121 +1,245 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Matrix Components Framework">
-  <meta name="author" content="LY">
-  <title>Matrix</title>
-  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
-  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
-  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The Matrix Components Framework">
+        <meta name="author" content="LY">
+        <title>Matrix</title>
+        <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+        <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+        <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
 
-  <style type="text/css">
-    #pinganlogo {
-      display: block;
-      position: relative;
-      margin: auto;
-    }
-  </style>
-</head>
+        <style type="text/css">
+            #pinganlogo {
+                display: block;
+                position: relative;
+                margin: auto;
+            }
 
-<body>
+            .img_container_div {
+                margin: auto;
+                /*                margin-left: 300px;
+                                          margin-right: 0px;;*/
+                width: 100%;
+                /*margin:0px;*/
+                /*padding-top:0px;*/
+            }
 
-  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/red4.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
-    <div class="app-container">
-      <div class="row content-container">
-        <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
-        <div class="container">
-          <div>
+            .img_div {
+                margin-right: 0px;
+                margin-left: 0px;
+                padding: 0px;
+                width: 180px;
+                height: 180px;
+            }
 
-            <div class="row">
+            .img_size {
+                margin: 0px;
+                padding: 0px;
+                width: 180px;
+                height: 180px;
+                border: 2px solid grey;
+                -webkit-transition: all .2s ease-in-out;
+                -o-transition: all .2s ease-in-out;
+                transition: all .2s ease-in-out;
+            }
+        </style>
+    </head>
 
-              <!-- logo of the pingan -->
-              <div style="margin-top:58px;">&nbsp;</div>
-              <div>
-                <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;">
-              </div>
+    <body>
 
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
+        <div class="flat-matrix" style="background-image: url(assets/self-owned/img/red4.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
+            <div class="app-container">
+                <div class="row content-container">
+                    <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+                    <div class="container">
+                        <div>
+
+                            <div class="row">
+
+                                <!-- logo of the pingan -->
+                                <div style="margin-top:58px;">&nbsp;</div>
+                                <div>
+                                    <img id="pinganlogo" class="img-responsive" src="assets/self-owned/img/pingan1.jpg" alt="" style="width:30%;">
+                                </div>
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+
+                                <div id="business_content_div">
+                                    <div class="row">
+                                        <div id="img_container" class="img_container_div">
+                                            <div class="col-xs-2 col-xs-offset-3" style="margin-top:-30px;">
+                                                <div class="text-center" style="width:180px;align:center;font-size: 20px;display:none" data-bind="visible:dream_type()=='1'">
+                                                    <img src="assets/self-owned/img/xinyuanka/plane.jpg" class="img-circle img_size" id="plane_image"><br><span style=";color:white">飞机</span>
+                                                </div>
+                                                <div class="text-center" style="width:180px;align:center;font-size: 20px;display:none" data-bind="visible:dream_type()=='2'">
+                                                    <img src="assets/self-owned/img/xinyuanka/car.jpg" class="img-circle img_size" id="car_image"><br><span style=";color:white">豪车</span>
+                                                </div>
+                                                <div class="text-center" style="width:180px;align:center;font-size: 20px;display:none" data-bind="visible:dream_type()=='3'">
+                                                    <img src="assets/self-owned/img/xinyuanka/house.jpg" class="img-circle img_size" id="house_image"><br><span style=";color:white">豪宅</span>
+                                                </div>
+                                                <div class="text-center" style="width:180px;align:center;font-size: 20px;display:none" data-bind="visible:dream_type()=='4'">
+                                                    <img src="assets/self-owned/img/xinyuanka/travel.jpg" class="img-circle img_size" id="travel_image"><br><span style=";color:white">全球旅行</span>
+                                                </div>
+                                                <div class="text-center" style="width:180px;align:center;font-size: 20px;display:none" data-bind="visible:dream_type()=='5'">
+                                                    <img src="assets/self-owned/img/xinyuanka/career.jpg" class="img-circle img_size" id="career_image"><br><span style=";color:white">事业平台</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 text-center">
+                                        <form class="form-horizontal">
+                                            <div class="form-group ">
+                                                <div class="col-xs-12 text-center" style="overflow: auto">
+                                                    <p style="font-weight: bold;font-size: 16px; text-align: center;color:white">收入突破<span data-bind="text:key_1"></span>万,团队突破<span data-bind="text:key_1"></span>人</p>
+                                                </div>
+                                                <div class="col-xs-12 text-center" style="overflow: auto">
+                                                    <textarea data-bind="value:inputContent,valueUpdate:'input'" rows="3" cols="22" placeholder="请在此许下您的心愿" disabled="true"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <div class="col-xs-12 text-center">
+                                                    <a  class="btn btn-danger  btn-wide text-center" href="#" style="width:260px; color:white" onclick="location.href = $.getRootPath() + '/pingan_xinyuanka_1.html'">我也要许愿 </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+
+                                        <div class="" style="color:white;font-size:11px">
+                                            <p><strong>本活动最终解释权归中国平安所有</strong> </p>
+                                        </div>
+                                    </div>
+                                </div>
 
 
 
+                            </div>
 
-              <div class="col-xs-12 text-center">
-                <form class="form-horizontal">
-                  <div class="form-group ">
-                    <label class="col-xs-6 control-label">
-                      <span style="font-weight: bold;font-size: 16px; text-align: center;color:white">2016年我想要...</span>
-                    </label>
-                    <div class="col-xs-12 text-center" style="overflow: auto">
-                      <textarea data-bind="value:inputContent,valueUpdate:'input'" rows="3" cols="32" placeholder="请在此许下您的心愿" disabled="true"></textarea>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="form-group ">
-                    <div class="col-xs-12 text-center">
-                      <a  class="btn btn-danger  btn-wide text-center" href="#" style="width:260px; color:white" onclick="location.href=$.getRootPath() + '/pingan_xinyuanka_1.html'">我也要许愿 </a>
-                    </div>
-                  </div>
-                </form>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <div class="" style="color:white;font-size:11px">
-                    <p><strong>本活动最终解释权归中国平安所有</strong> </p>
                 </div>
-              </div>
-
             </div>
-
-          </div>
         </div>
 
-      </div>
-    </div>
-  </div>
+
+        <!-- /.container -->
 
 
-  <!-- /.container -->
+        <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+        <script src="assets/reference/jquery/jquery.json.js"></script>
+        <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+        <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+        <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+        <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+        <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+        <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+        <!-- Javascript for Matrix Self Owned -->
+        <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+        <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+        <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+        <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+        <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+        <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+        <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+        <script src="assets/self-owned/js/generic/generic_query.js"></script>
+        <script src="assets/self-owned/js/generic/generic_table.js"></script>
+        <script src="assets/self-owned/js/generic/generic_util.js"></script>
+        <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+
+        <script>
+                                                    var SharePOJO = SharePOJO || {};
+                                                    SharePOJO = {
+                                                        environmentCheck: function () {
+                                                            var tokenFlag = $.hasUrlParam('token');
+                                                            if (!tokenFlag) {
+                                                                SharePOJO.redirect('INVALID');
+                                                            }
+                                                            var token = $.urlParamValue('token');
+                                                            if (!token) {
+                                                                SharePOJO.redirect('INVALID');
+                                                            }
+
+                                                            $.serverRequest($.getServerRoot() + '/service_generic_query/api/share/fetch/' + token, null, "NOTEBOOK_SHARE_SUCCESS", "NOTEBOOK_SHARE_FAILED", "NOTEBOOK_SHARE_SERVICE_FAILED");
+                                                        },
+                                                        redirect: function (type) {
+                                                            if (type == 'INVALID') {
+                                                                console.log("REDIRECT TO INVALID PAGE");
+                                                                window.location.href = "matrix_share_invalid.html";
+                                                            } else if (type == 'EXPIRED') {
+                                                                console.log("REDIRECT TO EXPIRED PAGE");
+                                                                window.location.href = "matrix_share_expired.html";
+                                                            }
+                                                        }
+                                                    }
+                                                    $.subscribe("NOTEBOOK_SHARE_SUCCESS", successListener);
+                                                    $.subscribe("NOTEBOOK_SHARE_FAILED", failedListener);
+                                                    $.subscribe("NOTEBOOK_SHARE_SERVICE_FAILED", failedServiceListener);
+                                                    function successListener() {
+                                                        if (arguments && arguments[1]) {
+                                                            var xinyuanka = arguments[1].result[0].json;
+                                                            retrieveData(xinyuanka);
+                                                        }
+                                                    }
+
+                                                    function failedListener() {
+                                                        console.log("failed");
+                                                    }
+
+                                                    function failedServiceListener() {
+                                                        if (arguments && arguments[1]) {
+                                                            var errorMessage = arguments[1].errorMessage;
+                                                            if (errorMessage == "Token Invalid!") {
+                                                                SharePOJO.redirect('INVALID');
+                                                            } else if (errorMessage == "Token Expire!") {
+                                                                SharePOJO.redirect('EXPIRED');
+                                                            }
+                                                        }
+                                                    }
+        </script>
+        <script>
+            function BusinessViewModel() {
+                var self = this;
+                self.key_1 = ko.observable('');
+                self.key_2 = ko.observable('');
+                self.dream_type = ko.observable('');
+                self.inputContent = ko.observable('');
+            }
+            var business_vm = new BusinessViewModel();
+            ko.applyBindings(business_vm, document.getElementById('business_content_div'));
+            SharePOJO.environmentCheck();
+            var json = retrieveData();
 
 
-  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
-  <script src="assets/reference/jquery/jquery.json.js"></script>
-  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
-  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
-  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
-  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
-  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
-  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
-  <!-- Javascript for Matrix Self Owned -->
-  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
-  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
-  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
-  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
-  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
-  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
-  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
-  <script src="assets/self-owned/js/generic/generic_query.js"></script>
-  <script src="assets/self-owned/js/generic/generic_table.js"></script>
-  <script src="assets/self-owned/js/generic/generic_util.js"></script>
-  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
 
-  <script>
-    $(document).ready(function() {});
-  </script>
-</body>
+            function retrieveData(param) {
+                param = UtilPOJO.decode(param);
+                var jsonObj = JSON.parse(param);
+                console.log(jsonObj)
+
+                business_vm.key_1(jsonObj.key_1);
+                business_vm.key_2(jsonObj.key_2);
+                business_vm.dream_type(jsonObj.dream_type);
+                business_vm.inputContent(jsonObj.inputContent);
+            }
+        </script>
+    </body>
 
 </html>
