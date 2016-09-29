@@ -183,7 +183,7 @@
 
                 return errorMessages;
             }
-            
+
             function submit_login(target) {
                 genericModalViewModel.businessPOJO().target(target);
 
@@ -197,9 +197,14 @@
                     var id = genericModalViewModel.businessPOJO().id();
                     var passwd = genericModalViewModel.businessPOJO().passwd();
                     var targetUrl = genericModalViewModel.businessPOJO().targetUrl();
+                    var staff_type = "YINGXIAO";
 
-                    var query = {"name": id, "passwd": passwd};
-                    var url = $.getRootPath() + "/api/account/login";
+                    if (target == 'qutuo') {
+                        staff_type = "QUTUO";
+                    }
+
+                    var query = {"name": id, "passwd": passwd, "param1": staff_type};
+                    var url = $.getRootPath() + "/api/account/login_v2";
                     var data = {'queryJson': JSON.stringify(query)}
 
 
@@ -218,7 +223,7 @@
                 }
                 clear();
             }
-             
+
             function susuanLoginFailedListener() {
                 if (arguments && arguments[1] && arguments[1].response) {
                     var errorMessage = arguments[1].response.errorMessage;
@@ -227,7 +232,7 @@
                 }
                 clear();
             }
-             
+
             function susuanLoginServerFailedListener() {
                 genericModalViewModel.hasError(true);
                 genericModalViewModel.errorMessage.push("服务出错，请联系系统管理员。");

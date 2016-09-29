@@ -30,7 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(v2.matrix.client.MockResource.class);
-        resources.add(v2.zgpa.rest.loginResource.class);
+        resources.add(v2.zgpa.rest.LoginResource.class);
     }
     
 }
