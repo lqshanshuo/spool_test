@@ -92,6 +92,7 @@ function Person(level) {
     self.level = ko.observable(level);
 
     //----------增员情况-------------
+    self.is_increasing_num_display = ko.observable(false); //是否显示个人增员规划
     self.outstanding_human_resource = ko.observable();     //绩优增员
     self.diamonds_human_resource = ko.observable();        //钻石增员
     self.standard_human_resource = ko.observable();        //标准增员
@@ -224,7 +225,18 @@ function Person(level) {
 
     }, this);
 
+    self.level.subscribe(function (newValue) {
+        if (!newValue) {
+            return;
+        }
+        if (newValue == "试用收展员") {
+            self.is_increasing_num_display(false);
+        } else {
+            self.is_increasing_num_display(true);
 
+        }
+        //如果收展员是试用层级不显示个人增员规划
+    });
 
 //-------------------------去除小数 begin--------------------------------
     self.outstanding_human_resource.subscribe(function (newValue) {

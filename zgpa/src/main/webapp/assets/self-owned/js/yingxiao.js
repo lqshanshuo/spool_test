@@ -24,6 +24,7 @@ function YingXiaoViewModel() {
         if (!newValue) {
             return;
         }
+        var fresh_man_array = ["00", "01"];
         var group_permission = ["04", "05", "06"];
         var all_permission = ["08", "09", "10", "17", "D1", "D2", "D3"];
         self.isPersonDisplay = ko.observable(true);
@@ -31,6 +32,13 @@ function YingXiaoViewModel() {
 
         self.group.level_coefficient(computeManageAllawanceCoefficient(self));
 
+        if ($.inArray(newValue, fresh_man_array) > -1) {
+            console.log("fresh_man");
+            self.person.is_increasing_num_display(false);
+        } else {
+            console.log("not fresh_man");
+            self.person.is_increasing_num_display(true);
+        }
 
         console.log("level =" + newValue)
 
@@ -90,6 +98,8 @@ function YingXiaoViewModel() {
 
 function Person() {
     var self = this;
+
+    self.is_increasing_num_display = ko.observable(false);      //是否显示个人增员规划
     self.human_resource = ko.observable(0);                                     //个人增员
     self.outstanding_human_resource = ko.observable();                          //绩优增员
     self.diamonds_human_resource = ko.observable();                             //钻石增员
@@ -395,7 +405,7 @@ function Part() {
 
         var FYC = outstanding_human * 6000 + diamonds_human * 3000 +
                 standard_human * 2000 + initial_commission;
-        
+
         FYC = formatNumber(FYC, true) || 0;
         self.level_coefficient(computeManagerCoefficient(FYC, yingXiaoViewModel));
         return FYC;
