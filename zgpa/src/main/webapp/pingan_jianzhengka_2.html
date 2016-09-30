@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The Matrix Components Framework">
         <meta name="author" content="LY">
-        <title>Matrix</title>
+        <title>中国平安</title>
         <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
         <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
@@ -164,12 +164,47 @@
         <script src="assets/self-owned/js/generic/generic_validation.js"></script>
         <script src="assets/self-owned/js/generic/generic_upload.js"></script>
 
+        
+        <script>
+            function getUserInfo() {
+                var query = {"param1": "YINGXIAO_OR_QUTUO"};
+                var url = $.getRootPath() + "/api/account/getUserInfo";
+                var data = {
+                    'queryJson': JSON.stringify(query)
+                }
+
+
+                $.serverRequest(url, data, "JIANZHENG_GET_USER_INFO_SUCCESS", "JIANZHENG_GET_USER_INFO_RESPONSE_ERROR", "JIANZHENG_GET_USER_INFO_SERVER_ERROR", "POST");
+
+                $.subscribe("JIANZHENG_GET_USER_INFO_SUCCESS", jianzhengGetUserInfoSuccessListener);
+                $.subscribe("JIANZHENG_GET_USER_INFO_RESPONSE_ERROR", jianzhengGetUserInfoFailedListener);
+                $.subscribe("JIANZHENG_GET_USER_INFO_SERVER_ERROR", jianzhengGetUserInfoFailedListener);
+
+            }
+
+            function jianzhengGetUserInfoSuccessListener() {
+
+                if (arguments && arguments[1]) {
+                    var resp = arguments[1];
+                    var userInfo = eval("(" + resp.result[0] + ")");
+                    business_vm.userInfo(userInfo);
+                }
+            }
+
+            function jianzhengGetUserInfoFailedListener() {
+                console.log("get user failed")
+                location.href = $.getRootPath() + '/pingan_jianzhengka_1.html';
+            }
+
+
+        </script>
         <script>
                                                 function BusinessViewModel() {
                                                     var self = this;
                                                     self.items = ko.observableArray(['感恩型', '荣誉型', '分享型']);
                                                     self.chosenItem = ko.observable();
                                                     self.description = ko.observable();
+                                                    self.userInfo = ko.observable();
                                                 }
                                                 var business_vm = new BusinessViewModel();
                                                 ko.applyBindings(business_vm, document.getElementById('business_content_div'));
@@ -179,6 +214,7 @@
                                                 $.subscribe("SUCCESS_LISTENER", successListener);
                                                 $.subscribe("FAILED_LISTENER", failedListener);
                                                 initialize_pic_upload_environment('input-id', vm);
+                                                getUserInfo();
 
                                                 function failedListener() {
                                                     if (arguments && arguments[1]) {
@@ -191,7 +227,7 @@
                                                     if (arguments && arguments[1]) {
 
                                                         var img_url_path = $.getServerRoot() + "/service_generic_query" + arguments[1].result[0].stringkappa;
-debugger;
+                                                        debugger;
                                                         if (vm) {
                                                             vm.uploadedFileUrls.push(img_url_path);
 
@@ -239,7 +275,9 @@ debugger;
                                                         param = UtilPOJO.encode(param);
                                                         var shareJson = {
                                                             'type': 'JianZhengKa',
-                                                            'json': param
+                                                            'json': param,
+                                                            'username': business_vm.userInfo().staff_name,
+                                                            'stringalpha': business_vm.userInfo().personal_code
                                                         }
                                                         var data = {
                                                             'shareJson': $.toJSON(shareJson)
@@ -256,7 +294,7 @@ debugger;
 
                                                 function tokenSuccessListener() {
                                                     if (arguments && arguments[1]) {
-                                                        window.location.replace($.getRootPath() + '/pingan_jianzhengka_3.html?token='+arguments[1].result[0]);
+                                                        window.location.replace($.getRootPath() + '/pingan_jianzhengka_3.html?token=' + arguments[1].result[0]);
                                                     }
                                                 }
 
@@ -270,6 +308,7 @@ debugger;
                                                 function tokenServiceListener() {
                                                 }
         </script>
+        
     </body>
 
 </html>

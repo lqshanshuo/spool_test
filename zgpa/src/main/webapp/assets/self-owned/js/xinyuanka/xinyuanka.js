@@ -13,6 +13,7 @@ function Xinyuanka_3() {
     self.key_2 = null;
 
     self.inputContent = ko.observable();
+    self.userInfo = ko.observable();
 }
 
 function chooseType(type) {

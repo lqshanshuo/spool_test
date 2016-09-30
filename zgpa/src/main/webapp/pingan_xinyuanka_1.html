@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The Matrix Components Framework">
         <meta name="author" content="LY">
-        <title>Matrix</title>
+        <title>中国平安</title>
         <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
         <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
@@ -179,7 +179,7 @@
                     var passwd = genericModalViewModel.businessPOJO().passwd();
                     var targetUrl = genericModalViewModel.businessPOJO().targetUrl();
 
-                    var query = {"name": id, "passwd": passwd};
+                    var query = {"name": id, "passwd": passwd, "param1":"YINGXIAO_OR_QUTUO"};
                     var url = $.getRootPath() + "/api/account/login";
                     var data = {'queryJson': JSON.stringify(query)}
 

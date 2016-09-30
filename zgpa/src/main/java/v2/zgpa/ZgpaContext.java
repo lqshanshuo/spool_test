@@ -7,7 +7,6 @@ package v2.zgpa;
 
 import java.util.HashMap;
 import java.util.Map;
-import v2.zgpa.model.Staffentity;
 
 /**
  *
@@ -15,5 +14,5 @@ import v2.zgpa.model.Staffentity;
  */
 public class ZgpaContext {
 
-    public static Map<String, Staffentity> userMap = new HashMap();
+    public static Map<String, String> userMap = new HashMap();
 }

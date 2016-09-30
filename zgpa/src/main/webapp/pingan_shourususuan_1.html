@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The Matrix Components Framework">
         <meta name="author" content="LY">
-        <title>Matrix</title>
+        <title>中国平安</title>
         <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
         <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
@@ -25,7 +25,7 @@
 
     <body>
 
-        <div id ="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/red2.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;">
+        <div id ="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/red2.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;min-height:688px">
             <div class="app-container">
                 <div class="row content-container">
                     <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
@@ -204,7 +204,7 @@
                     }
 
                     var query = {"name": id, "passwd": passwd, "param1": staff_type};
-                    var url = $.getRootPath() + "/api/account/login_v2";
+                    var url = $.getRootPath() + "/api/account/login";
                     var data = {'queryJson': JSON.stringify(query)}
 
 

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="The Matrix Components Framework">
         <meta name="author" content="LY">
-        <title>Matrix</title>
+        <title>中国平安</title>
         <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
         <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
@@ -182,9 +182,45 @@
 
         <script src="assets/self-owned/js/xinyuanka/xinyuanka.js"></script>
 
+        
+        <script>
+            function getUserInfo() {
+                var query = {"param1": "YINGXIAO_OR_QUTUO"};
+                var url = $.getRootPath() + "/api/account/getUserInfo";
+                var data = {
+                    'queryJson': JSON.stringify(query)
+                }
+
+
+                $.serverRequest(url, data, "XINYUAN_GET_USER_INFO_SUCCESS", "XINYUAN_GET_USER_INFO_RESPONSE_ERROR", "XINYUAN_GET_USER_INFO_SERVER_ERROR", "POST");
+
+                $.subscribe("XINYUAN_GET_USER_INFO_SUCCESS", xinyuanGetUserInfoSuccessListener);
+                $.subscribe("XINYUAN_GET_USER_INFO_RESPONSE_ERROR", xinyuanGetUserInfoFailedListener);
+                $.subscribe("XINYUAN_GET_USER_INFO_SERVER_ERROR", xinyuanGetUserInfoFailedListener);
+
+            }
+
+            function xinyuanGetUserInfoSuccessListener() {
+
+                if (arguments && arguments[1]) {
+                    var resp = arguments[1];
+                    var userInfo = eval("(" + resp.result[0] + ")");
+                    xinyuanka_3.userInfo(userInfo);
+                }
+            }
+
+            function xinyuanGetUserInfoFailedListener() {
+                console.log("get user failed")
+                location.href = $.getRootPath() + '/pingan_jianzhengka_1.html';
+            }
+
+
+        </script>
+
         <script>
                                             $(document).ready(function () {
                                                 environmentCheck();
+                                                getUserInfo();
                                             });
 
                                             var xinyuanka_3 = new Xinyuanka_3();
@@ -239,7 +275,9 @@
                     param = UtilPOJO.encode(param);
                     var shareJson = {
                         'type': 'XinYuanKa',
-                        'json': param
+                        'json': param,
+                        'username': xinyuanka_3.userInfo().staff_name,
+                        'stringalpha': xinyuanka_3.userInfo().personal_code
                     }
                     var data = {
                         'shareJson': $.toJSON(shareJson)
@@ -270,7 +308,7 @@
             function tokenServiceListener() {
             }
         </script>
-
+        
     </body>
 
 </html>

@@ -198,7 +198,7 @@ function Person(level) {
         var level = self.level();
         var performance = self.performance()
 
-        complete_allowance = getExcessBonus(level, performance);
+        complete_allowance = getCompleteAllowance(level, performance);
 
         complete_allowance = formatNumber(complete_allowance, true);
         return complete_allowance;

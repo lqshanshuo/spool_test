@@ -32,6 +32,7 @@ public class LoginManager {
 
     private static final String Succeesed = "SUCCEESED";
     private static final String Failed = "FAILED";
+//    private static final String QueryUrl = "http://localhost:26446/service_generic_query/api/query/native";
     private static final String QueryUrl = "http://localhost:8080/service_generic_query/api/query/native";
 
     public static ResponsePOJO login(String personal_code, String passwd, String staff_type, String key) {
