@@ -36,7 +36,6 @@ public class LoginResource {
     private static final String Failed = "FAILED";
     private static final String QueryUrl = "http://localhost:8080/service_generic_query/api/query/native";
 
-
     @POST
     @Path("login")
     public String login(@FormParam("queryJson") String queryJson,
@@ -47,7 +46,8 @@ public class LoginResource {
 
         RequestPOJO request = JsonUtil.toPojo(queryJson, RequestPOJO.class);
         String personal_code = request.getName();
-        String passwd = request.getPasswd();
+        String passwd = request.getPasswd().toUpperCase();
+        passwd = passwd.indexOf("X")<0?passwd.replaceFirst("^0*", ""):passwd;
         String staff_type = request.getParam1();
 
         String key = staff_type + session_id;
@@ -55,6 +55,8 @@ public class LoginResource {
         ResponsePOJO response;
 
         if ("YINGXIAO".equals(staff_type) || "QUTUO".equals(staff_type)) {
+            System.out.println(personal_code);
+            System.out.println(passwd);
             response = LoginManager.login(personal_code, passwd, staff_type, key);
         } else if ("YINGXIAO_OR_QUTUO".equals(staff_type)) {
             response = LoginManager.login(personal_code, passwd, "YINGXIAO", key);

@@ -61,14 +61,6 @@ function QuTuoViewModel() {
         if (!newValue) {
             return;
         }
-        var dev = true;
-
-        if (dev) {
-            newValue.educate_benefits = 2000;
-            newValue.zengke_benefits = 1000;
-            newValue.zengchu_benefits = 3000;
-            newValue.development_allowance = 3100;
-        }
 
         var renewal_commission = newValue.renewal_history || 0;
         var educate_benefits = newValue.educate_benefits || 0;
@@ -554,10 +546,10 @@ function getInitialCommission(level, performance) {
 //计算训练津贴
 function getTrainningAllowance(institution, time, performance) {
     var allowance = 0;
-    var time_arr = time.split("/") || [];
+//    var time_arr = time.split("/") || [];
 //    console.log("time_arr = " + time_arr);
-    var month = Number(time_arr[0]) || 0;
-    var year = Number(time_arr[2]) || 0;
+    var month = Number(time.substr(0,4)) || 0;
+    var year = Number(time.substr(4,2)) || 0;
 //
 //    console.log("year = " + year);
 //    console.log("time = " + time);

@@ -87,9 +87,9 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="alert alert-danger fresh-color">
+<!--                                        <div class="alert alert-danger fresh-color">
                                             <span>备注: 其他收入包含以下收入以外的续保、综拓等收入，请依据个人实际情况进行比例调整</span>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <!-- 个人情况 -->
                                     <div class="card card-danger" data-bind="if:person">
@@ -543,6 +543,7 @@
                         location.href = $.getRootPath() + '/pingan_shourususuan_1.html';
                     }
                     quTuoViewModel.userPOJO(userInfo);
+                    quTuoViewModel.level(userInfo.curent_rank)
                 }
             }
 

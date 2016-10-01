@@ -414,6 +414,8 @@ function Part() {
     self.manager_allowance = ko.computed(function () {
         var allowance = self.FYC_part() * self.level_coefficient() * 1.10;
         allowance = formatNumber(allowance, true) || 0;
+        console.log("FYC_part:"+self.FYC_part())
+        console.log("level_coefficient:"+self.level_coefficient())
         return allowance;
     }, this);
 
@@ -680,9 +682,8 @@ function getXForManagerCoefficient(FYC_part) {
         x = 3;
     } else if (FYC_part >= 200000 && FYC_part < 300000) {
         x = 4;
-        //TODO该数据未提供
     } else if (FYC_part >= 300000) {
-        x = 4;
+        x = 5;
     }
     return x;
 }

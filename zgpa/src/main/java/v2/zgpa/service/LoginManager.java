@@ -32,8 +32,8 @@ public class LoginManager {
 
     private static final String Succeesed = "SUCCEESED";
     private static final String Failed = "FAILED";
-//    private static final String QueryUrl = "http://localhost:26446/service_generic_query/api/query/native";
-    private static final String QueryUrl = "http://localhost:8080/service_generic_query/api/query/native";
+    private static final String QueryUrl = "http://localhost:26446/service_generic_query/api/query/native";
+//    private static final String QueryUrl = "http://localhost:8080/service_generic_query/api/query/native";
 
     public static ResponsePOJO login(String personal_code, String passwd, String staff_type, String key) {
 
@@ -88,7 +88,7 @@ public class LoginManager {
                     id_number = userPOJO2.getId_last_four();
                 }
 
-                String pwd = id_number.substring(id_number.length() - 4, id_number.length());
+                String pwd = id_number;//id_number.substring(id_number.length() - 4, id_number.length());
                 System.out.println("----------pwd = " + pwd);
                 if (pwd.equals(passwd)) {
                     hasError = false;
