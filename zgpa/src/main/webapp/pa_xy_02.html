@@ -164,9 +164,10 @@
         return;
       } else {
         console.log("Validation Success, go to the function invoke..");
+        var key2 = Math.floor(business_vm.key_2());
         var json_obj={
           key_1:business_vm.key_1(),
-          key_2:business_vm.key_2()
+          key_2:key2
         }
 
         var param = UtilPOJO.encode(JSON.stringify(json_obj));
