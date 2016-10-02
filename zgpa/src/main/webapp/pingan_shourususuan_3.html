@@ -504,11 +504,6 @@
 
         <script>
             var quTuoViewModel = new QuTuoViewModel();
-            // level_array
-//            var user = {
-//                personal_code: 1234567890,
-//                str9: '张三'
-//            }
             $(document).ready(function () {
                 ko.applyBindings(quTuoViewModel, document.getElementById('contentDiv'));
                 getUserInfo();
@@ -524,11 +519,11 @@
                 }
 
 
-                $.serverRequest(url, data, "YINGXIAO_GET_USER_INFO_SUCCESS", "YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", "YINGXIAO_GET_USER_INFO_SERVER_ERROR", "POST");
+                $.serverRequest(url, data, "QUTUO_GET_USER_INFO_SUCCESS", "QUTUO_GET_USER_INFO_RESPONSE_ERROR", "QUTUO_GET_USER_INFO_SERVER_ERROR", "POST");
 
-                $.subscribe("YINGXIAO_GET_USER_INFO_SUCCESS", qutuoGetUserInfoSuccessListener);
-                $.subscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", qutuoGetUserInfoFailedListener);
-                $.subscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", qutuoGetUserInfoFailedListener);
+                $.subscribe("QUTUO_GET_USER_INFO_SUCCESS", qutuoGetUserInfoSuccessListener);
+                $.subscribe("QUTUO_GET_USER_INFO_RESPONSE_ERROR", qutuoGetUserInfoFailedListener);
+                $.subscribe("QUTUO_GET_USER_INFO_SERVER_ERROR", qutuoGetUserInfoFailedListener);
 
             }
 
@@ -595,7 +590,7 @@
                 //增处利益
                 income += quTuoViewModel.chu.zengchu_benefits();
                 //区部发展津贴
-                income += quTuoViewModel.chu.zengchu_benefits();
+                income += quTuoViewModel.chu.development_allowance();
 
                 income = income / (100 * (100 - quTuoViewModel.other_income_percent()));
 
@@ -608,9 +603,9 @@
 
 
             function clear() {
-                $.unsubscribe("YINGXIAO_GET_USER_INFO_SUCCESS", qutuoGetUserInfoSuccessListener);
-                $.unsubscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", qutuoGetUserInfoFailedListener);
-                $.unsubscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", qutuoGetUserInfoFailedListener);
+                $.unsubscribe("QUTUO_GET_USER_INFO_SUCCESS", qutuoGetUserInfoSuccessListener);
+                $.unsubscribe("QUTUO_GET_USER_INFO_RESPONSE_ERROR", qutuoGetUserInfoFailedListener);
+                $.unsubscribe("QUTUO_GET_USER_INFO_SERVER_ERROR", qutuoGetUserInfoFailedListener);
             }
         </script>
 

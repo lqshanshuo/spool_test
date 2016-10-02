@@ -62,11 +62,11 @@ function QuTuoViewModel() {
             return;
         }
 
-        var renewal_commission = newValue.renewal_history || 0;
-        var educate_benefits = newValue.educate_benefits || 0;
-        var zengke_benefits = newValue.zengke_benefits || 0;
-        var zengchu_benefits = newValue.zengchu_benefits || 0;
-        var development_allowance = newValue.development_allowance || 0;
+        var renewal_commission = Number(newValue.renewal_history) || 0;
+        var educate_benefits = Number(newValue.educate_benefits) || 0;
+        var zengke_benefits = Number(newValue.zengke_benefits) || 0;
+        var zengchu_benefits = Number(newValue.zengchu_benefits) || 0;
+        var development_allowance = Number(newValue.development_allowance) || 0;
 
         self.person.renewal_commission(renewal_commission);
         self.qu.educate_benefits(educate_benefits);
