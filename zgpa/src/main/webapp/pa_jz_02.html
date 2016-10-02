@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Matrix Components Framework">
+  <meta name="author" content="LY">
+  <title>中国平安</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap-fileinput/css/fileinput_ly.css" media="all">
+
+
+<style>
+.row > [class*="col-"] {
+    margin-bottom: 0px;
+}
+</style>
+</head>
+
+<body>
+
+  <div id="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/jz_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:688px">
+      <div class="container-fluid" >
+        <div style="margin-top:300px">
+          <div class="row" >
+            <div class="col-xs-6">
+              <div id="matrix_upload_div">
+                <div class="row">
+                  <div data-bind="foreach:uploadedFileUrls">
+                    <div class="col-xs-12 text-center" style="margin-bottom:10px">
+                      <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row" id="upload_div_1">
+                  <div class="col-xs-12" style="margin-top: -25px;">
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <div class="col-xs-12">
+                          <input id="input-id-1" type="file" name="file">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-xs-6">
+              <div id="matrix_upload_div_2">
+                <div class="row">
+                  <div data-bind="foreach:uploadedFileUrls">
+                    <div class="col-xs-12 text-center" style="margin-bottom:10px">
+                      <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row" id="upload_div_2">
+                  <div class="col-xs-12" style="margin-top: -25px;">
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <div class="col-xs-12">
+                          <input id="input-id-2" type="file" name="file">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xs-12 text-center" style="margin-bottom:0px">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <div class="col-xs-6 col-xs-offset-3 text-center">
+                    <!-- <select class="form-control" style="width:100%" data-bind="options:items,value:chosenItem,optionsCaption: '请选择...'"></select> -->
+                    <select class="form-control select_1 select-primary select-block mbl" style="text-center;margin-bottom: 0;">
+                      <option style="text-center" value="1">无</option>
+                      <option value="2">感恩型</option>
+                      <option value="3">荣耀型</option>
+                      <option value="4">分享型</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <form class="form-horizontal">
+                <div class="form-group text-center" style="margin-bottom: 6px;">
+                  <div class="col-xs-12 text-center" style="overflow: auto">
+                    <textarea style="border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px" data-bind="value:inputContent,valueUpdate:'input'" rows="3" cols="50" placeholder="请在此许下您的心愿">带着家人去环游世界,买豪车豪宅,开私人飞机......,只要能在平安打造自己的商业帝国,这些梦想就不再遥远
+                    </textarea>
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <div class="col-xs-12 text-center">
+                    <a class="btn btn-danger  btn-wide text-center" href="#" style="height: 36px;padding-top: 3px;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
+                      onclick="persist()">请您的亲人朋友共同见证吧 </a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+  <script src="assets/reference/bootstrap-fileinput/js/fileinput_ly.js"></script>
+  <script src="assets/reference/bootstrap-fileinput/js/locales/zh.js"></script>
+  <!-- Javascript for Matrix Self Owned -->
+  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+  <script src="assets/self-owned/js/generic/generic_query.js"></script>
+  <script src="assets/self-owned/js/generic/generic_table.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+  <script src="assets/self-owned/js/generic/generic_upload.js"></script>
+
+  <script>
+    var vm = new GenericUploadPageViewModel();
+    ko.applyBindings(vm, document.getElementById('matrix_upload_div'));
+    $.subscribe("SUCCESS_LISTENER", successListener);
+    $.subscribe("FAILED_LISTENER", failedListener);
+    initialize_pic_upload_environment('input-id-1', vm);
+
+    function failedListener() {
+      if (arguments && arguments[1]) {
+        var errorMessage = arguments[1].errorMessage;
+        // vm.alerts.errorResponse(errorMessage, "Server Service Error!", "Please read the message below:");
+        console.log("Upload error:"+errorMessage);
+      }
+    }
+
+    function successListener() {
+      if (arguments && arguments[1]) {
+        var img_url_path = $.getServerRoot() + "/service_generic_query" + arguments[1].result[0].stringkappa;
+        if (vm) {
+          vm.uploadedFileUrls.push(img_url_path);
+
+          setTimeout(function() {
+            // $('#input-id').fileinput('refresh');
+            $('#upload_div_1').remove();
+          }, 200);
+        }
+      }
+    }
+  </script>
+
+
+  <script>
+    var vm2 = new GenericUploadPageViewModel();
+    ko.applyBindings(vm2, document.getElementById('matrix_upload_div_2'));
+    $.subscribe("SUCCESS_LISTENER_2", successListener2);
+    $.subscribe("FAILED_LISTENER_2", failedListener2);
+    initialize_pic_upload_environment('input-id-2', vm2,"SUCCESS_LISTENER_2","FAILED_LISTENER_2");
+
+    function failedListener2() {
+      if (arguments && arguments[1]) {
+        var errorMessage = arguments[1].errorMessage;
+        // vm.alerts.errorResponse(errorMessage, "Server Service Error!", "Please read the message below:");
+        console.log("Upload error:"+errorMessage);
+      }
+    }
+
+    function successListener2() {
+      if (arguments && arguments[1]) {
+        var img_url_path = $.getServerRoot() + "/service_generic_query" + arguments[1].result[0].stringkappa;
+        if (vm2) {
+          vm2.uploadedFileUrls.push(img_url_path);
+
+          setTimeout(function() {
+            // $('#input-id').fileinput('refresh');
+            $('#upload_div_2').remove();
+          }, 200);
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

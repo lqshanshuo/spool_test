@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Matrix Components Framework">
+  <meta name="author" content="LY">
+  <title>中国平安</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap-fileinput/css/fileinput_ly.css" media="all">
+
+
+  <style>
+    .row > [class*="col-"] {
+      margin-bottom: 0px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/jz_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:688px">
+    <div class="container-fluid">
+      <div style="margin-top:300px">
+        <div class="row">
+          <div class="col-xs-6">
+            <div id="matrix_upload_div">
+              <div class="row">
+                <div data-bind="foreach:uploadedFileUrls">
+                  <div class="col-xs-12 text-center" style="margin-bottom:10px">
+                    <!-- <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px"> -->
+                    <img data-bind="attr:{src:'assets/self-owned/img/zgpa/xy_cp.jpg'}" class="img-thumbnail" style="width:180px;height:180px">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xs-6">
+            <div id="matrix_upload_div_2">
+              <div class="row">
+                <div data-bind="foreach:uploadedFileUrls">
+                  <div class="col-xs-12 text-center" style="margin-bottom:10px">
+                    <!-- <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px"> -->
+                    <img data-bind="attr:{src:'assets/self-owned/img/zgpa/xy_cp.jpg'}" class="img-thumbnail" style="width:180px;height:180px">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <form class="form-horizontal">
+              <div class="form-group text-center" style="margin-bottom: 6px;">
+                <div class="col-xs-10 col-xs-offset-1 text-left" style="overflow: auto">
+                  <div style="padding:10px;border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px">
+                    带着家人去环游世界,买豪车豪宅,开私人飞机......,只要能在平安打造自己的商业帝国,这些梦想就不再遥远
+                  </div>
+                </div>
+              </div>
+            </form>
+            <br>
+            <form class="form-horizontal">
+              <div class="form-group" style="font-size: 11px;">
+                <div class="col-xs-5 text-right">
+                  <img id="logoIMG" src="assets/self-owned/img/erweima.png" class="img-thumbnail" alt="500x500" style="width: 80px; height: 80px;">
+                </div>
+                <div class="col-xs-7 text-left">
+                  <p class="form-control-static" style="font-size: 14px;margin-top: 5px;color: white;">扫码关注天下通MBO专属公众号
+                    <br> 参与见证活动，更有机会赢取大奖</p>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+  <script src="assets/reference/bootstrap-fileinput/js/fileinput_ly.js"></script>
+  <script src="assets/reference/bootstrap-fileinput/js/locales/zh.js"></script>
+  <!-- Javascript for Matrix Self Owned -->
+  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+  <script src="assets/self-owned/js/generic/generic_query.js"></script>
+  <script src="assets/self-owned/js/generic/generic_table.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+  <script src="assets/self-owned/js/generic/generic_upload.js"></script>
+
+  <script>
+    var vm = new GenericUploadPageViewModel();
+    ko.applyBindings(vm, document.getElementById('matrix_upload_div'));
+    var img_url_path = "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1475334387102.jpg";
+    vm.uploadedFileUrls.push(img_url_path);
+  </script>
+
+
+  <script>
+    var vm2 = new GenericUploadPageViewModel();
+    ko.applyBindings(vm2, document.getElementById('matrix_upload_div_2'));
+    var img_url_path = "http://localhost:41535/service_generic_query/matrix/upload/scripter/ops/notebook/uploadPageData/ops_1475334387102.jpg";
+    vm2.uploadedFileUrls.push(img_url_path);
+  </script>
+</body>
+
+</html>
