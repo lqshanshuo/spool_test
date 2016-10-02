@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Matrix Components Framework">
+  <meta name="author" content="LY">
+  <title>中国平安</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css"> -->
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+
+  <style type="text/css">
+    .button_cs {
+      display: inline-block;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      font: 14px/100% Arial, Helvetica, sans-serif;
+      padding: .5em 2em .55em;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+      -webkit-border-radius: .5em;
+      -moz-border-radius: .5em;
+      border-radius: .5em;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    }
+
+    .button_cs:hover {
+      text-decoration: none;
+    }
+
+    .button_cs:active {
+      position: relative;
+      top: 1px;
+    }
+
+    input::-webkit-input-placeholder {
+      color: white !important;
+    }
+
+    input:-moz-placeholder {
+      color: white !important;
+    }
+
+    input::-moz-placeholder {
+      color: white !important;
+    }
+
+    input:-ms-input-placeholder {
+      color: white !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/cs_01_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:-58px;min-height:688px">
+    <div class="app-container">
+      <div class="row content-container">
+        <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+        <div class="container">
+          <div>
+
+            <div class="row">
+
+              <!-- logo of the pingan -->
+              <div style="margin-top:58px;">&nbsp;</div>
+
+
+
+              <!-- button group of main function -->
+
+              <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top:318px">
+                <div id="progress_div_yx" >
+                  <div class="progress text-center" style="height: 38px;margin-bottom:0px;border-radius:8px">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                      <button id="button_yx" onclick="type_chose('yingxiao')" class="button_cs btn btn-warning  btn-wide text-center" style="border-radius:8px;background-color:transparent;width:100%;font-weight:bold;font-size:18px; word-spacing:8px; letter-spacing: 2px;    padding-left: 26px;">营业收入测算</button>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div id="progress_div_qt" >
+                  <div class="progress text-center" style="height: 38px;margin-bottom:0px;border-radius:8px">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                      <button id="button_qt" onclick="type_chose('qutuo')" class="button_cs btn btn-warning  btn-wide text-center" style="border-radius:8px;background-color:transparent;width:100%;font-weight:bold;font-size:18px; word-spacing:8px; letter-spacing: 2px; padding-left: 26px;">区拓收入测算</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+
+              <div data-bind="visible: hasError" id="validation_div" class="col-xs-8 col-xs-offset-2 text-left">
+                <!--Validation DIV BEGIN-->
+                <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+                  <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>提示:</strong>
+                  <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+                    <div data-bind="text:$data"></div>
+                  </div>
+                </div>
+                <!--Validation DIV END-->
+              </div>
+
+              <!-- business_div  -->
+              <div id="business_div" data-bind="if:businessPOJO">
+                <div class="col-xs-10 col-xs-offset-1 text-center" data-bind="with:businessPOJO">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <div class="col-xs-8 col-xs-offset-2">
+                        <input style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" data-bind="value:id" type="text" class="form-control text-center" placeholder="业务代码">
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <div class="col-xs-8 col-xs-offset-2 ">
+                        <input style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" data-bind="value:passwd" type="password" class="form-control text-center" placeholder="密码">
+                      </div>
+                    </div>
+
+                    <div class="form-group ">
+                      <div class="col-xs-12 text-center">
+                        <a class="btn btn-danger  btn-wide text-center" href="#" style="width:140px;height: 36px;padding-top: 3px;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
+                          onclick="submit_login()">进&nbsp;入 </a>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="" style="color:white;font-size:11px">
+                    <span>本操作仅为测算结果，实际收入以系统数据为准</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- /.container -->
+
+
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+  <!-- Javascript for Matrix Self Owned -->
+  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+  <script src="assets/self-owned/js/generic/generic_query.js"></script>
+  <script src="assets/self-owned/js/generic/generic_table.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+
+  <script>
+    $(document).ready(function() {});
+  </script>
+
+  <!-- yangliu update script begin-->
+  <script>
+    var business_type = null;
+    function type_chose(type) {
+      if ('yingxiao' === type) {
+        $('#progress_div_yx').css('border', "3px solid yellow").css('border-radius', "8px");
+        $('#progress_div_qt').css('border', "none");
+      } else if ('qutuo' === type) {
+        $('#progress_div_qt').css('border', "3px solid yellow").css('border-radius', "8px");
+        $('#progress_div_yx').css('border', "none");
+      }
+      business_type = type;
+    }
+  </script>
+  <!-- yangliu update script end-->
+
+
+
+
+
+  <script>
+    function BusinessViewModel() {
+      var self = this;
+      self.id = ko.observable();
+      self.passwd = ko.observable();
+      self.targetUrl = ko.observable();
+      self.target = ko.observable("");
+      self.target.subscribe(function(newValue) {
+        var url = "";
+        if (newValue == "yingxiao") {
+          url = $.getRootPath() + '/pingan_shourususuan_2.html';
+        } else if (newValue == "qutuo") {
+          url = $.getRootPath() + '/pingan_shourususuan_3.html';
+        }
+        self.targetUrl(url);
+      });
+    }
+
+
+
+    var genericModalViewModel = new GenericModalViewModel();
+    ko.applyBindings(genericModalViewModel, document.getElementById('contentDiv'));
+
+
+
+    var business_vm = new BusinessViewModel();
+
+
+    genericModalViewModel.businessPOJO(business_vm);
+
+    // *******YOUR SHOULD CODING IN HERE:*******
+    var businessValidation = function() {
+      var errorMessages = [];
+      //validate logic...
+
+      //validate
+      ValidationPOJO.validate("业务代码", genericModalViewModel.businessPOJO().id(), errorMessages, ['KEY_NOT_NULL']);
+      ValidationPOJO.validate("密码", genericModalViewModel.businessPOJO().passwd(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_MAX']);
+      if(!business_type){
+        errorMessages.push("请选择测算类型");
+      }
+      return errorMessages;
+    }
+
+    function submit_login(target) {
+      genericModalViewModel.businessPOJO().target(target);
+
+      if (!genericModalViewModel.validation(businessValidation)) {
+        return;
+      } else {
+
+        // validation correct
+        // do your business...
+        //id = 1240792116  passwd = 1111
+        var id = genericModalViewModel.businessPOJO().id();
+        var passwd = genericModalViewModel.businessPOJO().passwd();
+        var targetUrl = genericModalViewModel.businessPOJO().targetUrl();
+        var staff_type = "YINGXIAO";
+
+        if (target == 'qutuo') {
+          staff_type = "QUTUO";
+        }
+
+        var query = {
+          "name": id,
+          "passwd": passwd,
+          "param1": staff_type
+        };
+        var url = $.getRootPath() + "/api/account/login";
+        var data = {
+          'queryJson': JSON.stringify(query)
+        }
+
+
+        $.serverRequest(url, data, "SUSUAN_LOGIN_SUCCESS", "SUSUAN_LOGIN_RESPONSE_ERROR", "SUSUAN_LOGIN_SERVER_ERROR", "POST", true, targetUrl);
+
+        $.subscribe("SUSUAN_LOGIN_SUCCESS", susuanLoginSuccessListener);
+        $.subscribe("SUSUAN_LOGIN_RESPONSE_ERROR", susuanLoginFailedListener);
+        $.subscribe("SUSUAN_LOGIN_SERVER_ERROR", susuanLoginServerFailedListener);
+      }
+    }
+
+    function susuanLoginSuccessListener() {
+      if (arguments && arguments[1]) {
+        var targetUrl = arguments[1].addtion;
+        location.href = targetUrl;
+      }
+      clear();
+    }
+
+    function susuanLoginFailedListener() {
+      if (arguments && arguments[1] && arguments[1].response) {
+        var errorMessage = arguments[1].response.errorMessage;
+        genericModalViewModel.hasError(arguments[1].response.hasError);
+        genericModalViewModel.errorMessage.push(errorMessage);
+      }
+      clear();
+    }
+
+    function susuanLoginServerFailedListener() {
+      genericModalViewModel.hasError(true);
+      genericModalViewModel.errorMessage.push("服务出错，请联系系统管理员。");
+      clear();
+    }
+
+
+    function clear() {
+      $.unsubscribe("SUSUAN_LOGIN_SUCCESS", susuanLoginSuccessListener);
+      $.unsubscribe("SUSUAN_LOGIN_RESPONSE_ERROR", susuanLoginFailedListener);
+      $.unsubscribe("SUSUAN_LOGIN_SERVER_ERROR", susuanLoginServerFailedListener);
+    }
+  </script>
+</body>
+
+</html>
