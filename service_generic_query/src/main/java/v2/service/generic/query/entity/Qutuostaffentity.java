@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
  * @author zoudan
  */
 @Entity
-public class Staffentity implements Serializable {
+public class Qutuostaffentity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,28 +50,24 @@ public class Staffentity implements Serializable {
     private Integer modifyCount;
 
 //---------------------------generic attributes end ----------------------------
-    
-    
-    
 //---------------------------special attributes start --------------------------
     private String institution;                         //机构
-    private String sale_department_code;                //营业部代码
-    private String sale_group_code;                     //营业组代码
+    private String zhanyechu_code;                      //展业处代码
+    private String zhanyeke_code;                       //展业课代码
+    private String zhanyequ_code;                       //展业区代码
     private String personal_code;                       //个人代码
     private String staff_name;                          //姓名
-    private String curent_rank;                         //当前职级
-    private String begin_rank;                          //入司职级
+    private String sex;                                 //性别
     private String begin_time;                          //入司时间
+    private String curent_rank;                         //职级
     private String id_last_four;                        //证件号后四位
     private String renewal_history;                     //续期历史数据
-    private String direct_group_count;                  //直接小组数
-    private String history_num_1;                       //历史数据1
-    private String indirect_group_count;                //间接小组数
-    private String history_num_2;                       //历史数据2
-    private String subordinate_part_num;                //下辖部数量
-    private String history_num_3;                       //历史数据3
+
+    private String educate_benefits;                    //育成利益
+    private String zengke_benefits;                     //增课利益
+    private String zengchu_benefits;                    //增处利益
+    private String development_allowance;               //区部发展津贴
     private String other_income_percent;                //其他收入占比
-    private String history_num_4;                       //历史数据4
 
     private String str1;
     private String str2;
@@ -236,20 +232,28 @@ public class Staffentity implements Serializable {
         this.institution = institution;
     }
 
-    public String getSale_department_code() {
-        return sale_department_code;
+    public String getZhanyechu_code() {
+        return zhanyechu_code;
     }
 
-    public void setSale_department_code(String sale_department_code) {
-        this.sale_department_code = sale_department_code;
+    public void setZhanyechu_code(String zhanyechu_code) {
+        this.zhanyechu_code = zhanyechu_code;
     }
 
-    public String getSale_group_code() {
-        return sale_group_code;
+    public String getZhanyeke_code() {
+        return zhanyeke_code;
     }
 
-    public void setSale_group_code(String sale_group_code) {
-        this.sale_group_code = sale_group_code;
+    public void setZhanyeke_code(String zhanyeke_code) {
+        this.zhanyeke_code = zhanyeke_code;
+    }
+
+    public String getZhanyequ_code() {
+        return zhanyequ_code;
+    }
+
+    public void setZhanyequ_code(String zhanyequ_code) {
+        this.zhanyequ_code = zhanyequ_code;
     }
 
     public String getPersonal_code() {
@@ -268,20 +272,12 @@ public class Staffentity implements Serializable {
         this.staff_name = staff_name;
     }
 
-    public String getCurent_rank() {
-        return curent_rank;
+    public String getSex() {
+        return sex;
     }
 
-    public void setCurent_rank(String curent_rank) {
-        this.curent_rank = curent_rank;
-    }
-
-    public String getBegin_rank() {
-        return begin_rank;
-    }
-
-    public void setBegin_rank(String begin_rank) {
-        this.begin_rank = begin_rank;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getBegin_time() {
@@ -290,6 +286,14 @@ public class Staffentity implements Serializable {
 
     public void setBegin_time(String begin_time) {
         this.begin_time = begin_time;
+    }
+
+    public String getCurent_rank() {
+        return curent_rank;
+    }
+
+    public void setCurent_rank(String curent_rank) {
+        this.curent_rank = curent_rank;
     }
 
     public String getId_last_four() {
@@ -308,52 +312,36 @@ public class Staffentity implements Serializable {
         this.renewal_history = renewal_history;
     }
 
-    public String getDirect_group_count() {
-        return direct_group_count;
+    public String getEducate_benefits() {
+        return educate_benefits;
     }
 
-    public void setDirect_group_count(String direct_group_count) {
-        this.direct_group_count = direct_group_count;
+    public void setEducate_benefits(String educate_benefits) {
+        this.educate_benefits = educate_benefits;
     }
 
-    public String getHistory_num_1() {
-        return history_num_1;
+    public String getZengke_benefits() {
+        return zengke_benefits;
     }
 
-    public void setHistory_num_1(String history_num_1) {
-        this.history_num_1 = history_num_1;
+    public void setZengke_benefits(String zengke_benefits) {
+        this.zengke_benefits = zengke_benefits;
     }
 
-    public String getIndirect_group_count() {
-        return indirect_group_count;
+    public String getZengchu_benefits() {
+        return zengchu_benefits;
     }
 
-    public void setIndirect_group_count(String indirect_group_count) {
-        this.indirect_group_count = indirect_group_count;
+    public void setZengchu_benefits(String zengchu_benefits) {
+        this.zengchu_benefits = zengchu_benefits;
     }
 
-    public String getHistory_num_2() {
-        return history_num_2;
+    public String getDevelopment_allowance() {
+        return development_allowance;
     }
 
-    public void setHistory_num_2(String history_num_2) {
-        this.history_num_2 = history_num_2;
-    }
-
-    public String getSubordinate_part_num() {
-        return subordinate_part_num;
-    }
-
-    public void setSubordinate_part_num(String subordinate_part_num) {
-        this.subordinate_part_num = subordinate_part_num;
-    }
-
-    public String getHistory_num_3() {
-        return history_num_3;
-    }
-
-    public void setHistory_num_3(String history_num_3) {
-        this.history_num_3 = history_num_3;
+    public void setDevelopment_allowance(String development_allowance) {
+        this.development_allowance = development_allowance;
     }
 
     public String getOther_income_percent() {
@@ -362,14 +350,6 @@ public class Staffentity implements Serializable {
 
     public void setOther_income_percent(String other_income_percent) {
         this.other_income_percent = other_income_percent;
-    }
-
-    public String getHistory_num_4() {
-        return history_num_4;
-    }
-
-    public void setHistory_num_4(String history_num_4) {
-        this.history_num_4 = history_num_4;
     }
 
     public String getStr1() {
@@ -467,22 +447,30 @@ public class Staffentity implements Serializable {
     public void setStr12(String str12) {
         this.str12 = str12;
     }
+    
+    
+
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + Objects.hashCode(this.institution);
-        hash = 61 * hash + Objects.hashCode(this.sale_department_code);
-        hash = 61 * hash + Objects.hashCode(this.sale_group_code);
-        hash = 61 * hash + Objects.hashCode(this.personal_code);
-        hash = 61 * hash + Objects.hashCode(this.staff_name);
-        hash = 61 * hash + Objects.hashCode(this.curent_rank);
-        hash = 61 * hash + Objects.hashCode(this.begin_rank);
-        hash = 61 * hash + Objects.hashCode(this.begin_time);
-        hash = 61 * hash + Objects.hashCode(this.id_last_four);
-        hash = 61 * hash + Objects.hashCode(this.renewal_history);
-        hash = 61 * hash + Objects.hashCode(this.direct_group_count);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.name);
+        hash = 17 * hash + Objects.hashCode(this.parentName);
+        hash = 17 * hash + Objects.hashCode(this.category);
+        hash = 17 * hash + Objects.hashCode(this.description);
+        hash = 17 * hash + Objects.hashCode(this.type);
+        hash = 17 * hash + Objects.hashCode(this.status);
+        hash = 17 * hash + Objects.hashCode(this.institution);
+        hash = 17 * hash + Objects.hashCode(this.zhanyechu_code);
+        hash = 17 * hash + Objects.hashCode(this.zhanyeke_code);
+        hash = 17 * hash + Objects.hashCode(this.zhanyequ_code);
+        hash = 17 * hash + Objects.hashCode(this.staff_name);
+        hash = 17 * hash + Objects.hashCode(this.sex);
+        hash = 17 * hash + Objects.hashCode(this.begin_time);
+        hash = 17 * hash + Objects.hashCode(this.curent_rank);
+        hash = 17 * hash + Objects.hashCode(this.id_last_four);
+        hash = 17 * hash + Objects.hashCode(this.renewal_history);
+        hash = 17 * hash + Objects.hashCode(this.educate_benefits);
         return hash;
     }
 
@@ -497,29 +485,29 @@ public class Staffentity implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Staffentity other = (Staffentity) obj;
+        final Qutuostaffentity other = (Qutuostaffentity) obj;
         if (!Objects.equals(this.institution, other.institution)) {
             return false;
         }
-        if (!Objects.equals(this.sale_department_code, other.sale_department_code)) {
+        if (!Objects.equals(this.zhanyechu_code, other.zhanyechu_code)) {
             return false;
         }
-        if (!Objects.equals(this.sale_group_code, other.sale_group_code)) {
+        if (!Objects.equals(this.zhanyeke_code, other.zhanyeke_code)) {
             return false;
         }
-        if (!Objects.equals(this.personal_code, other.personal_code)) {
+        if (!Objects.equals(this.zhanyequ_code, other.zhanyequ_code)) {
             return false;
         }
         if (!Objects.equals(this.staff_name, other.staff_name)) {
             return false;
         }
-        if (!Objects.equals(this.curent_rank, other.curent_rank)) {
-            return false;
-        }
-        if (!Objects.equals(this.begin_rank, other.begin_rank)) {
+        if (!Objects.equals(this.sex, other.sex)) {
             return false;
         }
         if (!Objects.equals(this.begin_time, other.begin_time)) {
+            return false;
+        }
+        if (!Objects.equals(this.curent_rank, other.curent_rank)) {
             return false;
         }
         if (!Objects.equals(this.id_last_four, other.id_last_four)) {
@@ -528,7 +516,19 @@ public class Staffentity implements Serializable {
         if (!Objects.equals(this.renewal_history, other.renewal_history)) {
             return false;
         }
-        if (!Objects.equals(this.direct_group_count, other.direct_group_count)) {
+        if (!Objects.equals(this.educate_benefits, other.educate_benefits)) {
+            return false;
+        }
+        if (!Objects.equals(this.zengke_benefits, other.zengke_benefits)) {
+            return false;
+        }
+        if (!Objects.equals(this.zengchu_benefits, other.zengchu_benefits)) {
+            return false;
+        }
+        if (!Objects.equals(this.development_allowance, other.development_allowance)) {
+            return false;
+        }
+        if (!Objects.equals(this.other_income_percent, other.other_income_percent)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -537,13 +537,10 @@ public class Staffentity implements Serializable {
         return true;
     }
 
-  
-
     @Override
     public String toString() {
-        return "Staffentity{" + "id=" + id + ", parentId=" + parentId + ", name=" + name + ", parentName=" + parentName + ", category=" + category + ", description=" + description + ", type=" + type + ", status=" + status + ", creator=" + creator + ", lastModifier=" + lastModifier + ", createTime=" + createTime + ", lastUpdateTime=" + lastUpdateTime + ", enabled=" + enabled + ", valid=" + valid + ", deleted=" + deleted + ", priority=" + priority + ", modifyCount=" + modifyCount + ", institution=" + institution + ", sale_department_code=" + sale_department_code + ", sale_group_code=" + sale_group_code + ", personal_code=" + personal_code + ", staff_name=" + staff_name + ", curent_rank=" + curent_rank + ", begin_rank=" + begin_rank + ", begin_time=" + begin_time + ", id_last_four=" + id_last_four + ", renewal_history=" + renewal_history + ", direct_group_count=" + direct_group_count + ", history_num_1=" + history_num_1 + ", indirect_group_count=" + indirect_group_count + ", history_num_2=" + history_num_2 + ", subordinate_part_num=" + subordinate_part_num + ", history_num_3=" + history_num_3 + ", other_income_percent=" + other_income_percent + ", history_num_4=" + history_num_4 + ", str1=" + str1 + ", str2=" + str2 + ", str3=" + str3 + ", str4=" + str4 + ", str5=" + str5 + ", str6=" + str6 + ", str7=" + str7 + ", str8=" + str8 + ", str9=" + str9 + ", str10=" + str10 + ", str11=" + str11 + ", str12=" + str12 + '}';
+        return "Qutuostaffentity{" + "id=" + id + ", parentId=" + parentId + ", name=" + name + ", parentName=" + parentName + ", category=" + category + ", description=" + description + ", type=" + type + ", status=" + status + ", creator=" + creator + ", lastModifier=" + lastModifier + ", createTime=" + createTime + ", lastUpdateTime=" + lastUpdateTime + ", enabled=" + enabled + ", valid=" + valid + ", deleted=" + deleted + ", priority=" + priority + ", modifyCount=" + modifyCount + ", institution=" + institution + ", zhanyechu_code=" + zhanyechu_code + ", zhanyeke_code=" + zhanyeke_code + ", zhanyequ_code=" + zhanyequ_code + ", personal_code=" + personal_code + ", staff_name=" + staff_name + ", sex=" + sex + ", begin_time=" + begin_time + ", curent_rank=" + curent_rank + ", id_last_four=" + id_last_four + ", renewal_history=" + renewal_history + ", educate_benefits=" + educate_benefits + ", zengke_benefits=" + zengke_benefits + ", zengchu_benefits=" + zengchu_benefits + ", development_allowance=" + development_allowance + ", other_income_percent=" + other_income_percent + ", str1=" + str1 + ", str2=" + str2 + ", str3=" + str3 + ", str4=" + str4 + ", str5=" + str5 + ", str6=" + str6 + ", str7=" + str7 + ", str8=" + str8 + ", str9=" + str9 + ", str10=" + str10 + ", str11=" + str11 + ", str12=" + str12 + '}';
     }
-    
-    
+
 
 }
