@@ -461,7 +461,7 @@
     // };
 
     defaultPreviewSettings = {
-        image: {width: "120px", height: "100px"},
+        image: {width: "90px", height: "90px"},
         html: {width: "213px", height: "120px"},
         text: {width: "213px", height: "120px"},
         video: {width: "213px", height: "120px"},
@@ -3279,7 +3279,7 @@
         msgImageResizeException: 'Error while resizing the image.<pre>{errors}</pre>',
         // dropZoneTitle: 'Drag & drop files here &hellip;',
         // dropZoneClickTitle: '<br>(or click to select {files})',
-        dropZoneTitle: '<h2 style="margin-top:-20px">+</h2>',
+        dropZoneTitle: '<h2 style="margin-top:-30px;font-size:14px;color:#888"><span style="font-size:36px;">+</span><br><span style="font-size:14px;">选择图片</span></h2>',
         dropZoneClickTitle: '',
         previewZoomButtonTitles: {
             prev: 'View previous file',
