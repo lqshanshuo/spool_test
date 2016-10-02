@@ -14,13 +14,6 @@
   <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
 
-  <style type="text/css">
-    #pinganlogo {
-      display: block;
-      position: relative;
-      margin: auto;
-    }
-  </style>
 </head>
 
 <body>
@@ -38,7 +31,7 @@
               <br>
               <br>
 
-              <div class="col-xs-10 col-xs-offset-1 text-center">
+              <div class="col-xs-10 col-xs-offset-1">
                 <div id="validation_div" style="margin:0px 18px">
                   <!--Validation DIV BEGIN-->
                   <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
@@ -177,7 +170,7 @@
         }
 
         var param = UtilPOJO.encode(JSON.stringify(json_obj));
-        window.location.replace($.getRootPath() + '/pingan_xinyuanka_3.html?token=' + param);
+        window.location.replace($.getRootPath() + '/pa_xy_03.html?token=' + param);
       }
     }
   </script>

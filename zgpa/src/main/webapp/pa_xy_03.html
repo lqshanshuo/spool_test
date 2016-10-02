@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Matrix Components Framework">
+  <meta name="author" content="LY">
+  <title>中国平安</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+
+  <style type="text/css">
+
+  </style>
+</head>
+
+<body>
+
+  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/xy_03_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:580px">
+    <div class="app-container">
+      <div class="row content-container">
+        <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+        <div class="container">
+          <div>
+            <div class="row" style="margin-top:210px">
+              <div class="col-xs-3">
+                <!-- <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-rectangle" style="margin-top: -20px;width: 160px;height: 120px;">
+                  <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-rectangle" style="margin-top: 20px;width: 160px;height: 120px;"> -->
+                <div style="margin-top: -20px;width: 160px;height: 120px;">
+                  <button onclick="chose_type('cp');" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button>
+                </div>
+                <div style="margin-top: 20px;width: 160px;height: 120px;">
+                  <button onclick="chose_type('xby')" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button>
+                </div>
+              </div>
+              <div class="col-xs-6" style="padding-left: 0px;padding-right: 0px;">
+                <!-- <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-rectangle" style="margin-top: -110px;width: 100%;height: 80px;"> -->
+                <div style="margin-top: -80px;width: 100%;height: 80px;">
+                  <button onclick="chose_type('flb')" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button>
+                </div>
+                <!-- <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-circle" style="margin-top: 0px;width:100%;height:220px;"> -->
+                <div style="margin-top: -6px;width:100%;height:190px;padding-left: 10px;padding-right: 6px;">
+                  <img id="img_xy" src="" alt="..." class="img-circle" style="margin-left: -3px;margin-top: 0px;width:100%;height:196px;">
+                  <!-- <button  onclick="alert('7')" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button> -->
+                </div>
+                <!-- <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-rectangle" style="margin-top: 0px;width: 100%;height: 80px;"> -->
+                <div style="margin-top: 0px;width: 100%;height: 80px;">
+                  <button onclick="chose_type('sj')" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button>
+                </div>
+              </div>
+              <div class="col-xs-3">
+                <!-- <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-rectangle" style="margin-left: -50px;margin-top: -20px;width: 160px;height: 120px;">
+                  <img src="assets/self-owned/img/pingan1.jpg" alt="..." class="img-rectangle" style="margin-left: -50px;margin-top: 20px;width: 160px;height: 120px;"> -->
+                <div style="margin-left: -50px;margin-top: -20px;width: 160px;height: 120px;">
+                  <button onclick="chose_type('hz')" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button>
+                </div>
+                <div style="margin-left: -50px;margin-top: 20px;width: 160px;height: 120px;">
+                  <button onclick="chose_type('hc')" class=" btn btn-warning  btn-wide text-center" style="background-color:transparent;width:100%;height:100%"></button>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row" id="contentDIV">
+              <div class="col-xs-12 text-center">
+
+                <form class="form-horizontal">
+
+                  <div class="form-group text-center">
+                    <div class="col-xs-12 text-center" style="overflow: auto">
+                      <textarea style="border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px" data-bind="value:inputContent,valueUpdate:'input'" rows="4" cols="40" placeholder="">带着家人去环游世界,买豪车豪宅,开私人飞机......,只要能在平安打造自己的商业帝国,这些梦想就不再遥远
+                      </textarea>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <div class="col-xs-12 text-center">
+                      <a class="btn btn-danger  btn-wide text-center" href="#" style="height: 36px;padding-top: 3px;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
+                        onclick="persist()">分享至内部工作群 </a>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- /.container -->
+
+
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/reference/flat-ui/js/vendor/video.js"></script>
+  <script src="assets/reference/flat-ui/js/flat-ui.min.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/prettify.js"></script>
+  <script src="assets/reference/flat-ui/docs/assets/js/application.js"></script>
+  <!-- Javascript for Matrix Self Owned -->
+  <script src="assets/self-owned/js/generic/generic_algorithm.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cache.js"></script>
+  <script src="assets/self-owned/js/generic/generic_charting.js"></script>
+  <script src="assets/self-owned/js/generic/generic_csv.js"></script>
+  <script src="assets/self-owned/js/generic/generic_cud.js"></script>
+  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+  <script src="assets/self-owned/js/generic/generic_prototype.js"></script>
+  <script src="assets/self-owned/js/generic/generic_query.js"></script>
+  <script src="assets/self-owned/js/generic/generic_table.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+
+  <script src="assets/self-owned/js/xinyuanka/xinyuanka.js"></script>
+
+  <script>
+    function getUserInfo() {
+      var query = {
+        "param1": "YINGXIAO_OR_QUTUO"
+      };
+      var url = $.getRootPath() + "/api/account/getUserInfo";
+      var data = {
+        'queryJson': JSON.stringify(query)
+      }
+
+
+      $.serverRequest(url, data, "XINYUAN_GET_USER_INFO_SUCCESS", "XINYUAN_GET_USER_INFO_RESPONSE_ERROR", "XINYUAN_GET_USER_INFO_SERVER_ERROR", "POST");
+
+      $.subscribe("XINYUAN_GET_USER_INFO_SUCCESS", xinyuanGetUserInfoSuccessListener);
+      $.subscribe("XINYUAN_GET_USER_INFO_RESPONSE_ERROR", xinyuanGetUserInfoFailedListener);
+      $.subscribe("XINYUAN_GET_USER_INFO_SERVER_ERROR", xinyuanGetUserInfoFailedListener);
+
+    }
+
+    function xinyuanGetUserInfoSuccessListener() {
+
+      if (arguments && arguments[1]) {
+        var resp = arguments[1];
+        var userInfo = eval("(" + resp.result[0] + ")");
+        xinyuanka_3.userInfo(userInfo);
+      }
+    }
+
+    function xinyuanGetUserInfoFailedListener() {
+      console.log("get user failed")
+      location.href = $.getRootPath() + '/pa_xy_01.html';
+    }
+  </script>
+  <script>
+    $(document).ready(function() {
+      environmentCheck();
+      getUserInfo();
+    });
+
+    var xinyuanka_3 = new Xinyuanka_3();
+
+    ko.applyBindings(xinyuanka_3, document.getElementById('contentDIV'));
+
+    var environmentCheck = function() {
+
+      var tokenFlag = $.hasUrlParam('token');
+      if (tokenFlag) {
+        var token = $.urlParamValue('token');
+        var param = UtilPOJO.decode(token);
+        var obj = JSON.parse(param);
+        if (xinyuanka_3) {
+          xinyuanka_3.key_1 = obj.key_1;
+          xinyuanka_3.key_2 = obj.key_2;
+        }
+      } else {}
+    }
+  </script>
+  <script>
+    var type = null;
+
+    function chose_type(input) {
+      type = input;
+      var src = "assets/self-owned/img/zgpa/xy_" + input + ".jpg";
+      $('#img_xy').attr('src', src);
+      if (xinyuanka_3) {
+        xinyuanka_3.dream_type(type);
+      }
+    }
+
+    var businessValidation = function() {
+      var errorMessages = [];
+      //validate logic...
+
+      //validate
+      ValidationPOJO.validate("心愿卡片:", xinyuanka_3.dream_type(), errorMessages, ['KEY_NOT_NULL']);
+      ValidationPOJO.validate("心愿内容:", xinyuanka_3.inputContent(), errorMessages, ['KEY_NOT_NULL']);
+
+
+
+      return errorMessages;
+    }
+
+    function persist() {
+      var hasError = true;
+      var errorMessages = businessValidation();
+      if (errorMessages.length > 0) {
+        var message = "";
+        $.each(errorMessages, function(idx, val) {
+          message += val + "\n";
+        });
+        alert(message);
+      } else {
+        hasError = false;
+      }
+
+      // if (!genericModalViewModel.validation(businessValidation)) {
+      if (hasError) {
+        return;
+      } else {
+        // validation correct
+        // do your business...
+        var json = {
+          key_1: xinyuanka_3.key_1,
+          key_2: xinyuanka_3.key_2,
+          dream_type: xinyuanka_3.dream_type(),
+          inputContent: xinyuanka_3.inputContent()
+        }
+
+        var param = JSON.stringify(json);
+
+        param = UtilPOJO.encode(param);
+        var shareJson = {
+          'type': 'XinYuanKa',
+          'json': param,
+          'username': xinyuanka_3.userInfo().staff_name,
+          'stringalpha': xinyuanka_3.userInfo().personal_code
+        }
+        var data = {
+          'shareJson': $.toJSON(shareJson)
+        };
+
+        $.serverRequest($.getServerRoot() + '/service_generic_query/api/share/generate/9999', data, "TOKEN_SUCCESS", "TOKEN_FAILED", "TOKEN_SERVICE_FAILED");
+
+      }
+
+    }
+    $.subscribe("TOKEN_SUCCESS", tokenSuccessListener);
+    $.subscribe("TOKEN_FAILED", tokenFailedListener);
+    $.subscribe("TOKEN_SERVICE_FAILED", tokenServiceListener);
+
+    function tokenSuccessListener() {
+      if (arguments && arguments[1]) {
+        window.location.replace($.getRootPath() + '/pa_xy_04.html?token=' + arguments[1].result[0]);
+      }
+    }
+
+    function tokenFailedListener() {
+      if (arguments && arguments[1]) {
+        var errorMessage = arguments[1].errorMessage;
+        console.log(errorMessage);
+      }
+    }
+
+    function tokenServiceListener() {}
+  </script>
+</body>
+
+</html>

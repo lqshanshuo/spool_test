@@ -170,7 +170,9 @@
       //validate
       ValidationPOJO.validate("业务代码", genericModalViewModel.businessPOJO().id(), errorMessages, ['KEY_NOT_NULL']);
       ValidationPOJO.validate("密码", genericModalViewModel.businessPOJO().passwd(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_MAX']);
-
+          if(genericModalViewModel.businessPOJO().passwd() && genericModalViewModel.businessPOJO().passwd().length!=4){
+            errorMessages.push("密码 长度不匹配");
+          }
       return errorMessages;
     }
 
