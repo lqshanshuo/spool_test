@@ -36,7 +36,7 @@
 
 <body>
 
-  <div id="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/jz_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:688px">
+  <div id="contentDiv" class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/jz_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:688px;background-attachment: fixed;">
     <div class="app-container">
       <div class="row content-container">
         <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
@@ -70,7 +70,7 @@
                 <br>
               </div>
 
-              <div data-bind="visible: hasError" id="validation_div" class="col-xs-8 col-xs-offset-2 text-left">
+              <div data-bind="visible: hasError" id="validation_div" class="col-xs-8 col-xs-offset-2 text-left" style="display:none">
                 <!--Validation DIV BEGIN-->
                 <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
                   <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">

@@ -34,7 +34,6 @@ public class LoginResource {
 
     private static final String Succeesed = "SUCCEESED";
     private static final String Failed = "FAILED";
-    private static final String QueryUrl = "http://localhost:8080/service_generic_query/api/query/native";
 
     @POST
     @Path("login")
