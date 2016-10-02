@@ -7,12 +7,18 @@
 
 function Xinyuanka_3() {
     var self = this;
+    //cp: chaopiao
+    //hz: haozhai
+    //hc: haoche
+    //sj: shouji
+    //flb: feilvbin lvyou
+    //xby: xibanya lvyou
     self.dream_type = ko.observable();
 
     self.key_1 = null;
     self.key_2 = null;
 
-    self.inputContent = ko.observable();
+    self.inputContent = ko.observable("带着家人去环游世界,买豪车豪宅,开私人飞机......,只要能在平安打造自己的商业帝国,这些梦想就不再遥远");
     self.userInfo = ko.observable();
 }
 
