@@ -153,96 +153,93 @@
   </script>
 
   <script>
-    function BusinessViewModel() {
-      var self = this;
-      self.id = ko.observable();
-      self.passwd = ko.observable();
-      self.targetUrl = ko.observable($.getRootPath() + '/pa_jz_02.html');
-    }
 
-
-
-    var genericModalViewModel = new GenericModalViewModel();
-    ko.applyBindings(genericModalViewModel, document.getElementById('contentDiv'));
-
-
-
-    var business_vm = new BusinessViewModel();
-
-
-    genericModalViewModel.businessPOJO(business_vm);
-
-    // *******YOUR SHOULD CODING IN HERE:*******
-    var businessValidation = function() {
-      var errorMessages = [];
-      //validate logic...
-
-      //validate
-      ValidationPOJO.validate("业务代码", genericModalViewModel.businessPOJO().id(), errorMessages, ['KEY_NOT_NULL']);
-      ValidationPOJO.validate("密码", genericModalViewModel.businessPOJO().passwd(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_MAX']);
-
-      return errorMessages;
-    }
-
-    function submit_login() {
-      if (!genericModalViewModel.validation(businessValidation)) {
-        return;
-      } else {
-
-        // validation correct
-        // do your business...
-
-        var id = genericModalViewModel.businessPOJO().id();
-        var passwd = genericModalViewModel.businessPOJO().passwd();
-        var targetUrl = genericModalViewModel.businessPOJO().targetUrl();
-
-        var query = {
-          "name": id,
-          "passwd": passwd
-        };
-        var url = $.getRootPath() + "/api/account/login";
-        var data = {
-          'queryJson': JSON.stringify(query)
-        }
-
-
-        $.serverRequest(url, data, "JIANZHENG_LOGIN_SUCCESS", "JIANZHENG_LOGIN_RESPONSE_ERROR", "JIANZHENG_LOGIN_SERVER_ERROR", "POST", true, targetUrl);
-
-        $.subscribe("JIANZHENG_LOGIN_SUCCESS", susuanLoginSuccessListener);
-        $.subscribe("JIANZHENG_LOGIN_RESPONSE_ERROR", susuanLoginFailedListener);
-        $.subscribe("JIANZHENG_LOGIN_SERVER_ERROR", susuanLoginServerFailedListener);
+      function BusinessViewModel() {
+          var self = this;
+          self.id = ko.observable();
+          self.passwd = ko.observable();
+          self.targetUrl = ko.observable($.getRootPath() + '/pa_jz_02.html');
       }
-    }
 
-    function susuanLoginSuccessListener() {
-      if (arguments && arguments[1]) {
-        var targetUrl = arguments[1].addtion;
-        location.href = targetUrl;
+
+
+      var genericModalViewModel = new GenericModalViewModel();
+      ko.applyBindings(genericModalViewModel, document.getElementById('contentDiv'));
+
+
+
+      var business_vm = new BusinessViewModel();
+
+
+      genericModalViewModel.businessPOJO(business_vm);
+
+      // *******YOUR SHOULD CODING IN HERE:*******
+      var businessValidation = function () {
+          var errorMessages = [];
+          //validate logic...
+
+          //validate
+          ValidationPOJO.validate("员工ID", genericModalViewModel.businessPOJO().id(), errorMessages, ['KEY_NOT_NULL']);
+          ValidationPOJO.validate("密码", genericModalViewModel.businessPOJO().passwd(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_MAX']);
+
+          return errorMessages;
       }
-      clear();
-    }
 
-    function susuanLoginFailedListener() {
-      if (arguments && arguments[1] && arguments[1].response) {
-        var errorMessage = arguments[1].response.errorMessage;
-        genericModalViewModel.hasError(arguments[1].response.hasError);
-        genericModalViewModel.errorMessage.push(errorMessage);
+      function submit_login() {
+          if (!genericModalViewModel.validation(businessValidation)) {
+              return;
+          } else {
+
+              // validation correct
+              // do your business...
+
+              var id = genericModalViewModel.businessPOJO().id();
+              var passwd = genericModalViewModel.businessPOJO().passwd();
+              var targetUrl = genericModalViewModel.businessPOJO().targetUrl();
+
+              var query = {"name": id, "passwd": passwd, "param1":"YINGXIAO_OR_QUTUO"};
+              var url = $.getRootPath() + "/api/account/login";
+              var data = {'queryJson': JSON.stringify(query)}
+
+
+              $.serverRequest(url, data, "JIANZHENG_LOGIN_SUCCESS", "JIANZHENG_LOGIN_RESPONSE_ERROR", "JIANZHENG_LOGIN_SERVER_ERROR", "POST", true, targetUrl);
+
+              $.subscribe("JIANZHENG_LOGIN_SUCCESS", susuanLoginSuccessListener);
+              $.subscribe("JIANZHENG_LOGIN_RESPONSE_ERROR", susuanLoginFailedListener);
+              $.subscribe("JIANZHENG_LOGIN_SERVER_ERROR", susuanLoginServerFailedListener);
+          }
       }
-      clear();
-    }
 
-    function susuanLoginServerFailedListener() {
-      genericModalViewModel.hasError(true);
-      genericModalViewModel.errorMessage.push("服务出错，请联系系统管理员。");
-      clear();
-    }
+      function susuanLoginSuccessListener() {
+          if (arguments && arguments[1]) {
+              var targetUrl = arguments[1].addtion;
+              location.href = targetUrl;
+          }
+          clear();
+      }
+
+      function susuanLoginFailedListener() {
+          if (arguments && arguments[1] && arguments[1].response) {
+              var errorMessage = arguments[1].response.errorMessage;
+              genericModalViewModel.hasError(arguments[1].response.hasError);
+              genericModalViewModel.errorMessage.push(errorMessage);
+          }
+          clear();
+      }
+
+      function susuanLoginServerFailedListener() {
+          genericModalViewModel.hasError(true);
+          genericModalViewModel.errorMessage.push("服务出错，请联系系统管理员。");
+          clear();
+      }
 
 
-    function clear() {
-      $.unsubscribe("JIANZHENG_LOGIN_SUCCESS", susuanLoginSuccessListener);
-      $.unsubscribe("JIANZHENG_LOGIN_RESPONSE_ERROR", susuanLoginFailedListener);
-      $.unsubscribe("JIANZHENG_LOGIN_SERVER_ERROR", susuanLoginServerFailedListener);
-    }
+      function clear() {
+          $.unsubscribe("JIANZHENG_LOGIN_SUCCESS", susuanLoginSuccessListener);
+          $.unsubscribe("JIANZHENG_LOGIN_RESPONSE_ERROR", susuanLoginFailedListener);
+          $.unsubscribe("JIANZHENG_LOGIN_SERVER_ERROR", susuanLoginServerFailedListener);
+      }
+
   </script>
 </body>
 
