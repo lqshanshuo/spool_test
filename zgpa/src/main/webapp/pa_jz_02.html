@@ -79,6 +79,13 @@
           </div>
         </div>
 
+        <div class="alert alert-info alert-dismissible fresh-color" role="alert" style="margin-top: 16px;font-size:11px">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong><i class="fa fa-heart-o fa-1x "></i>&nbsp;友情提示:</strong>
+          <br> 1, &nbsp;单张上传图片最大限制为2M
+          <br> 2, &nbsp;点击右下角图标&nbsp;<i class="fa fa-trash-o fa-1x "></i>&nbsp;可以删除待上传图片
+          <br> 3, &nbsp;点击右下角图标&nbsp;<i class="glyphicon glyphicon-upload "></i>&nbsp;进行文件上传操作
+        </div>
 
         <div id="validation_div" style="margin:0px 18px">
           <!--Validation DIV BEGIN-->
@@ -111,13 +118,13 @@
               <form class="form-horizontal">
                 <div class="form-group text-center" style="margin-bottom: 6px;">
                   <div class="col-xs-12 text-center" style="overflow: auto">
-                    <textarea style="text-align:center;border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px" data-bind="value:inputContent,valueUpdate:'input'" rows="5" cols="40">
+                    <textarea style="text-align:center;border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px" data-bind="value:inputContent,valueUpdate:'input'" rows="5" cols="36">
                     </textarea>
                   </div>
                 </div>
                 <div class="form-group ">
-                  <div class="col-xs-12 text-center">
-                    <a class="btn btn-danger  btn-wide text-center" href="#" style="height: 36px;padding-top: 3px;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
+                  <div class="col-xs-10 col-xs-offset-1 text-center">
+                    <a class="btn btn-danger  btn-wide text-center" href="#" style="height: 32px;padding-top: 3px;font-size:18px;font-weight:bold;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
                       onclick="persist()">请您的亲人朋友共同见证吧 </a>
                   </div>
                 </div>
@@ -287,6 +294,8 @@
     }
     var business_vm = new BusinessViewModel();
     ko.applyBindings(business_vm, document.getElementById('business_content_div'));
+    business_vm.chosenItem('感恩型');
+
 
     //                                                var vm = new GenericUploadPageViewModel();
     //                                                ko.applyBindings(vm, document.getElementById('matrix_upload_div'));
