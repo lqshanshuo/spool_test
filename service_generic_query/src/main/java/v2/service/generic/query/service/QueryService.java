@@ -29,8 +29,7 @@ import v2.service.generic.library.model.QueryResultPOJO;
 import v2.service.generic.library.utils.CloneUtil;
 import v2.service.generic.library.utils.JsonUtil;
 import v2.service.generic.query.entity.Genericentity;
-import v2.service.generic.query.entity.YEntity;
-import v2.service.generic.query.entity.ZEntity;
+
 
 @Stateless
 public class QueryService {
@@ -74,24 +73,7 @@ public class QueryService {
         }
     }
 
-    public void testAdd2() throws IOException {
-        YEntity y1 = new YEntity();
-        YEntity y2 = new YEntity();
-        ZEntity z = new ZEntity();
-        y1.setDescription(new Date().toString());
-        y1.setName(String.valueOf(Math.random()));
-        y2.setDescription(new Date().toString());
-        y2.setName(String.valueOf(Math.random()));
-        z.setDescription(new Date().toString());
-        z.setName(String.valueOf(Math.random()));
-        z.getChildren().add(y1);
-        z.getChildren().add(y2);
-        System.out.println("before persist:" + JsonUtil.toJson(z));
-        em.persist(z);
-        System.out.println("before flush:" + JsonUtil.toJson(z));
-        em.flush();
-        System.out.println("after flush:" + JsonUtil.toJson(z));
-    }
+    
 
     public boolean cascadeImport(String jsonString) {
         try {

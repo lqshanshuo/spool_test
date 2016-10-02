@@ -96,7 +96,7 @@ public class QueryResource {
     @Path("testadd")
     @Produces("application/json")
     public String testAdd() throws IOException {
-        queryService.testAdd2();
+//        queryService.testAdd2();
 
         return "success";
     }
