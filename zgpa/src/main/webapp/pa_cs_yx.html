@@ -27,8 +27,9 @@
 
             <div class="row">
               <div class="col-xs-12 text-center" style="margin-top:350px">
-                <form class="form-horizontal">
-                  <div class="form-group label_div" style="margin-bottom: 0px;">
+                <a name="total-income"></a>
+                  <form class="form-horizontal" data-bind="if:userPOJO">
+                  <div class="form-group label_div" style="margin-bottom: 0px;" data-bind="with:userPOJO">
                     <div class="col-xs-4  label_div_1" style="margin-left:0px">
                       <label class=" control-label">
                         <span>代码</span>
@@ -46,18 +47,7 @@
                         <span>职级</span>
                       </label>
                       <div align="center">
-                        <!-- <select class="form-control select_1" data-bind="options:yingXiaoViewModel.level_array,value:yingXiaoViewModel.level"></select> -->
-                        <select class="form-control select_1 select-primary select-block mbl">
-                          <optgroup label="Profile">
-                            <option value="0">My Profile</option>
-                            <option value="1">My Friends</option>
-                          </optgroup>
-                          <optgroup label="System">
-                            <option value="2">Messages</option>
-                            <option value="3">My Settings</option>
-                            <option value="4">Logout</option>
-                          </optgroup>
-                        </select>
+                         <select class="form-control select_1" data-bind="options:yingXiaoViewModel.level_array,value:yingXiaoViewModel.level"></select> 
                       </div>
                     </div>
                   </div>
@@ -160,8 +150,7 @@
                             </form>
 
 
-                            <!-- <div data-bind="visible:is_increasing_num_display"> -->
-                            <div data-bind="visible:true">
+                             <div data-bind="visible:is_increasing_num_display"> 
                                 <div class="alert alert-info alert-dismissible fresh-color text-left" role="alert" style="padding-top: 3px;padding-bottom:3px">
                                     <strong><i class="fa fa-key fa-1x "></i>&nbsp;个人增员情况:</strong>
                                 </div>
@@ -217,8 +206,7 @@
 
 
                 <!-- 组情况 -->
-                <!-- <div class="card card-danger" data-bind="if:group,visible:isGroupDisplay"> -->
-                <div class="card card-danger">
+                 <div class="card card-danger" data-bind="if:group,visible:isGroupDisplay"> 
                     <div class="card-header" style="height:50px">
                         <div class="card-title" style="padding: 8px 20px;">
                             <div class="title"><i class="fa fa-bank"></i> 组情况:
@@ -280,8 +268,7 @@
                     </div>
                 </div>
                 <!-- 部情况 -->
-                <!-- <div class="card card-danger" data-bind="if:part,visible:isPartDisplay"> -->
-                <div class="card card-danger">
+                 <div class="card card-danger" data-bind="if:part,visible:isPartDisplay"> 
                     <div class="card-header" style="height:50px">
                         <div class="card-title" style="padding: 8px 20px;">
                             <div class="title"><i class="fa fa-bank"></i> 部情况:
@@ -407,7 +394,117 @@
   <script src="assets/self-owned/js/generic/generic_validation.js"></script>
   <script src="assets/self-owned/js/yingxiao.js"></script>
 
+<script>
+            var yingXiaoViewModel = new YingXiaoViewModel();
 
+//            var user = {
+//                personal_code: 1234567890,
+//                str9: '张三'
+//            }
+            $(document).ready(function () {
+                ko.applyBindings(yingXiaoViewModel, document.getElementById('contentDiv'));
+                getUserInfo();
+//                yingXiaoViewModel.userPOJO(user);
+            });
+
+
+            function getUserInfo() {
+                var query = {"param1": "YINGXIAO"};
+                var url = $.getRootPath() + "/api/account/getUserInfo";
+                var data = {
+                    'queryJson': JSON.stringify(query)
+                }
+
+
+                $.serverRequest(url, data, "YINGXIAO_GET_USER_INFO_SUCCESS", "YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", "YINGXIAO_GET_USER_INFO_SERVER_ERROR", "POST");
+
+                $.subscribe("YINGXIAO_GET_USER_INFO_SUCCESS", yingxiaoGetUserInfoSuccessListener);
+                $.subscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", yingxiaoGetUserInfoFailedListener);
+                $.subscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", yingxiaoGetUserInfoFailedListener);
+
+            }
+
+            function yingxiaoGetUserInfoSuccessListener() {
+                clear();
+
+                if (arguments && arguments[1]) {
+                    var resp = arguments[1];
+                    var userInfo = eval("(" + resp.result[0] + ")");
+                    yingXiaoViewModel.userPOJO(userInfo);
+                    yingXiaoViewModel.level(userInfo.curent_rank.substr(1,2))
+                }
+            }
+
+            function yingxiaoGetUserInfoFailedListener() {
+                clear();
+                console.log("get user failed")
+                location.href = $.getRootPath() + '/pingan_shourususuan_1.html';
+            }
+
+
+
+
+            function run() {
+                //累计收入=初佣+续期+训练津贴+增员奖+直接管理津贴+育成利益+经理津贴+增部利益+总监利益
+                var income = 0;
+
+                //初佣
+                income += yingXiaoViewModel.person.initial_commission();
+                //续期
+                income += yingXiaoViewModel.person.renewal_commission();
+                //训练津贴
+                income += yingXiaoViewModel.person.trainning_allowance();
+
+                if (yingXiaoViewModel.person.is_increasing_num_display()){
+                    //增员奖
+                    income += yingXiaoViewModel.person.increasing_num_bonus();
+                }
+
+
+//                console.log("个人： " + income);
+
+                if (yingXiaoViewModel.isGroupDisplay()) {
+                    //直接管理津贴
+                    income += yingXiaoViewModel.group.manage_allowance();
+                    //育成利益
+                    income += yingXiaoViewModel.group.educate_benefits();
+
+//                    console.log("个人 + 组： " + income);
+
+                }
+
+                if (yingXiaoViewModel.isPartDisplay()) {
+                    //经理津贴
+                    income += yingXiaoViewModel.part.manager_allowance();
+                    //增部利益
+                    income += yingXiaoViewModel.part.increasing_part_benefits();
+                    //总监利益
+                    income += yingXiaoViewModel.part.director_benefits();
+
+//                    console.log("个人 + 组 + 部： " + income);
+
+
+                }
+
+                income = income / (100 * (100 - yingXiaoViewModel.other_income_percent()));
+
+//                console.log("个人 + 组 + 部 + 其他收入： " + income);
+
+
+                income = income + "";
+                if (income.indexOf(".") > 0) {
+                    income = income.substring(0, income.indexOf(".") + 3);
+                }
+                yingXiaoViewModel.total_income(new Number(income));
+            }
+
+
+            function clear() {
+                $.unsubscribe("YINGXIAO_GET_USER_INFO_SUCCESS", yingxiaoGetUserInfoSuccessListener);
+                $.unsubscribe("YINGXIAO_GET_USER_INFO_RESPONSE_ERROR", yingxiaoGetUserInfoFailedListener);
+                $.unsubscribe("YINGXIAO_GET_USER_INFO_SERVER_ERROR", yingxiaoGetUserInfoFailedListener);
+            }
+        </script>
 
 </body>
 
