@@ -230,6 +230,9 @@
       if (!business_type) {
         errorMessages.push("请选择测算类型");
       }
+                if(genericModalViewModel.businessPOJO().passwd() && genericModalViewModel.businessPOJO().passwd().length!=4){
+            errorMessages.push("密码 长度不匹配");
+          }
       return errorMessages;
     }
 
