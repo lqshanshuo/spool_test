@@ -27,23 +27,14 @@
 
         <div id="business_content_div" class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/jz_background.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:688px;background-attachment: fixed;">
             <div class="container-fluid">
-                <div style="margin-top:300px">
-                    <div class="col-xs-12 text-center">
-                        <div style="font-weight: bold;font-size:20px;color:#000">
-                            <p class="form-control-static" data-bind="text:inputContent()"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                <div style="margin-top:320px">
                     <div class="row">
                         <div data-bind="foreach:uploadedFileUrls">
                             <div data-bind="css:{ 'col-xs-6': $parent.uploadedFileUrls().length == 2, 'col-xs-12': $parent.uploadedFileUrls().length == 1 }">
                                 <div class="row">
                                     <div>
                                         <div class="col-xs-12 text-center" style="margin-bottom:10px">
-                                            <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px"> 
+                                            <img data-bind="attr:{src:$data}" class="img-thumbnail" style="width:180px;height:180px">
                                         </div>
                                     </div>
                                 </div>
@@ -56,8 +47,7 @@
                             <form class="form-horizontal">
                                 <div class="form-group text-center" style="margin-bottom: 6px;">
                                     <div class="col-xs-10 col-xs-offset-1 text-left" style="overflow: auto">
-                                        <div style="padding:10px;border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px">
-                                            带着家人去环游世界,买豪车豪宅,开私人飞机......,只要能在平安打造自己的商业帝国,这些梦想就不再遥远
+                                        <div data-bind="html: inputContent" style="text-align:center;padding:10px;border: 1px solid transparent;border-radius: 8px;background-color:#e27371;color:white;font-size:12px">
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +157,7 @@
             var business_vm = new BusinessViewModel();
             ko.applyBindings(business_vm, document.getElementById('business_content_div'));
             SharePOJO.environmentCheck();
-            var json = retrieveData();
+            // var json = retrieveData();
 
 
 
@@ -177,8 +167,11 @@
                 console.log(jsonObj)
 
                 business_vm.chosenItem(jsonObj.business_info.info_1);
-                business_vm.inputContent(jsonObj.business_info.info_2);
+                // business_vm.inputContent(jsonObj.business_info.info_2);
                 business_vm.uploadedFileUrls(jsonObj.file_url_list);
+                var txt =jsonObj.business_info.info_2;
+                txt = txt.replace(/\n/g,'<br>');
+                business_vm.inputContent(txt);
 
             }
         </script>
