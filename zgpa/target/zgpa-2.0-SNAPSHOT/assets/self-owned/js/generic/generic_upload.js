@@ -29,7 +29,9 @@ function GenericUploadPageViewModel() {
 }
 
 
-var initialize_pic_upload_environment = function(file_upload_component_id,vm) {
+var initialize_pic_upload_environment = function(file_upload_component_id,vm,successListener,failerListener) {
+  successListener = successListener||"SUCCESS_LISTENER";
+  failerListener = failerListener || "FAILED_LISTENER";
   var $upload = $('#' + file_upload_component_id);
   vm.uploadRef = $upload;
   $upload.fileinput({
@@ -77,7 +79,7 @@ var initialize_pic_upload_environment = function(file_upload_component_id,vm) {
       reader = data.reader;
 
     console.log(response);
-    $.dispatchGenericResponse(response, "SUCCESS_LISTENER", "FAILED_LISTENER");
+    $.dispatchGenericResponse(response, successListener, failerListener);
     $upload.fileinput('refresh');
   });
 
@@ -95,4 +97,10 @@ var initialize_pic_upload_environment = function(file_upload_component_id,vm) {
       vm.upload_error_handler();
     }
   });
+
+
+
+
+  //hide
+  $('.file-caption-main').css('display','none');
 }
