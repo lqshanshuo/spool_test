@@ -421,18 +421,22 @@ function Group(type, level) {
 
         var coefficient1 = Number(guimo_coefficient) * Number(renjunchanneng_coefficient);
         console.log("coefficient1 = " + coefficient1)
-        if (self.type == "qu" && coefficient1 > 0.07) {
+        if (self.type() == "qu" && coefficient1 > 0.07) {
             coefficient1 = 0.07;
         }
-        if (self.type == "ke" && coefficient1 > 0.034) {
+        if (self.type() == "ke" && coefficient1 > 0.034) {
             coefficient1 = 0.034;
         }
-        if (self.type == "chu" && coefficient1 > 0.14) {
+        if (self.type() == "chu" && coefficient1 > 0.14) {
             coefficient1 = 0.14;
         }
 
-        var allowance = performance * coefficient1;
-        if (self.type == "qu") {
+        // var allowance = performance * coefficient1;
+
+        var huodonglv_coefficient = self.huodonglv_coefficient()||1;
+        var allowance = performance * coefficient1 * huodonglv_coefficient;
+
+        if (self.type() == "qu") {
             allowance = allowance * jixulv_coefficient;
         }
 
@@ -728,11 +732,16 @@ function getExcessBonus(level, performance) {
             x = 1;
         } else if (excess_rate >= 1.4 && excess_rate < 1.6) {
             x = 2;
-        } else if (excess_rate >= 1.8 && excess_rate < 2.0) {
-            x = 3;
-        } else if (excess_rate >= 2.0) {
-            x = 4;
-        }
+        // } else if (excess_rate >= 1.8 && excess_rate < 2.0) {
+        //     x = 3;
+        // } else if (excess_rate >= 2.0) {
+        //     x = 4;
+        // }
+      } else if (excess_rate >= 1.6 && excess_rate < 2.0) {
+          x = 3;
+      } else if (excess_rate >= 2.0) {
+          x = 5;
+      }
         return x;
     };
 
