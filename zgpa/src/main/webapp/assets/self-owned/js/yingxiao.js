@@ -258,7 +258,7 @@ function Group() {
     self.history_num_3 = ko.observable(0); //历史数据3
     self.history_num_4 = ko.observable(0); //历史数据4
 
-    self.manage_allowance = ko.observable(0); //小组总FYC*对应分档系数（见管理津贴分档系数表）*115% 
+    self.manage_allowance = ko.observable(0); //小组总FYC*对应分档系数（见管理津贴分档系数表）*115%
     self.educate_benefits = ko.observable(0); //育成利益
     self.FYC_group = ko.observable(0); //小组总FYC : 组情况中的（绩优人力人数*6000+钻石人力人数*3000+标准人力人数*2000）+个人情况中的初佣
 

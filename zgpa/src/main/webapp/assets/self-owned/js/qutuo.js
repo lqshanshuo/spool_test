@@ -104,7 +104,7 @@ function Person(level) {
     self.renewal_commission = ko.observable(0);             //续期 ： checked
     self.trainning_allowance = ko.observable(0);            //训练津贴 ：checked
 
-    self.job_allowance = ko.observable(0);                  //岗位津贴  
+    self.job_allowance = ko.observable(0);                  //岗位津贴
     self.complete_allowance = ko.observable(0);             //达成津贴
     self.excess_bonus = ko.observable(0);                   //展业超额奖金
 
@@ -342,7 +342,7 @@ function Group(type, level) {
     self.zengke_benefits = ko.observable(0);                //增课利益，仅对课有意义
 
     self.zengchu_benefits = ko.observable(0);               //增处利益，仅对部有意义
-    self.development_allowance = ko.observable(0);          //区部发展津贴，仅对部有意义 
+    self.development_allowance = ko.observable(0);          //区部发展津贴，仅对部有意义
     self.jixulv_coefficient = ko.observable(1.15);             //继续率调整比例 ，仅对部有意义,其他应该为1
 //---------------------各部分特殊的属性 end-------------------------------------------
 
@@ -548,8 +548,8 @@ function getTrainningAllowance(institution, time, performance) {
     var allowance = 0;
 //    var time_arr = time.split("/") || [];
 //    console.log("time_arr = " + time_arr);
-    var month = Number(time.substr(0,4)) || 0;
-    var year = Number(time.substr(4,2)) || 0;
+    var year = Number(time.substr(0,4)) || 0;
+    var month = Number(time.substr(4,2)) || 0;
 //
 //    console.log("year = " + year);
 //    console.log("time = " + time);
@@ -850,6 +850,8 @@ function getCompleteAllowance(level, performance) {
 function getJobAllowance(level, performance) {
     console.log("getJobAllowance performance = " + performance);
     var allowance = 0;
+
+
     var allowanceArray = [
         {"level": "收展员八级", "standard": 500, "allowance": 120},
         {"level": "收展员七级", "standard": 500, "allowance": 150},
@@ -859,37 +861,37 @@ function getJobAllowance(level, performance) {
         {"level": "收展员三级", "standard": 1200, "allowance": 700},
         {"level": "收展员二级", "standard": 1800, "allowance": 1000},
         {"level": "收展员一级", "standard": 2400, "allowance": 1200},
-        {"level": "区主任八级", "standard": 0, "allowance": 600},
-        {"level": "区主任七级", "standard": 0, "allowance": 800},
-        {"level": "区主任六级", "standard": 0, "allowance": 1000},
-        {"level": "区主任五级", "standard": 0, "allowance": 1200},
-        {"level": "区主任四级", "standard": 0, "allowance": 1400},
-        {"level": "区主任三级", "standard": 0, "allowance": 1600},
-        {"level": "区主任二级", "standard": 0, "allowance": 1800},
-        {"level": "区主任一级", "standard": 0, "allowance": 2000},
-        {"level": "课长", "standard": 0, "allowance": 2000},
-        {"level": "高级课长", "standard": 0, "allowance": 3000},
-        {"level": "资深课长", "standard": 0, "allowance": 4000},
-        {"level": "处经理", "standard": 0, "allowance": 7000},
-        {"level": "高级处经理", "standard": 0, "allowance": 8000},
-        {"level": "资深处经理", "standard": 0, "allowance": 9000},
+        {"level": "展业区主任八级", "standard": 0, "allowance": 600},
+        {"level": "展业区主任七级", "standard": 0, "allowance": 800},
+        {"level": "展业区主任六级", "standard": 0, "allowance": 1000},
+        {"level": "展业区主任五级", "standard": 0, "allowance": 1200},
+        {"level": "展业区主任四级", "standard": 0, "allowance": 1400},
+        {"level": "展业区主任三级", "standard": 0, "allowance": 1600},
+        {"level": "展业区主任二级", "standard": 0, "allowance": 1800},
+        {"level": "展业区主任一级", "standard": 0, "allowance": 2000},
+        {"level": "展业课课长", "standard": 0, "allowance": 2000},
+        {"level": "高级展业课课长", "standard": 0, "allowance": 3000},
+        {"level": "资深展业课课长", "standard": 0, "allowance": 4000},
+        {"level": "展业处经理", "standard": 0, "allowance": 7000},
+        {"level": "高级展业处经理", "standard": 0, "allowance": 8000},
+        {"level": "资深展业处经理", "standard": 0, "allowance": 9000},
         {"level": "区部经理", "standard": 0, "allowance": 12000},
         {"level": "高级区部经理", "standard": 0, "allowance": 14000},
         {"level": "资深区部经理", "standard": 0, "allowance": 16000},
     ];
 
-    var quZhuRenArray = ["区主任八级", "区主任八级", "区主任八级", "区主任八级",
-        "区主任八级", "区主任八级", "区主任八级", "区主任八级"];
+    var quZhuRenArray = ["展业区主任一级", "展业区主任二级", "展业区主任三级", "展业区主任四级",
+        "展业区主任五级", "展业区主任六级", "展业区主任七级", "展业区主任八级"];
 
     var quZhuRenStandardArray = [
-        {"区主任八级": 20000},
-        {"区主任七级": 30000},
-        {"区主任六级": 40000},
-        {"区主任五级": 50000},
-        {"区主任四级": 60000},
-        {"区主任三级": 70000},
-        {"区主任二级": 80000},
-        {"区主任一级": 90000},
+        {"展业区主任八级": 20000},
+        {"展业区主任七级": 30000},
+        {"展业区主任六级": 40000},
+        {"展业区主任五级": 50000},
+        {"展业区主任四级": 60000},
+        {"展业区主任三级": 70000},
+        {"展业区主任二级": 80000},
+        {"展业区主任一级": 90000},
     ]
 
     for (var i in allowanceArray) {
@@ -901,12 +903,12 @@ function getJobAllowance(level, performance) {
 
                 //如果是区主任，计算责任额达成率
                 if ($.inArray(level, quZhuRenArray) > -1) {
-                    console.log("区主任")
+                    console.log("展业区主任")
                     var standard = quZhuRenStandardArray[level];
                     if (standard && standard > 0) {
                         var rate = performance / standard;
                         if (rate < 70) {
-                            console.log("区主任 责任额未到 70%");
+                            console.log("展业区主任 责任额未到 70%");
                             allowance = allowance * 0.8;
                         }
                     }
@@ -919,7 +921,7 @@ function getJobAllowance(level, performance) {
 }
 
 
-//计算规模系数 
+//计算规模系数
 function getGuimoCoefficient(type, performance) {
     var coefficient = 1;
 
@@ -969,7 +971,7 @@ function getGuimoCoefficient(type, performance) {
 
 }
 
-//计算人均产能提奖系数 
+//计算人均产能提奖系数
 function getRenjunchannengCoefficient(type, channeng) {
     var coefficient = 0;
 
