@@ -740,7 +740,7 @@ function getExcessBonus(level, performance) {
       } else if (excess_rate >= 1.6 && excess_rate < 2.0) {
           x = 3;
       } else if (excess_rate >= 2.0) {
-          x = 5;
+          x = 4;
       }
         return x;
     };
