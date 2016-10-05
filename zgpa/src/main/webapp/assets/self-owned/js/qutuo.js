@@ -555,6 +555,8 @@ function getTrainningAllowance(institution, time, performance) {
     var year = Number(time.substr(0,4)) || 0;
     var month = Number(time.substr(4,2)) || 0;
 //
+
+    month = 14-month;
 //    console.log("year = " + year);
 //    console.log("time = " + time);
 //    console.log("institution = " + institution);
@@ -677,9 +679,13 @@ function getIncreasingNumBonus(outstanding_num, diamonds_num, standard_num) {
         return x;
     }
 
-    var x1 = getIndex(outstanding_num_performance);
-    var x2 = getIndex(diamonds_num_performance);
-    var x3 = getIndex(standard_numm_performance);
+    // var x1 = getIndex(outstanding_num_performance);
+    // var x2 = getIndex(diamonds_num_performance);
+    // var x3 = getIndex(standard_numm_performance);
+
+    var x1 = getIndex(14400);
+    var x2 = getIndex(7200);
+    var x3 = getIndex(6000);
 
 //    console.log("x1=" + x1);
 //    console.log("x2=" + x2);
@@ -881,9 +887,9 @@ function getJobAllowance(level, performance) {
         {"level": "展业课课长", "standard": 0, "allowance": 2000},
         {"level": "高级展业课课长", "standard": 0, "allowance": 3000},
         {"level": "资深展业课课长", "standard": 0, "allowance": 4000},
-        {"level": "展业处经理", "standard": 0, "allowance": 7000},
-        {"level": "高级展业处经理", "standard": 0, "allowance": 8000},
-        {"level": "资深展业处经理", "standard": 0, "allowance": 9000},
+        {"level": "展业处处经理", "standard": 0, "allowance": 7000},
+        {"level": "高级展业处处经理", "standard": 0, "allowance": 8000},
+        {"level": "资深展业处处经理", "standard": 0, "allowance": 9000},
         {"level": "区部经理", "standard": 0, "allowance": 12000},
         {"level": "高级区部经理", "standard": 0, "allowance": 14000},
         {"level": "资深区部经理", "standard": 0, "allowance": 16000},
