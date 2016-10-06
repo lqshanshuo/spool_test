@@ -4,6 +4,8 @@ function YingXiaoViewModel() {
 //    self.code = ko.observable(1001);
 //    self.name = ko.observable("张三");
     self.level = ko.observable();
+    self.begin_level = ko.observable();
+
     self.total_income = ko.observable(0); //总收入=累计收入+其他收入，
     //累计收入=初佣+续期+训练津贴+增员奖+直接管理津贴+育成利益+经理津贴+增部利益+总监利益
     //其他收入=提供往年占总收入占比，计算公式如下（累计收入*对应占比）/（1-对应占比）
@@ -445,18 +447,21 @@ function computeTrainingAllawance(yingXiaoViewModel) {
     var trainning_allowance = 0;
     var year = Number(time[2]) || 0;
     var month = Number(time[0]) || 0;
-    if (((year != 2016) || (month == 1)) && (!(year == 2017 && month == 1))) {  //非2016，06年且非2017年1月                                                  //直接判断不是新人
-//        console.log("你的入职时间 没有对应的训练津贴")
-        return trainning_allowance;
-    }
+//     if (((year != 2016) || (month == 1)) && (!(year == 2017 && month == 1))) {  //非2016，06年且非2017年1月                                                  //直接判断不是新人
+// //        console.log("你的入职时间 没有对应的训练津贴")
+//         return trainning_allowance;
+//     }
 
+  if (((year != 2016) || ( year == 2016 && month == 1))) {  //非2016，06年且非2017年1月                                                  //直接判断不是新人
+    return trainning_allowance;
+  }
 
 
     if ($.inArray(userPOJO.institution, type_3_are_arr) < 0) {                  //训练津贴对应2类
 //        console.log("2 类");
 //        console.log("FYC =" + FYC)
 
-        if (yingXiaoViewModel.level() == "01") {                                // 01职级2类
+        if (yingXiaoViewModel.begin_level() == "01") {                                // 01职级2类
 //            console.log("01");
             if ((month > 10 && month < 13) || month == 1) {                         //2016年 11-12月，或2017年1月
                 if (FYC >= 500 && FYC < 800) {
@@ -467,7 +472,7 @@ function computeTrainingAllawance(yingXiaoViewModel) {
                     trainning_allowance = 1100;
                 }
             }
-        } else if (yingXiaoViewModel.level() == "00") {                         // 01职级2类
+        } else if (yingXiaoViewModel.begin_level() == "00") {                         // 01职级2类
 //            console.log("00")
 //            console.log("FYC =" + FYC)
 
@@ -497,7 +502,7 @@ function computeTrainingAllawance(yingXiaoViewModel) {
 
     if ($.inArray(userPOJO.institution, type_3_are_arr) > -1) {                  //训练津贴对应3类
 //        console.log("3 类");
-        if (yingXiaoViewModel.level() == "01") {                                // 00职级3类
+        if (yingXiaoViewModel.begin_level() == "01") {                                // 00职级3类
 //            console.log("01");
             if ((month > 10 && month < 13) || month == 1) {                         //2016年 11-12月，或2017年1月
                 if (FYC >= 300 && FYC < 600) {
@@ -508,7 +513,7 @@ function computeTrainingAllawance(yingXiaoViewModel) {
                     trainning_allowance = 800;
                 }
             }
-        } else if (yingXiaoViewModel.level() == "00") {                         // 00职级3类
+        } else if (yingXiaoViewModel.begin_level() == "00") {                         // 00职级3类
 //            console.log("00")
 //            console.log("FYC =" + FYC)
             if ((month > 10 && month < 13) || month == 1) {                 //2016年 11-12月，或2017年1月

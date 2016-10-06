@@ -449,7 +449,8 @@
                       location.href = $.getRootPath() + '/pa_cs_01.html';
                     }
                     yingXiaoViewModel.userPOJO(userInfo);
-                    yingXiaoViewModel.level(userInfo.curent_rank.substr(1,2))
+                    yingXiaoViewModel.level(userInfo.curent_rank.substr(1,2));
+                    yingXiaoViewModel.begin_level(userInfo.begin_rank.substr(1,2));
                 }
             }
 

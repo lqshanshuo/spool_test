@@ -887,9 +887,15 @@ function getJobAllowance(level, performance) {
         {"level": "展业课课长", "standard": 0, "allowance": 2000},
         {"level": "高级展业课课长", "standard": 0, "allowance": 3000},
         {"level": "资深展业课课长", "standard": 0, "allowance": 4000},
+        {"level": "展业课长", "standard": 0, "allowance": 2000},
+        {"level": "高级展业课长", "standard": 0, "allowance": 3000},
+        {"level": "资深展业课长", "standard": 0, "allowance": 4000},
         {"level": "展业处处经理", "standard": 0, "allowance": 7000},
         {"level": "高级展业处处经理", "standard": 0, "allowance": 8000},
         {"level": "资深展业处处经理", "standard": 0, "allowance": 9000},
+        {"level": "展业处经理", "standard": 0, "allowance": 7000},
+        {"level": "高级展业处经理", "standard": 0, "allowance": 8000},
+        {"level": "资深展业处经理", "standard": 0, "allowance": 9000},
         {"level": "区部经理", "standard": 0, "allowance": 12000},
         {"level": "高级区部经理", "standard": 0, "allowance": 14000},
         {"level": "资深区部经理", "standard": 0, "allowance": 16000},
@@ -990,7 +996,8 @@ function getGuimoCoefficient(type, performance) {
 function getRenjunchannengCoefficient(type, channeng) {
     var coefficient = 0;
 
-    var quCoefficientArray = [0, 0.015, 0.02, 0.0313, 0.0338, 0.0358, 0.0378, 0.0388, 0.0393, 0.0398, 0.0403, 0.0408];
+    // var quCoefficientArray = [0, 0.015, 0.02, 0.0313, 0.0338, 0.0358, 0.0378, 0.0388, 0.0393, 0.0398, 0.0403, 0.0408];
+    var quCoefficientArray = [0, 0.015, 0.02, 0.03125, 0.03375, 0.03575, 0.03775, 0.03875, 0.03925, 0.03975, 0.04025, 0.04075];
     var quChannengArray = [0, 1500, 2250, 2750, 3250, 3750, 4250, 5250, 7250, 9250, 12500, 16000, Infinity];
 
     var keCoefficientArray = [0, 0.007, 0.01, 0.0135, 0.0150, 0.0155, 0.0160, 0.0170, 0.01775, 0.0185, 0.01875, 0.019];
