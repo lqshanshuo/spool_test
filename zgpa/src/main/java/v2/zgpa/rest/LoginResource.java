@@ -107,5 +107,42 @@ public class LoginResource {
         result = JsonUtil.toJson(response);
         return result;
     }
+    @POST
+    @Path("getUserInfo2")
+    public String getUserInfo2(@FormParam("queryJson") String queryJson,
+            @Context HttpServletRequest httpRequest) throws IOException {
 
+        RequestPOJO request = JsonUtil.toPojo(queryJson, RequestPOJO.class);
+        HttpSession session = httpRequest.getSession();
+        String session_id = session.getId();
+        String staff_type = request.getParam1();
+
+        String key = staff_type + session_id;
+
+        String result;
+        boolean hasError = true;
+        String errMsg = "No user info,Please login first";
+        int statusCode = Service_Failed;
+        String status = Failed;
+        List<String> result_list = new ArrayList();
+
+        for (Map.Entry<String, String> entry : ZgpaContext.userMap.entrySet()) {
+            if (entry.getKey().equals(key)) {
+//                Staffentity00 userPOJO = entry.getValue();
+//                String user_message = JsonUtil.toJson(userPOJO);
+                String user_message = entry.getValue();
+//                user_message = new String(user_message.getBytes(), "UTF-8");
+//                System.out.println();
+                hasError = false;
+                errMsg = "";
+                statusCode = Service_Successed;
+                status = Succeesed;
+                result_list.add(user_message);
+            }
+        }
+
+        ResponsePOJO response = new ResponsePOJO(hasError, errMsg, statusCode, status, result_list);
+        result = JsonUtil.toJson(response);
+        return result;
+    }
 }
