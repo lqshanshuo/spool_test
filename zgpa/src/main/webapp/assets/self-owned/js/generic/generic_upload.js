@@ -62,7 +62,7 @@ var initialize_pic_upload_environment = function(file_upload_component_id,vm,suc
       'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
     },
     uploadAsync: true,
-    maxFileSize: 4096,
+    maxFileSize: 10096,
     maxFileCount: 1,
     showBrowse: false,
     browseOnZoneClick: true
