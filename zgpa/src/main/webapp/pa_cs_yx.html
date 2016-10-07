@@ -30,22 +30,13 @@
                 <a name="total-income"></a>
                 <form class="form-horizontal" data-bind="if:userPOJO">
                   <div class="form-group label_div" style="margin-bottom: 0px;background-color: #660703;color: #FFF" data-bind="with:userPOJO">
-                    <div class="col-xs-4  " style="margin-left:0px;padding-left: 0px;padding-right: 0px;">
-                      <label class=" control-label" style="width:100%;padding-bottom:1px">
-                        <span>代码</span>
-                      </label>
-                      <p class="form-control-static" data-bind="text:personal_code" style="font-weight:bold; font-size: 16px;padding-top: 0px;color: #FFF"></p>
+                    <div class="col-xs-5 " style="padding: 1% 0%;">
+                      <p class="form-control-static" data-bind="text:staff_name" style="font-weight:bold; font-size: 16px;padding: 1% 0%;"></p>
                     </div>
-                    <div class="col-xs-4 " style="padding-left: 0px;padding-right: 0px;">
-                      <label class="control-label" style="width:100%;padding-bottom:1px">
-                        <span>姓名</span>
-                      </label>
-                      <p class="form-control-static" data-bind="text:staff_name" style="font-weight:bold; font-size: 16px;padding-top: 0px"></p>
+                    <div class="col-xs-3 " style="padding: 1% 0%;">
+                      <p class="form-control-static" style="font-weight:bold; font-size: 16px;padding-top: 0px">职级:</p>
                     </div>
-                    <div class="col-xs-4 " style="padding-left: 0px;">
-                      <label class=" control-label" style="width:100%;padding-bottom:0px">
-                        <span>职级</span>
-                      </label>
+                    <div class="col-xs-4 " style="padding: 1% 0%;">
                       <div align="center">
                           <select class="form-control select_1" data-bind="options:yingXiaoViewModel.level_array,value:yingXiaoViewModel.level" style="padding-top: 0px;height: 30px"></select>
                       </div>

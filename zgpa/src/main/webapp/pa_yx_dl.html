@@ -89,12 +89,12 @@
                                         <form class="form-horizontal">
                                             <div class="form-group">
                                                 <div class="col-xs-8 col-xs-offset-2">
-                                                    <input style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" data-bind="value:id" type="text" class="form-control text-center" placeholder="业务代码">
+                                                    <input id="staff_id" style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" type="text" class="form-control text-center" placeholder="业务代码">
                                                 </div>
                                             </div>
                                             <div class="form-group ">
                                                 <div class="col-xs-8 col-xs-offset-2 ">
-                                                    <input style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" data-bind="value:passwd" type="password" class="form-control text-center" placeholder="密码">
+                                                    <input id="staff_password" style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" type="password" class="form-control text-center" placeholder="密码">
                                                 </div>
                                             </div>
 
@@ -212,6 +212,10 @@
             }
 
             function submit_login(target) {
+                var id = $("#staff_id").val();
+                var password = $("#staff_password").val();
+                genericModalViewModel.businessPOJO().id(id);
+                genericModalViewModel.businessPOJO().passwd(password);
                 type_chose('yingxiao')
                 target = target || business_type;
                 genericModalViewModel.businessPOJO().target(target);

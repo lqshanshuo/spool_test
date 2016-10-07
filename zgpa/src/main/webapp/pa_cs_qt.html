@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/kmh2.jpg);background-repeat: no-repeat;background-size:100% 100%;min-height:145px;height:145px;">
+  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/kmh2.jpg);background-repeat: no-repeat;background-size:100% 100%;height:30%;">
     <div class="app-container" id="contentDiv">
       <div class="row content-container">
         <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
@@ -25,10 +25,23 @@
           <div>
 
             <div class="row">
-              <div class="col-xs-12 text-center" style="margin-top:150px">
+              <div class="col-xs-12 text-center" style="margin-top:43%">
                 <a name="total-income"></a>
                 <form class="form-horizontal" data-bind="if:userPOJO">
-                  <div class="form-group label_div" style="margin-bottom: 0px;background-color: #660703;color: #FFF" data-bind="with:userPOJO">
+                    <div class="form-group label_div" style="margin-bottom: 0px;background-color: #660703;color: #FFF" data-bind="with:userPOJO">
+                    <div class="col-xs-4 " style="padding: 1% 0%;">
+                      <p class="form-control-static" data-bind="text:staff_name" style="font-weight:bold; font-size: 16px;padding: 1% 0%;"></p>
+                    </div>
+                    <div class="col-xs-3 " style="padding: 1% 0%;">
+                      <p class="form-control-static" style="font-weight:bold; font-size: 16px;padding-top: 0px">职级:</p>
+                    </div>
+                    <div class="col-xs-5 " style="padding: 1% 0%;">
+                      <div align="center">
+                          <select class="form-control select_1" data-bind="options:quTuoViewModel.level_array,value:quTuoViewModel.level" style="padding-top: 0px;height: 30px"></select>
+                      </div>
+                    </div>
+                  </div>
+<!--                  <div class="form-group label_div" style="margin-bottom: 0px;background-color: #660703;color: #FFF" data-bind="with:userPOJO">
                     <div class="col-xs-4  " style="margin-left:0px;padding-left: 0px;padding-right: 0px;">
                       <label class=" control-label" style="width:100%">
                         <span>代码</span>
@@ -49,7 +62,7 @@
                         <select style="padding-top: 0px;height: 30px" class="form-control select_1" data-bind="options:quTuoViewModel.level_array,value:quTuoViewModel.level"></select>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <div class="form-group " style="margin-top: 16px;">
                     <div class="col-xs-6 text-right" style="font-size:16px;margin-top: 22px;padding-right: 8px;">
                       <span>收入合计:</span>
