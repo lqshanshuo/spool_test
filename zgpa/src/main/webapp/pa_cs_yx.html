@@ -18,7 +18,7 @@
 
 <body>
   <!-- <div class="flat-matrix" style="margin-top:-58px;min-height:688px"> -->
-  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/kmh2.jpg);background-repeat: no-repeat;background-size:100% 100%;min-height:145px;height:145px;">
+  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/kmh2.jpg);background-repeat: no-repeat;background-size:100% 100%;height:30%;">
     <div class="app-container" id="contentDiv">
       <div class="row content-container">
         <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
@@ -26,28 +26,28 @@
           <div>
 
             <div class="row">
-              <div class="col-xs-12 text-center" style="margin-top:150px">
+              <div class="col-xs-12 text-center" style="margin-top:43%">
                 <a name="total-income"></a>
-                  <form class="form-horizontal" data-bind="if:userPOJO">
-                  <div class="form-group label_div" style="margin-bottom: 0px;" data-bind="with:userPOJO">
+                <form class="form-horizontal" data-bind="if:userPOJO">
+                  <div class="form-group label_div" style="margin-bottom: 0px;background-color: #660703;color: #FFF" data-bind="with:userPOJO">
                     <div class="col-xs-4  " style="margin-left:0px;padding-left: 0px;padding-right: 0px;">
-                      <label class=" control-label" style="width:100%">
+                      <label class=" control-label" style="width:100%;padding-bottom:1px">
                         <span>代码</span>
                       </label>
-                      <p class="form-control-static" data-bind="text:personal_code" style="font-weight:bold; font-size: 16px;"></p>
+                      <p class="form-control-static" data-bind="text:personal_code" style="font-weight:bold; font-size: 16px;padding-top: 0px"></p>
                     </div>
                     <div class="col-xs-4 " style="padding-left: 0px;padding-right: 0px;">
-                      <label class="control-label" style="width:100%">
+                      <label class="control-label" style="width:100%;padding-bottom:1px">
                         <span>姓名</span>
                       </label>
-                      <p class="form-control-static" data-bind="text:staff_name" style="font-weight:bold; font-size: 16px;"></p>
+                      <p class="form-control-static" data-bind="text:staff_name" style="font-weight:bold; font-size: 16px;padding-top: 0px"></p>
                     </div>
                     <div class="col-xs-4 " style="padding-left: 0px;">
-                      <label class=" control-label" style="width:100%">
+                      <label class=" control-label" style="width:100%;padding-bottom:0px">
                         <span>职级</span>
                       </label>
                       <div align="center">
-                         <select class="form-control select_1" data-bind="options:yingXiaoViewModel.level_array,value:yingXiaoViewModel.level"></select>
+                          <select class="form-control select_1" data-bind="options:yingXiaoViewModel.level_array,value:yingXiaoViewModel.level" style="padding-top: 0px;height: 30px"></select>
                       </div>
                     </div>
                   </div>
@@ -446,7 +446,7 @@
                     console.log("user obj[after eval] is:");
                     console.log(userInfo);
                     if (userInfo == null || userInfo.personal_code == null) {
-                      location.href = $.getRootPath() + '/pa_cs_01.html';
+                      location.href = $.getRootPath() + '/pa_yx_dl.html';
                     }
                     yingXiaoViewModel.userPOJO(userInfo);
                     yingXiaoViewModel.level(userInfo.curent_rank.substr(1,2));
@@ -457,7 +457,7 @@
             function yingxiaoGetUserInfoFailedListener() {
                 clear();
                 console.log("get user failed")
-                location.href = $.getRootPath() + '/pa_cs_01.html';
+                location.href = $.getRootPath() + '/pa_yx_dl.html';
             }
 
 

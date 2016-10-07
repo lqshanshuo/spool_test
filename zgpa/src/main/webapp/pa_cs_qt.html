@@ -520,7 +520,7 @@
         console.log("user obj[after eval] is:");
         console.log(userInfo);
         if (userInfo == null || userInfo.personal_code == null) {
-          location.href = $.getRootPath() + '/pa_cs_01.html';
+          location.href = $.getRootPath() + '/pa_qt_dl.html';
         }
         quTuoViewModel.userPOJO(userInfo);
         quTuoViewModel.level(userInfo.curent_rank)
@@ -530,7 +530,7 @@
     function qutuoGetUserInfoFailedListener() {
       clear();
       console.log("get user failed")
-      location.href = $.getRootPath() + '/pa_cs_01.html';
+      location.href = $.getRootPath() + '/pa_qt_dl.html';
     }
 
 
