@@ -28,12 +28,12 @@
               <div class="col-xs-12 text-center" style="margin-top:150px">
                 <a name="total-income"></a>
                 <form class="form-horizontal" data-bind="if:userPOJO">
-                  <div class="form-group label_div" style="margin-bottom: 0px;" data-bind="with:userPOJO">
+                  <div class="form-group label_div" style="margin-bottom: 0px;background-color: #660703;color: #FFF" data-bind="with:userPOJO">
                     <div class="col-xs-4  " style="margin-left:0px;padding-left: 0px;padding-right: 0px;">
                       <label class=" control-label" style="width:100%">
                         <span>代码</span>
                       </label>
-                      <p class="form-control-static" data-bind="text:personal_code" style="font-weight:bold; font-size: 16px;"></p>
+                      <p class="form-control-static" data-bind="text:personal_code" style="font-weight:bold; font-size: 16px;color: #FFF"></p>
                     </div>
                     <div class="col-xs-3 " style="margin-left:0px;padding-left: 0px;padding-right: 0px;">
                       <label class="control-label" style="width:100%">
@@ -46,7 +46,7 @@
                         <span>职级</span>
                       </label>
                       <div align="center">
-                        <select style="font-size:12px;padding-left: 0px;padding-right: 0px;" class="form-control select_1" data-bind="options:quTuoViewModel.level_array,value:quTuoViewModel.level"></select>
+                        <select style="padding-top: 0px;height: 30px" class="form-control select_1" data-bind="options:quTuoViewModel.level_array,value:quTuoViewModel.level"></select>
                       </div>
                     </div>
                   </div>
