@@ -60,7 +60,7 @@
 
     <body>
 
-        <div id="contentDiv" class="flat-matrix" style="height: 100%;background-image: url(assets/self-owned/img/zgpa/cs_yx_background.jpg);background-repeat: no-repeat;background-size:100% 100%">
+        <div id="contentDiv" class="flat-matrix" style="height: 100%;background-image: url(assets/self-owned/img/zgpa/cs_yx_background.jpg);background-repeat: no-repeat;background-size:100% 100%;background-attachment: scroll;min-height: 480px">
             <div class="app-container" style="height:100%">
                 <div class="row content-container" style="height:100%">
                     <div class="container" style="height:100%">
@@ -69,7 +69,7 @@
                                 <div class="col-xs-8 col-xs-offset-2 text-center" style="height:60%">
                                     
                                 </div>
-                                <div data-bind="visible: hasError" id="validation_div" class="col-xs-8 col-xs-offset-2 text-left">
+                                <div data-bind="visible: hasError" id="validation_div" class="col-xs-8 col-xs-offset-2 text-left" style="height:40%">
                                     <!--Validation DIV BEGIN-->
                                     <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
                                         <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
@@ -84,28 +84,28 @@
                                 </div>
 
                                 <!-- business_div  -->
-                                <div id="business_div" data-bind="if:businessPOJO,visible: !hasError()">
-                                    <div class="col-xs-10 col-xs-offset-1 text-center" data-bind="with:businessPOJO">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <div class="col-xs-8 col-xs-offset-2">
-                                                    <input id="staff_id" style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" type="text" class="form-control text-center" placeholder="业务代码">
+                                <div id="business_div" data-bind="if:businessPOJO,visible: !hasError()" style="height:40%">
+                                    <div class="col-xs-10 col-xs-offset-1 text-center" data-bind="with:businessPOJO" style="height:100%">
+                                        <form class="form-horizontal" style="height:80%;margin-bottom: 3%">
+                                            <div class="form-group" style="height:25%;margin-bottom: 0%">
+                                                <div class="col-xs-8 col-xs-offset-2" style="height: 100%">
+                                                    <input id="staff_id" style="height: 85%;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" type="text" class="form-control text-center" placeholder="业务代码">
                                                 </div>
                                             </div>
-                                            <div class="form-group ">
-                                                <div class="col-xs-8 col-xs-offset-2 ">
-                                                    <input id="staff_password" style="height: 36px;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" type="password" class="form-control text-center" placeholder="密码">
+                                            <div class="form-group " style="height:25%;margin-bottom: 0%">
+                                                <div class="col-xs-8 col-xs-offset-2 " style="height: 100%">
+                                                    <input id="staff_password" style="height: 85%;border: 1px solid transparent;border-radius: 0px;width:100%;background-color:#e27371;color:white" type="password" class="form-control text-center" placeholder="密码">
                                                 </div>
                                             </div>
 
-                                            <div class="form-group ">
-                                                <div class="col-xs-12 text-center">
-                                                    <a class="btn btn-danger  btn-wide text-center" href="javascript:void(0)" style="width:140px;height: 36px;padding-top: 3px;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
+                                            <div class="form-group " style="height:25%;margin-bottom: 0%">
+                                                <div class="col-xs-12 text-center" style="height: 100%">
+                                                    <a class="btn btn-danger  btn-wide text-center" href="javascript:void(0)" style="width:50%;height: 70%;padding-top: 1%;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
                                                        onclick="submit_login()">进&nbsp;入 </a>
                                                 </div>
                                             </div>
                                         </form>
-                                        <div class="" style="color:white;font-size:10px">
+                                        <div class="" style="color:white;font-size:10px;height:10%">
                                             <span>本操作仅为测算结果，实际收入以系统数据为准</span>
                                         </div>
 
