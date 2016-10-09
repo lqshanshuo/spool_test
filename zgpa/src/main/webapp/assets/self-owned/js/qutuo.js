@@ -147,9 +147,9 @@ function Person(level) {
         var shuangzhi_premium = Number(self.shuangzhi_premium()) || 0;
         var other_premium = Number(self.other_premium()) || 0;
 
-        var performance = caifu_premium + yingyue_premium +
-                shuangfu_premium + shuangzhi_premium +
-                other_premium;
+        var performance = caifu_premium*0.14 + yingyue_premium*0.26 +
+                shuangfu_premium*1.43 + shuangzhi_premium*0.73 +
+                other_premium*0.9;
 
 //        console.log("performance = " + performance)
 

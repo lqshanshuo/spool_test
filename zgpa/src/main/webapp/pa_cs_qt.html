@@ -559,10 +559,12 @@
       income += quTuoViewModel.person.initial_commission();
       //续期
       income += quTuoViewModel.person.renewal_commission();
+      //岗位津贴
+      income += quTuoViewModel.person.job_allowance();
       //训练津贴
       income += quTuoViewModel.person.trainning_allowance();
       //达成津贴
-      income += quTuoViewModel.person.trainning_allowance();
+      income += quTuoViewModel.person.complete_allowance();
       //超额奖金
       income += quTuoViewModel.person.increasing_num_bonus();
 
