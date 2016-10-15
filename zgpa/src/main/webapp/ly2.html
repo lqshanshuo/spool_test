@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The prototype website of web framework">
+  <meta name="author" content="LY">
+  <title>Matrix</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+  <style>
+  .row > [class*="col-"] {
+      margin-bottom: 0px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="flat-matrix" style="background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:100%">
+    <!--<div class="flat-matrix" >-->
+    <div class="container-fluid">
+      <div id="screenDIV" class="row">
+        <div class="col-sm-6">
+          <video id="videoDIV" autoplay loop controls="false" style="width:600px;height:100%">
+            <source src="assets/self-owned/img/zgpa/tree.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div id="rightDIV" class="col-sm-6" style="background-image: url(assets/self-owned/img/zgpa/zmd1.png);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:100%;">
+          <div class="col-sm-6 text-center" style="padding-top:260px;border:0px solid">
+            <!-- behavior=scroll, slide, alternate -->
+            <!-- direction=left,right,up,down -->
+            <!-- scrollamount=20 -->
+            <marquee id="mymarquee" behavior="scroll" direction="up" scrollamount=4>
+              <div data-bind="foreach: revolving_list">
+                <div data-bind="if:$data">
+                  <form class="form-horizontal">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <div class="col-sm-6" style="padding-left: 0px;">
+                        <p data-bind="text: stringalpha" class="form-control-static" style="font-size: 16px;text-align: center;color:white;padding-left:0px;padding-right:0px;"></p>
+                      </div>
+                      <div class="col-sm-3" style="padding-left: 0px;">
+                        <p data-bind="text: name" class="form-control-static" style="font-size: 16px;text-align: center;color:white;padding-left:0px;padding-right:0px;"></p>
+                      </div>
+                      <div class="col-sm-3" style="padding-left: 0px;">
+                        <p data-bind="text: function(){return numberalpha()+'万'}(),
+                            style: { color: numberalpha()>100 ?'#f6ff04':'white', fontSize:numberalpha()>100 ? '20px':'16px',marginTop:numberalpha()>100 ? '-6px':'0px'}" class="form-control-static" style="text-align: center;padding-left:0px;padding-right:0px;"></p>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </marquee>
+            <br>
+          </div>
+          <div class="col-sm-6 text-right pull-right" style="padding-top:260px;border:0px solid">
+            <!-- <div><i onclick="changeScrollStatus()" class="fa fa-stop pull-right"></i></div> -->
+            <div data-bind="foreach: greater100_list">
+              <div class="row">
+                <div class="col-sm-5 col-sm-offset-1" data-bind="text: $data.stringalpha" style="font-weight: bold;letter-spacing: 2px; color:white;padding-left:0px;padding-right:0px;"></div>
+                <div class="col-sm-3" data-bind="text: $data.name" style="font-weight: bold;letter-spacing: 2px; color:white;padding-left:0px;padding-right:0px;"></div>
+                <div class="col-sm-3" data-bind="text: function(){return $data.numberalpha()+'万'}()" style="font-weight: bold;letter-spacing: 2px;color:#f6ff04 ;padding-left:0px;padding-right:0px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+
+  <script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+      // adjust page
+      setInterval(function() {
+        var width_video = document.body.clientWidth / 2;
+        $('#videoDIV').css('width', width_video);
+        $('#rightDIV').css('height', $('#videoDIV').css('height'));
+      }, 1000)
+
+      getWishes();
+      setInterval(function() {
+        getWishes();
+      }, 1000)
+
+      var fetch_index = 0;
+      setInterval(function() {
+        //第一次先将前10个push进去，之后再一个一个push到列表中
+        if (fetch_index === 0) {
+
+          for (; fetch_index < 100 && fetch_index < goalListViewModel.revolved_list().length; fetch_index++) {
+            var goalViewModel = goalListViewModel.revolved_list()[fetch_index];
+            goalListViewModel.revolving_list.push(goalViewModel);
+            if (goalViewModel.numberalpha() >= 100) {
+              goalListViewModel.greater100_list.push(goalViewModel);
+            }
+          }
+
+          return
+        }
+
+        //                    保证走马灯中只有10个在显示
+        // if (goalListViewModel.revolving_list().length > 10) {
+        //   goalListViewModel.revolving_list().splice(0, 1);
+        // }
+
+        if (fetch_index < goalListViewModel.revolved_list().length) {
+          var goalViewModel = goalListViewModel.revolved_list()[fetch_index];
+          goalListViewModel.revolving_list.push(goalViewModel);
+          fetch_index++;
+
+          if (goalViewModel.numberalpha() >= 100) {
+            goalListViewModel.greater100_list.push(goalViewModel);
+          }
+        }
+      }, 1500)
+    });
+
+    /**** view model start ****/
+    function GoalViewModel(department, name, wish) {
+      var self = this;
+      self.stringalpha = ko.observable(department);
+      self.name = ko.observable(name);
+      self.numberalpha = ko.observable(wish);
+    }
+
+    function GoalListViewModel() {
+      var self = this;
+
+      self.original_list = ko.observableArray();
+      self.revolved_list = ko.observableArray();
+      self.revolving_list = ko.observableArray();
+      self.greater100_list = ko.observableArray();
+
+      self.wishList = ko.observableArray();
+      //        self.addWish = function (wish, origin) {
+      //
+      //        }
+    }
+    /**** view model end ****/
+
+    var goalListViewModel = new GoalListViewModel();
+    ko.applyBindings(goalListViewModel, document.getElementById('wishListDIV'));
+
+    /**** server request && response handle start ****/
+    var getWishes = function() {
+
+      $.ajax({
+        // url: $.getRootPath() + '/revolvinglamp/api/goal/getallgoals',
+        url: $.getRootPath() + '/newjson.json',
+        type: 'POST',
+        success: function(json) {
+          var jsonObj = JSON.parse(json);
+          // var results = json.result;
+          var results = jsonObj.result;
+
+          for (var i = 0; i < results.length; i++) {
+            var need_add = true;
+            var server = results[i];
+
+            for (var j = 0; j < goalListViewModel.revolved_list().length; j++) {
+              var revolve = goalListViewModel.revolved_list()[j];
+              if (server.name === revolve.name() && server.stringalpha === revolve.stringalpha() && server.numberalpha !== revolve.numberalpha()) {
+                need_add = true;
+              }
+              if (server.name === revolve.name() && server.stringalpha === revolve.stringalpha() && server.numberalpha === revolve.numberalpha()) {
+                need_add = false;
+              }
+            }
+
+            if (need_add) {
+
+              var goalViewModel = new GoalViewModel(results[i].stringalpha, results[i].name, results[i].numberalpha);
+              goalListViewModel.revolved_list.push(goalViewModel);
+            }
+          }
+        },
+        error: function(json) {
+          console.log("error");
+        }
+      })
+    }
+
+    var is_scroll = true;
+    var changeScrollStatus = function() {
+      is_scroll = !is_scroll;
+      if (is_scroll) {
+        document.getElementById('mymarquee').start();
+      } else {
+        document.getElementById('mymarquee').stop();
+      }
+    }
+    $("#target").dblclick(function() {
+      this.stop();
+    });
+  </script>
+</body>
+
+</html>

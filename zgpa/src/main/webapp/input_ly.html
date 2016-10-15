@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The prototype website of web framework">
+  <meta name="author" content="LY">
+  <title>Matrix</title>
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+  <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+  <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+</head>
+
+<body>
+  <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/kmh_input.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:680px;height:680px;">
+    <div class="app-container">
+      <div class="row content-container">
+        <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+        <div class="container">
+          <div id="goal_input_div" clss="row">
+
+            <div class="col-xs-10 col-xs-offset-1">
+              <div id="validation_div" data-bind="with: bussiness_validate " style="margin-top:280px">
+                <!--Validation DIV BEGIN-->
+                <div data-bind="visible: hasError" class="alert alert-warning alert-dismissible fresh-color" role="alert">
+                  <button type="button" data-bind="click:function(){hasError(!hasError)}" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>友情提示:</strong>
+                  <div id="errorMessagesDIV" data-bind="foreach:errorMessage">
+                    <div data-bind="text:$data"></div>
+                  </div>
+                </div>
+                <!--Validation DIV END-->
+              </div>
+            </div>
+
+            <div id="business_content_div" data-bind="with: bussiness">
+              <div class="col-xs-12 text-center">
+                <br>
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="col-xs-3 control-label text-right" style="padding-right: 0px;padding-left: 0px;">
+                      <span style="font-weight: bold;font-size: 23px;letter-spacing: 2px; color:white;opacity: 1.0">部门</span>
+                    </label>
+                    <div class="col-xs-6 ">
+                      <input data-bind="value:department" type="text" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-xs-3 control-label text-right" style="padding-right: 0px;padding-left: 0px;">
+                      <span style="font-weight: bold;font-size: 23px;letter-spacing: 2px; color:white;opacity: 1.0">姓名</span>
+                    </label>
+                    <div class="col-xs-6 ">
+                      <input data-bind="value:name" type="text" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-xs-3 control-label text-right" style="padding-right: 0px;padding-left: 0px;">
+                      <span style="font-weight: bold;font-size: 23px;letter-spacing: 2px; color:white;opacity: 1.0">目标</span>
+                    </label>
+                    <div class="col-xs-6 ">
+                      <input data-bind="value: wish" type="text" class="form-control" placeholder="" />
+                    </div>
+                    <div class="col-xs-2" style="padding-left: 0px;">
+                      <p class="form-control-static" style="font-size: 23px;text-align: left;color:white;opacity: 1.0">万</p>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12 text-center">
+                      <a class="btn btn-danger  btn-wide text-center" href="javascript:void(0)" style="height: 36px;padding-top: 3px;font-size:20px;font-weight:bold;word-spacing:8px; letter-spacing: 2px;border: 1px solid transparent;border-radius: 38px;color:#e74c3c;font-weight:bold;background-color:white"
+                        onclick="runService()">提交 </a>
+                    </div>
+                  </div>
+                </form>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+  <script src="assets/reference/jquery/jquery.json.js"></script>
+  <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+  <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+  <script src="assets/self-owned/js/generic/generic_util.js"></script>
+  <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+  <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+  <script>
+    $(document).ready(function() {});
+
+    function GoalInputViewModel() {
+      var self = this;
+      self.bussiness = new BusinessViewModel();
+      self.bussiness_validate = new GenericModalViewModel();
+    }
+
+    function BusinessViewModel() {
+      var self = this;
+      self.department = ko.observable();
+      self.name = ko.observable();
+      self.wish = ko.observable();
+    }
+
+    // *******YOUR SHOULD CODING IN HERE:*******
+    var businessValidation = function() {
+      var errorMessages = [];
+      //validate logic...
+
+      //validate
+      ValidationPOJO.validate("部门", goalInputViewModel.bussiness.department(), errorMessages, ['KEY_NOT_NULL']);
+      ValidationPOJO.validate("姓名", goalInputViewModel.bussiness.name(), errorMessages, ['KEY_NOT_NULL']);
+      ValidationPOJO.validate("目标", goalInputViewModel.bussiness.wish(), errorMessages, ['KEY_NOT_NULL', 'KEY_NOT_NEGATIVE', 'KEY_MUST_NUMBER', 'KEY_NOT_MAX']);
+
+      return errorMessages;
+    }
+
+    var goalInputViewModel = new GoalInputViewModel();
+    ko.applyBindings(goalInputViewModel, document.getElementById('goal_input_div'));
+
+    var runService = function() {
+      if (!goalInputViewModel.bussiness_validate.validation(businessValidation)) {
+        return;
+      } else {
+        console.log("Validation Success, go to the function invoke..");
+        var requestPOJO = {
+          "stringalpha": goalInputViewModel.bussiness.department(),
+          //                    "createTime": Date.now(),
+          "name": goalInputViewModel.bussiness.name(),
+          "numberalpha": Number(goalInputViewModel.bussiness.wish())
+        };
+        var data = {
+          'queryJson': $.toJSON(requestPOJO)
+        };
+        $.serverRequest($.getServerRoot() + '/revolvinglamp/api/goal/add', data, "ADD_SUCCESS_LISTENER", "ADD_FAILED_LISTENER", "ADD_SERVER_FAILED_LISTENER");
+
+        //                          var param = UtilPOJO.encode(JSON.stringify(json_obj));
+        //                          window.location.replace($.getRootPath() + '/pa_xy_03.html?token=' + param);
+      }
+    }
+
+    function successAddListener() {
+      if (arguments && arguments[1]) {
+        // responseViewModel.correctResponse(arguments[1]);
+        console.log("add success");
+      }
+    }
+
+    function failedAddListener() {
+      if (arguments && arguments[1]) {
+        var errorMessage = arguments[1].errorMessage;
+        console.log("add failed " + errorMessage);
+      }
+    }
+
+    function failedServiceListener() {
+      console.log("add failed ");
+    }
+  </script>
+</body>
+
+</html>

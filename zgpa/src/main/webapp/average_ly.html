@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The prototype website of web framework">
+    <meta name="author" content="LY">
+    <title>Matrix</title>
+    <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+    <link rel="shortcut icon" href="assets/self-owned/ico/favicon.png">
+    <link rel="stylesheet" type="text/css" href="assets/reference/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/reference/flat-ui/css/flat-ui.css">
+    <link rel="stylesheet" type="text/css" href="assets/reference/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/self-owned/css/matrix.css">
+
+<style>
+.row > [class*="col-"] {
+    margin-bottom: 5px;
+}
+</style>
+  </head>
+
+  <body>
+    <div class="flat-matrix" style="background-image: url(assets/self-owned/img/zgpa/average_background.jpg);background-repeat: no-repeat;background-size:100% 100%;margin-top:0px;min-height:980px;height:980px;">
+      <!--<div class="flat-matrix" >-->
+      <div class="app-container">
+        <div class="row content-container">
+          <!-- 应用左侧NAV导航，可以应用与assist，帮助，过滤等辅助组件，默认自动收缩扩展，支持悬停（点击右上角按钮切换）-->
+          <div class="container">
+            <div style="width:100%;height:230px;">&nbsp;</div>
+            <div id="department_average_div" style="">
+              <!--<p data-bind="text: list.length"></p>-->
+              <div class="col-sm-offset-7 col-sm-5 text-left">
+                <div data-bind="foreach: list">
+                  <div class="row">
+                    <div class="col-sm-6" data-bind="text: $data.department" style="font-weight: bold;font-size: 18px;letter-spacing: 2px; color:white;opacity: 1.0"></div>
+                    <!--<div class="col-sm-1" style="font-weight: bold;font-size: 18px;letter-spacing: 2px; color:#f6ff04;opacity: 0.5">：</div>-->
+                    <div class="col-sm-6" data-bind="text: function(){return $data.avg()+'万'}(),style: { color: $data.avg()>100 ?'#f6ff04':'white', fontSize:$data.avg()>100 ? '25px':'18px'}" style="font-weight: bold;letter-spacing: 2px;opacity: 1.0"></div>
+                    <!--<div class="col-sm-4" style="font-weight: bold;font-size: 18px;letter-spacing: 2px; color:white;opacity: 0.5">万</div>-->
+                  </div>
+                </div>
+                <br><br><br><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/reference/jquery/jquery-1.11.1.min.js"></script>
+    <script src="assets/reference/jquery/jquery.json.js"></script>
+    <script src="assets/reference/knockout.js/knockout-3.3.0.js"></script>
+    <script src="assets/reference/jquery-tiny-pubsub/tiny-pubsub.js"></script>
+    <script src="assets/self-owned/js/generic/generic_util.js"></script>
+    <script src="assets/self-owned/js/generic/generic_modal.js"></script>
+    <script src="assets/self-owned/js/generic/generic_validation.js"></script>
+    <script>
+      $(document).ready(function () {
+        getWishes();
+      });
+
+      function DepartmentAverageListViewModel() {
+        var self = this;
+        self.list = ko.observableArray();
+      }
+
+      function DepartmentAverageViewModel(department, sum, num) {
+        var self = this;
+        self.department = ko.observable(department);
+        self.sum = ko.observable(sum);
+        self.num = ko.observable(num);
+        self.avg = ko.observable();
+      }
+
+      var departmentAverageList = new DepartmentAverageListViewModel();
+      ko.applyBindings(departmentAverageList, document.getElementById('department_average_div'));
+
+
+
+      var getWishes = function () {
+
+        $.ajax({
+          // url: $.getRootPath() + '/revolvinglamp/api/goal/getallgoals',
+          url: $.getRootPath() + '/newjson.json',
+          type: 'POST',
+          success: function (json) {
+            var jsonObj = JSON.parse(json);
+            // var results = json.result;
+            var results = jsonObj.result;
+//            departmentAverageList.list([])
+            for (var i = 0; i < results.length; i++) {
+              var need_add = true;
+              if (departmentAverageList.list().length !== 0) {
+//            部门信息列表不为空，循环比较部门信息
+                for (var j = 0; j < departmentAverageList.list().length; j++) {
+
+                  if (results[i].stringalpha === departmentAverageList.list()[j].department()) {
+                    //部门信息已存在
+//                    console.log(Number(results[i].numberalpha))
+//                    console.log(departmentAverageList.list()[j].sum())
+                    var sum = departmentAverageList.list()[j].sum() + Number(results[i].numberalpha)
+                    departmentAverageList.list()[j].sum(sum);
+                    var num = departmentAverageList.list()[j].num() + 1;
+                    departmentAverageList.list()[j].num(num);
+
+                    need_add = false;
+                    break;
+                  }
+                }
+
+                if (need_add) {
+                  var departmentAvg = new DepartmentAverageViewModel(results[i].stringalpha, Number(results[i].numberalpha), 1);
+                  departmentAverageList.list.push(departmentAvg);
+                }
+              } else {
+                //部门信息为空，先push一个入列表，只在第一个循环用到
+//                console.log(Number(results[i].numberalpha))
+                var departmentAvg = new DepartmentAverageViewModel(results[i].stringalpha, Number(results[i].numberalpha), 1);
+
+                departmentAverageList.list.push(departmentAvg);
+              }
+            }
+
+//计算平均数
+            var list = departmentAverageList.list();
+            for (var j = 0; j < list.length; j++) {
+              var avg = (Number(list[j].sum()) / Number(list[j].num())).toFixed(2);
+              list[j].avg(avg);
+            }
+
+            var sortlist = list.sort(sortAvg)
+
+            departmentAverageList.list(sortlist);
+          },
+          error: function (json) {
+            console.log("error");
+          }
+        })
+      }
+
+      function sortAvg(a, b) {
+        return Number(b.avg()) - Number(a.avg());
+      }
+
+
+    </script>
+  </body>
+
+</html>
